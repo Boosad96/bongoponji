@@ -672,8 +672,9 @@ Lighthouse 13.6.0 ran in mobile simulation against the live Cloudflare Pages rev
 | Homepage | 100 | 100 | 63 | 0.877 s | 0 |
 | Poila Boishakh | 100 | 100 | 63 | 0.836 s | 0.0002 |
 | Date converter, before fix | 87 | 96 | 63 | 0.856 s | 0.252 |
+| Date converter, after Git-connected rebuild | 100 | 96 | 63 | 0.843 s | 0 |
 
-Live LCP was close to the 0.75 s built-file median. Noindex is intentional and was verified on the live homepage, converter and all three approved festival routes. Lighthouse attributed the converter's CLS to Bengali and Latin font loads. The converter now preloads both subsets and uses optional display so a late font does not replace a fallback after initial rendering. In a matched local Lighthouse run using DevTools mobile throttling and an extra 350 ms font-response delay, CLS went from 0.252 to 0, Performance from 87 to 99, and LCP from 1.56 s to 1.66 s. The updated live build needs a follow-up measurement.
+Live LCP was close to the 0.75 s built-file median. Noindex is intentional and was verified on the live homepage, converter and all three approved festival routes. Lighthouse attributed the converter's CLS to Bengali and Latin font loads. The converter now preloads both subsets and uses optional display so a late font does not replace a fallback after initial rendering. In a matched local Lighthouse run using DevTools mobile throttling and an extra 350 ms font-response delay, CLS went from 0.252 to 0, Performance from 87 to 99, and LCP from 1.56 s to 1.66 s. After the Git-connected rebuild, the live converter served the updated font policy. The 19:45 IST repeat measured zero CLS and 0.843 s LCP.
 
 The in-repository Wrangler command reproduced the missing facade error while picking up Astro's generated Workers configuration. The new isolated `npm run preview:pages -- --port 8789` started correctly. An HTTP request returned the supported 20 April Kolkata record with its following-day nakshatra end, and the packaged Poila Boishakh route returned HTTP 200. All seven Playwright cases ran and passed.
 
