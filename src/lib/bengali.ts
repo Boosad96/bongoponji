@@ -1,4 +1,4 @@
-import { PAC_1433, sources } from '../data/evidence';
+import { sources } from '../data/evidence';
 import { bn, dayNumber, isoDay } from './dates';
 
 export const months = ['বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন',
@@ -13,25 +13,19 @@ export const methods: Record<Region, string> = {
   bangladesh: 'বাংলা একাডেমির সংশোধিত নাগরিক বর্ষপঞ্জি',
 };
 export const calendarEvidence = {
-  'west-bengal': { source: sources.pacSolar, checked: '2026-11-27', version: 'pac-bengal-assam-1948', from: '2026-04-15', to: '2027-04-13' },
   bangladesh: { source: sources.bdRules, checked: '2026-11-27', version: 'bangla-academy-2019', from: '2019-10-16', to: '2099-12-31' },
 } as const;
-const pacStarts = PAC_1433.map(dayNumber);
 const isLeap = (year: number) => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
 const bdLengths = (year: number) => [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, isLeap(year + 594) ? 30 : 29, 30];
 const bdStart = (year: number) => dayNumber(`${year + 593}-04-14`);
-function covers(iso: string, region: Region) {
-  const { from, to } = calendarEvidence[region];
+function covers(iso: string) {
+  const { from, to } = calendarEvidence.bangladesh;
   return iso >= from && iso <= to;
 }
 
-export function toBengali(iso: string, region: Region): BengaliDate | null {
+export function toBengali(iso: string): BengaliDate | null {
   const absolute = dayNumber(iso);
-  if (!covers(iso, region)) return null;
-  if (region === 'west-bengal') {
-    const index = pacStarts.findLastIndex(start => start <= absolute);
-    return { year: 1433, month: index + 1, day: absolute - pacStarts[index] + 1 };
-  }
+  if (!covers(iso)) return null;
   const gregorianYear = Number(iso.slice(0, 4));
   const year = gregorianYear - (iso.slice(5) >= '04-14' ? 593 : 594);
   let offset = absolute - bdStart(year);
@@ -42,16 +36,14 @@ export function toBengali(iso: string, region: Region): BengaliDate | null {
   throw new Error('Invalid Bangladesh calendar offset');
 }
 
-export function toGregorian(date: BengaliDate, region: Region): string | null {
+export function toGregorian(date: BengaliDate): string | null {
   const { year, month, day } = date;
   if (![year, month, day].every(Number.isInteger) || month < 1 || month > 12 || day < 1 || day > 32) return null;
-  if (region === 'west-bengal' && year !== 1433) return null;
-  if (region === 'bangladesh' && (year < 1426 || year > 1506)) return null;
+  if (year < 1426 || year > 1506) return null;
   const index = month - 1;
-  const start = region === 'west-bengal' ? pacStarts[index] :
-    bdStart(year) + bdLengths(year).slice(0, index).reduce((total, length) => total + length, 0);
+  const start = bdStart(year) + bdLengths(year).slice(0, index).reduce((total, length) => total + length, 0);
   const iso = isoDay(start + day - 1);
-  const roundTrip = toBengali(iso, region);
+  const roundTrip = toBengali(iso);
   return roundTrip?.year === year && roundTrip.month === month && roundTrip.day === day ? iso : null;
 }
 export const bengaliLabel = ({ year, month, day }: BengaliDate) => `${bn(day)} ${months[month - 1]} ${bn(year)}`;

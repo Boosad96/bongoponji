@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "date": "2026-11-27",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T08:14:39.321Z",
+      "value": {
+        "sunrise": "05:57",
+        "sunset": "16:51",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 3,
+          "endsAt": "2026-11-27T04:20:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/agrahayana",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2026-11-28",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T08:14:39.321Z",
+      "value": {
+        "sunrise": "05:58",
+        "sunset": "16:51",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 4,
+          "endsAt": "2026-11-28T01:11:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/agrahayana",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2026-11-29",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T08:14:39.321Z",
+      "value": {
+        "sunrise": "05:58",
+        "sunset": "16:51",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 6,
+          "endsAt": "2026-11-29T20:18:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/agrahayana",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    }
+  ]
+}

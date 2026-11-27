@@ -1,0 +1,48 @@
+---
+import { months } from '../lib/bengali';
+import { bn } from '../lib/dates';
+---
+<section class="card">
+  <h2>গ্রেগরিয়ান থেকে বাংলা</h2>
+  <form id="to-bengali" class="form-row">
+    <label>গ্রেগরিয়ান তারিখ <input name="date" placeholder="২০২৭-০৪-১৪" required aria-describedby="date-pattern" /></label>
+    <button class="button">রূপান্তর করুন</button>
+  </form>
+  <p class="muted" id="date-pattern">বছর-মাস-দিন লিখুন। বাংলা ও ইংরেজি অঙ্ক গ্রহণযোগ্য।</p>
+  <output id="bengali-result" form="to-bengali" aria-live="polite"></output>
+</section>
+<section class="section card">
+  <h2>বাংলা থেকে গ্রেগরিয়ান</h2>
+  <form id="to-gregorian" class="form-row">
+    <label>বাংলা বছর <input name="year" inputmode="numeric" maxlength="4" required placeholder="১৪৩৪" /></label>
+    <label>বাংলা মাস <select name="month">{months.map((month,i) => <option value={i+1}>{month}</option>)}</select></label>
+    <label>দিন <input name="day" inputmode="numeric" maxlength="2" required placeholder={bn(1)} /></label>
+    <button class="button">রূপান্তর করুন</button>
+  </form>
+  <output id="gregorian-result" form="to-gregorian" aria-live="polite"></output>
+</section>
+<script>
+  import { bengaliLabel, toBengali, toGregorian } from '../lib/bengali';
+  import { ascii, gregorianLabel } from '../lib/dates';
+  const invalid = 'তারিখটি সঠিক কি না এবং সমর্থিত সীমার মধ্যে আছে কি না দেখুন।';
+  document.querySelector<HTMLFormElement>('#to-bengali')?.addEventListener('submit', event => {
+    event.preventDefault();
+    const value = new FormData(event.currentTarget as HTMLFormElement).get('date');
+    let result = invalid;
+    try {
+      const date = toBengali(ascii(String(value).trim()));
+      if (date) result = bengaliLabel(date);
+    } catch {}
+    document.getElementById('bengali-result')!.textContent = result;
+  });
+  document.querySelector<HTMLFormElement>('#to-gregorian')?.addEventListener('submit', event => {
+    event.preventDefault();
+    const fields = new FormData(event.currentTarget as HTMLFormElement);
+    const year = ascii(String(fields.get('year')).trim());
+    const day = ascii(String(fields.get('day')).trim());
+    const date = /^\d{4}$/.test(year) && /^\d{1,2}$/.test(day)
+      ? toGregorian({year: Number(year), month: Number(fields.get('month')), day: Number(day)})
+      : null;
+    document.getElementById('gregorian-result')!.textContent = date ? gregorianLabel(date) : invalid;
+  });
+</script>

@@ -1,0 +1,8 @@
+---
+import Daily from '../../components/Daily.astro';
+import { cityNames } from '../../lib/site';
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'private, no-store, max-age=0');
+if (!cityNames.some(([id]) => id === Astro.params.city)) return new Response('পাতাটি পাওয়া যায়নি।', { status: 404 });
+---
+<Daily fixedCity={Astro.params.city} />

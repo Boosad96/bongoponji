@@ -1,33 +1,34 @@
 import { describe, expect, it } from 'vitest';
 import { toBengali, toGregorian, calendarEvidence } from '../src/lib/bengali';
 import { dayNumber, isoDay, localDate } from '../src/lib/dates';
-import { PAC_1433 } from '../src/data/evidence';
+import { PAC_1433 } from '../src/data/pac-validation';
+import { fromPac, toPacGregorian, pacRange } from '../src/lib/pac-calendar';
 import { horizonEvents, localMidnight, nextPhase, tithiAt } from '../src/lib/astronomy';
 import { published, states, type RecordEnvelope } from '../src/lib/publication';
 
 describe('regional date conversion', () => {
   it('round-trips every supported civil date in both methods', () => {
     for (const region of ['bangladesh', 'west-bengal'] as const) {
-      const { from, to } = calendarEvidence[region];
+      const { from, to } = region === 'bangladesh' ? calendarEvidence.bangladesh : pacRange;
       for (let day = dayNumber(from); day <= dayNumber(to); day++) {
         const date = isoDay(day);
-        const converted = toBengali(date, region);
-        if (!converted || toGregorian(converted, region) !== date) throw new Error(`Round-trip failed for ${region} ${date}`);
+        const converted = region === 'bangladesh' ? toBengali(date) : fromPac(date);
+        if (!converted || (region === 'bangladesh' ? toGregorian(converted) : toPacGregorian(converted)) !== date) throw new Error(`Round-trip failed for ${region} ${date}`);
       }
     }
   });
   it('checks Bangladesh civic dates and Falgun leap boundary', () => {
-    expect(toBengali('2027-02-21', 'bangladesh')).toEqual({year: 1433, month: 11, day: 8});
-    expect(toBengali('2027-03-26', 'bangladesh')).toEqual({year: 1433, month: 12, day: 12});
-    expect(toBengali('2027-04-14', 'bangladesh')).toEqual({year: 1434, month: 1, day: 1});
-    expect(toBengali('2027-12-16', 'bangladesh')).toEqual({year: 1434, month: 9, day: 1});
-    expect(toGregorian({year: 1434, month: 11, day: 30}, 'bangladesh')).toBe('2028-03-14');
-    expect(toGregorian({year: 1433, month: 11, day: 30}, 'bangladesh')).toBeNull();
+    expect(toBengali('2027-02-21')).toEqual({year: 1433, month: 11, day: 8});
+    expect(toBengali('2027-03-26')).toEqual({year: 1433, month: 12, day: 12});
+    expect(toBengali('2027-04-14')).toEqual({year: 1434, month: 1, day: 1});
+    expect(toBengali('2027-12-16')).toEqual({year: 1434, month: 9, day: 1});
+    expect(toGregorian({year: 1434, month: 11, day: 30})).toBe('2028-03-14');
+    expect(toGregorian({year: 1433, month: 11, day: 30})).toBeNull();
   });
   it('checks each PAC month start and rejects uncovered dates', () => {
-    PAC_1433.forEach((date, index) => expect(toBengali(date, 'west-bengal')).toEqual({year: 1433, month: index + 1, day: 1}));
-    expect(toBengali('2027-04-14', 'west-bengal')).toBeNull();
-    expect(toBengali('2019-10-15', 'bangladesh')).toBeNull();
+    PAC_1433.forEach((date, index) => expect(fromPac(date)).toEqual({year: 1433, month: index + 1, day: 1}));
+    expect(fromPac('2027-04-14')).toBeNull();
+    expect(toBengali('2019-10-15')).toBeNull();
     expect(() => dayNumber('2026-02-29')).toThrow();
   });
 });
@@ -66,4 +67,43 @@ it('blocks every nonverified state, mismatched dates and missing evidence', () =
   for (const status of states) expect(published({...record, status}, identity)).toBe(status === 'VERIFIED');
   expect(published(record, {...identity, date: '2026-11-28'})).toBe(false);
   expect(published({...record, evidence: undefined}, identity)).toBe(false);
+});
+
+import { dailyEngine, dailyMethod, verifiedDaily } from '../src/lib/daily';
+it('publishes only one correctly keyed, chronological solar record', () => {
+  const date = '2026-11-27';
+  const record = {
+    date, location: 'kolkata', region: 'west-bengal', method: dailyMethod, engine: dailyEngine,
+    status: 'VERIFIED', generatedAt: '2026-11-27T00:00:00Z',
+    evidence: { source: 'https://packolkata.imd.gov.in/', checked: date, redistribution: 'cleared' },
+    value: {sunrise: '05:57', sunset: '16:51'},
+  } as const;
+  expect(verifiedDaily(date, 'kolkata', 'west-bengal', [record])).toBe(record);
+  expect(verifiedDaily(date, 'kolkata', 'west-bengal', [record,record])).toBeNull();
+  expect(verifiedDaily(date, 'kolkata', 'west-bengal', [{...record,value:{sunrise:'06:10',sunset:'06:01'}}])).toBeNull();
+  expect(verifiedDaily('2026-11-28', 'kolkata', 'west-bengal', [record])).toBeNull();
+});
+
+import dataset from '../src/data/daily.v1.json';
+it('rejects invalid release dataset versions, keys, and conflicting approvals', () => {
+  expect(dataset.schemaVersion).toBe(1);
+  const records = dataset.records as NonNullable<Parameters<typeof verifiedDaily>[3]>;
+  for (const record of records ?? []) {
+    expect(record.status).toBe('VERIFIED');
+    expect(record.evidence?.origin).toBe('independent-computation');
+    expect(['west-bengal','bangladesh']).toContain(record.region);
+    if (record.region !== 'west-bengal' && record.region !== 'bangladesh') throw new Error('Unknown calendar region');
+    expect(verifiedDaily(record.date, record.location, record.region, records)).toBe(record);
+  }
+});
+
+it.each([
+  ['2026-11-27','05:57','16:51',3,'2026-11-27T04:19:00Z'],
+  ['2026-11-28','05:58','16:51',4,'2026-11-28T01:10:00Z'],
+  ['2026-11-29','05:58','16:51',6,'2026-11-29T20:17:00Z'],
+])('compares the published Kolkata sample to IMD for %s', (date, sunrise, sunset, number, end) => {
+  const sample = verifiedDaily(date, 'kolkata', 'west-bengal');
+  expect(sample).not.toBeNull();
+  expect(sample?.value).toMatchObject({sunrise,sunset,tithi:{paksha:'krishna',number}});
+  expect(Math.abs(Date.parse(sample?.value.tithi?.endsAt ?? '') - Date.parse(end))).toBeLessThanOrEqual(60000);
 });

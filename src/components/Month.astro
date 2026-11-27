@@ -1,0 +1,16 @@
+---
+import { monthWeeks } from '../lib/calendar-view';
+import { type Region, months } from '../lib/bengali';
+import { bn } from '../lib/dates';
+import { gregorianMonths } from '../lib/site';
+interface Props { year: number; month: number; region: Region; today?: string }
+const { year, month, region, today } = Astro.props;
+const weekdays = ['রবি','সোম','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
+---
+<table class="calendar">
+  <caption>{gregorianMonths[month-1]} {bn(year)}</caption>
+  <thead><tr>{weekdays.map(day => <th scope="col">{day}</th>)}</tr></thead>
+  <tbody>{monthWeeks(year, month, region).map(week => <tr>{week.map(cell => <td aria-current={cell && cell.iso === today ? 'date' : undefined}>
+    {cell && <time datetime={cell.iso}>{bn(cell.number)}{cell.bengali && <small>{bn(cell.bengali.day)} {months[cell.bengali.month-1]}</small>}</time>}
+  </td>)}</tr>)}</tbody>
+</table>

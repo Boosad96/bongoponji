@@ -1,0 +1,11 @@
+# Calculation methodology
+
+Civil calendar functions use Gregorian UTC day numbers for date arithmetic and IANA zones for finding the current local date. Bangladesh mode starts its year on April 14. Its year is Gregorian start year less 593. Boishakh through Ashwin have 31 days. Falgun has 29 days and gains a day when the following Gregorian year is a leap year. The five remaining months have 30 days. Supported civil dates run from 2019-10-16 through 2099-12-31. Dates before the revised civil calendar took effect are outside the supported range.
+
+The West Bengal investigation uses the published PAC Bengal and Assam solar boundaries. It covers 2026-04-15 through 2027-04-13 internally. The RKM reader confirms the Ashwin boundary and last day for the printed Bishuddha Siddhanta sample. The code makes no equivalence claim between the full PAC and printed methods.
+
+Astronomy Engine 2.1.19 returns apparent tropical Sun longitude and true-of-date ecliptic geocentric Moon longitude. Its MoonPhase supplies the directed relative elongation for tithi. Each tithi occupies twelve degrees, with 0° opening Shukla Pratipada and 180° opening Krishna Pratipada. A phase-angle search estimates the transition instant. The horizon search uses the observer coordinates at zero altitude and Astronomy Engine's normal refraction and upper-limb convention. Events are filtered back to the selected local civil day. The current location-aware validation is Kolkata only. See VALIDATION_REPORT.md for sample tolerances.
+
+Sidereal work needs a verified ayanamsha and independent comparisons. Nakshatra, yoga and sankranti are withheld pending that work. Karana, Ekadashi and festival observances need independent verification of their rules and the relevant local day, sunrise or observance window. Gupta Press and Bishuddha Siddhanta are future verification targets.
+
+Daily JSON records have a state, date, location, region, method, engine version, generation time and approval evidence. Exact keys, valid time values, reference URL and clearance are required. Duplicate matches are rejected. The release dataset contains only the independent Kolkata solar and sunrise-tithi sample for 27–29 November 2026.

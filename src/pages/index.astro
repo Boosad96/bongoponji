@@ -1,0 +1,6 @@
+---
+import Daily from '../components/Daily.astro';
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'private, no-store, max-age=0');
+---
+<Daily home />

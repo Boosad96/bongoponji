@@ -1,0 +1,15 @@
+query,language,intent,canonical_path,season,phase,evidence
+বাংলা থেকে ইংরেজি তারিখ,bn,convert,/tools/date-converter/,year-round,1,qualitative
+ইংরেজি থেকে বাংলা তারিখ,bn,convert,/tools/date-converter/,year-round,1,qualitative
+Bangla date converter,en,convert,/tools/date-converter/,year-round,1,qualitative
+আজকের বাংলা তারিখ,bn,daily,/today/,year-round,3,qualitative
+Ajker Bangla Tarikh,romanized-bn,daily,/today/,year-round,3,qualitative
+আজকের তিথি,bn,daily,/panjika/today/,year-round,2,qualitative
+Ajker Panjika,romanized-bn,daily,/panjika/today/,year-round,3,qualitative
+Bengali calendar 2027,en,annual,/calendar/2027/,new-year,1,qualitative
+বাংলা ক্যালেন্ডার ১৪৩৪,bn,annual,/calendar/bengali-year/1434/,April,2,qualitative
+দুর্গাপূজা ২০২৭ কবে,bn,festival,/festivals/durga-puja/2027/,autumn,1,qualitative
+বিয়ের শুভ দিন ২০২৭,bn,muhurat,/muhurat/marriage/2027/,wedding-season,2,qualitative
+Bengali birthday,en,tool,/tools/bengali-birthday/,year-round,1,qualitative
+বাংলা ক্যালেন্ডার,bn,utility,/,year-round,3,qualitative
+Bengali Panchang,en,utility,/,year-round,3,qualitative

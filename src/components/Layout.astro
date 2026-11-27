@@ -1,0 +1,69 @@
+---
+import '../styles/site.css';
+import { correctionEmail } from '../lib/site';
+interface Props { title: string; description: string; noindex?: boolean; home?: boolean }
+const { title, description, noindex = false, home = false } = Astro.props;
+const canonical = Astro.site && new URL(Astro.url.pathname, Astro.site);
+const indexable = canonical && !noindex && !Astro.url.search;
+const fullTitle = `${title} | বঙ্গপঞ্জি`;
+const webApplication = canonical && Astro.url.pathname === '/tools/date-converter/' && {
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: title, url: canonical.href,
+  inLanguage: 'bn', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: 0, priceCurrency: 'BDT' },
+};
+const schema = canonical && { '@context':'https://schema.org', '@type':home ? 'WebSite' : 'BreadcrumbList',
+  ...(home ? {name:'বঙ্গপঞ্জি', url:canonical.origin} : {itemListElement:[
+    {'@type':'ListItem',position:1,name:'প্রচ্ছদ',item:canonical.origin + '/'},
+    {'@type':'ListItem',position:2,name:title,item:canonical.href},
+  ]}) };
+const links = [['/','প্রচ্ছদ'],['/panjika/today/','পঞ্জিকা'],['/calendar/','ক্যালেন্ডার'],['/festivals/','উৎসব'],['/tools/date-converter/','তারিখ রূপান্তর']];
+---
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <meta name="robots" content={indexable ? 'index,follow' : 'noindex,follow'} />
+  {canonical && <link rel="canonical" href={canonical} />}
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="bn_IN" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  {canonical && <meta property="og:url" content={canonical} />}
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <title>{fullTitle}</title>
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replaceAll('<','\\u003c')} />}
+  {webApplication && <script type="application/ld+json" set:html={JSON.stringify(webApplication)} />}
+  <script is:inline>
+    try { document.documentElement.dataset.theme = localStorage.getItem('bongoponji-theme') || ''; } catch {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">মূল অংশে যান</a>
+  <header class="top"><div class="wrap header-inner">
+    <a class="brand" href="/"><span class="brand-icon" aria-hidden="true">◉</span><span>বঙ্গপঞ্জি</span></a>
+    <nav aria-label="প্রধান মেনু">{links.map(([href,label]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
+    <button class="theme" id="theme" type="button" aria-label="আলো বা অন্ধকার রং বদলান">◐</button>
+  </div></header>
+  <main id="main" class="wrap">
+    {!home && <nav class="crumb" aria-label="আপনি এখানে"><a href="/">প্রচ্ছদ</a><span aria-hidden="true">/</span><span>{title}</span></nav>}
+    <slot />
+  </main>
+  <footer><div class="wrap footer-inner">
+    <div><a class="brand" href="/">বঙ্গপঞ্জি</a><p>বাংলার প্রতিদিন, বাংলার সময়।</p></div>
+    <nav aria-label="সাইটের তথ্য"><a href="/methodology/">গণনাপদ্ধতি</a><a href="/sources/">তথ্যসূত্র</a><a href="/corrections/">সংশোধন</a><a href="/about/">পরিচয়</a><a href="/contact/">যোগাযোগ</a><a href="/privacy-policy/">গোপনীয়তা</a><a href="/terms/">ব্যবহারের শর্ত</a></nav>
+    {correctionEmail && <a href={`mailto:${correctionEmail}`}>সংশোধনের জন্য লিখুন</a>}
+  </div></footer>
+  <script>
+    document.getElementById('theme')?.addEventListener('click', () => {
+      const root = document.documentElement;
+      const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('bongoponji-theme', root.dataset.theme); } catch {}
+    });
+  </script>
+</body>
+</html>

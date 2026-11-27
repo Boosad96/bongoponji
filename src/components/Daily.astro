@@ -1,0 +1,90 @@
+---
+import Layout from './Layout.astro';
+import Month from './Month.astro';
+import { dayNumber, localDate, isoDay, gregorianLabel, bn } from '../lib/dates';
+import { bengaliLabel, calendarEvidence, methods, toBengali } from '../lib/bengali';
+import { verifiedDaily } from '../lib/daily';
+import { cityFor, cityNames, unavailable } from '../lib/site';
+interface Props { home?: boolean; tomorrow?: boolean; fixedCity?: string; civilOnly?: boolean }
+const { home, tomorrow, fixedCity, civilOnly } = Astro.props;
+const city = cityFor(fixedCity ?? Astro.url.searchParams.get('city'));
+const selected = Astro.url.searchParams.get('region');
+const region = selected === 'bangladesh' || (selected !== 'west-bengal' && city.timezone === 'Asia/Dhaka') ? 'bangladesh' : 'west-bengal';
+const localToday = localDate(new Date(), city.timezone);
+const date = tomorrow ? isoDay(dayNumber(localToday) + 1) : localToday;
+const result = region === 'bangladesh' ? toBengali(date) : null;
+const daily = verifiedDaily(date, city.id, region);
+const tithi = daily?.value.tithi;
+const tithiNames = ['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী',
+  'নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী'];
+const tithiName = tithi ? tithiNames[tithi.number - 1] ?? (tithi.paksha === 'shukla' ? 'পূর্ণিমা' : 'অমাবস্যা') : '';
+const tithiEnd = tithi && new Date(tithi.endsAt);
+const tithiEndLabel = tithiEnd && new Intl.DateTimeFormat('bn-BD',{
+  timeZone: city.timezone, day:'numeric', month:'long', hour:'numeric', minute:'numeric',
+}).format(tithiEnd);
+const requestedMonth = Astro.url.searchParams.get('month') ?? '';
+const displayMonth = /^20(?:2[6-9]|[3-9][0-9])-(?:0[1-9]|1[0-2])$/.test(requestedMonth) ? requestedMonth : date.slice(0,7);
+const [year, month] = displayMonth.split('-').map(Number);
+const shiftMonth = (amount: number) => new Date(Date.UTC(year, month - 1 + amount, 1)).toISOString().slice(0,7);
+const title = home ? 'বাংলা ক্যালেন্ডার ও পঞ্জিকা' : civilOnly ? 'আজকের বাংলা তারিখ' : fixedCity ? `${city.name}র পঞ্জিকা` : tomorrow ? 'আগামীকালের পঞ্জিকা' : 'আজকের পঞ্জিকা';
+const query = new URLSearchParams({ city: city.id, region });
+const description = home ? 'বাংলা তারিখ, মাসিক ক্যালেন্ডার ও তারিখ রূপান্তর। অঞ্চলভেদে পঞ্জিকার পদ্ধতি ও তথ্যসূত্র দেখুন।'
+  : `${title}। শহরের স্থানীয় সময়, গণনাপদ্ধতি ও তথ্যের যাচাইয়ের অবস্থা দেখুন।`;
+---
+<Layout {title} {description} noindex={!home} home={home}>
+  <section class="hero">
+    <div>
+      <p class="muted">{home ? 'বাংলার প্রতিদিন, বাংলার সময়।' : city.name}</p>
+      <h1>{home && result ? bengaliLabel(result) : home ? 'আজকের বাংলা তারিখ' : title}</h1>
+      <p><time datetime={date}>{gregorianLabel(date)}</time></p>
+      {!home && result && <h2>{bengaliLabel(result)}</h2>}
+      {!result && <p class="muted">{region === 'west-bengal' ? 'পশ্চিমবঙ্গের বাংলা তারিখ প্রকাশের অনুমোদন অপেক্ষমাণ।' : 'এই দিনের বাংলা তারিখ উপলব্ধ নেই।'}</p>}
+      <form method="get" action={fixedCity ? '/panjika/today/' : Astro.url.pathname} class="form-row actions">
+        <label>শহর <select name="city">{cityNames.map(([id,label]) => <option value={id} selected={id === city.id}>{label}</option>)}</select></label>
+        <label>বর্ষপঞ্জি <select name="region"><option value="west-bengal" selected={region === 'west-bengal'}>পশ্চিমবঙ্গ</option><option value="bangladesh" selected={region === 'bangladesh'}>বাংলাদেশ</option></select></label>
+        <button class="button">দেখুন</button>
+      </form>
+    </div>
+    <div class="summary">
+      <h2>{tomorrow ? 'আগামীকালের পঞ্জিকা' : 'দৈনিক পঞ্জিকা'}</h2>
+      <p class="muted">তিথি, নক্ষত্র, সূর্যোদয় ও সূর্যাস্ত</p>
+      {daily ? <dl><dt>সূর্যোদয়</dt><dd>{bn(daily.value.sunrise)}</dd><dt>সূর্যাস্ত</dt><dd>{bn(daily.value.sunset)}</dd>
+        {tithi && <><dt>সূর্যোদয়ের তিথি</dt><dd>{tithi.paksha === 'shukla' ? 'শুক্লপক্ষ' : 'কৃষ্ণপক্ষ'} · {tithiName}</dd>
+        <dt>তিথির শেষ</dt><dd><time datetime={tithi.endsAt}>{tithiEndLabel}</time></dd></>}
+      </dl> : <p>{unavailable}</p>}
+      {daily && <p>{tithi ? "নক্ষত্রের যাচাই চলছে।" : "তিথি ও নক্ষত্রের যাচাই চলছে।"}</p>}
+      <dl><dt>স্থান</dt><dd>{city.name}</dd><dt>স্থানীয় সময় অঞ্চল</dt><dd>{city.timezone}</dd>
+        <dt>বর্ষপঞ্জি</dt><dd>{methods[region]}</dd><dt>পঞ্জিকার পদ্ধতি</dt><dd>{daily ? 'সূর্যোদয়ভিত্তিক দৃক্‌ গণনা' : 'দৃক্‌ গণনা · যাচাই অপেক্ষমাণ'}</dd>
+        <dt>তথ্যসূত্র</dt><dd><a href={daily?.evidence?.source ?? "/sources/"}>{daily ? 'রাষ্ট্রীয় পঞ্চাঙ্গ' : 'তথ্যসূত্র দেখুন'}</a>
+        {daily?.evidence?.horizonSource && <> · <a href={daily.evidence.horizonSource}>উদয় ও অস্তের সারণি</a></>}</dd>
+        <dt>যাচাইয়ের অবস্থা</dt><dd>{daily ? (tithi ? "সূর্যোদয়, সূর্যাস্ত ও সূর্যোদয়ের তিথি যাচাইকৃত" : "সূর্যোদয় ও সূর্যাস্ত যাচাইকৃত") : "প্রকাশ অপেক্ষমাণ"}</dd><dt>শেষ যাচাই</dt><dd>{daily?.evidence ? gregorianLabel(daily.evidence.checked) : "প্রযোজ্য নয়"}</dd>
+        {result && <><dt>নাগরিক বর্ষপঞ্জির সূত্র</dt><dd><a href={calendarEvidence.bangladesh.source}>সংশোধনের নিয়ম</a></dd><dt>সূত্র পর্যালোচনা</dt><dd>{gregorianLabel(calendarEvidence.bangladesh.checked)}</dd></>}
+      </dl>
+      <a href={`/panjika/${tomorrow ? 'today' : 'tomorrow'}/?${query}`}>{tomorrow ? 'আজকের পঞ্জিকা' : 'আগামীকালের পঞ্জিকা'}</a>
+      <span aria-hidden="true"> · </span><a href="/corrections/">সংশোধন জানান</a>
+    </div>
+  </section>
+  {home && <>
+    <section class="section"><div class="section-head"><h2>দরকারি সরঞ্জাম</h2></div>
+      <div class="grid">
+        <a class="card" href="/tools/date-converter/"><h3>তারিখ রূপান্তর</h3><p class="muted">বাংলা ও গ্রেগরিয়ান তারিখের মধ্যে রূপান্তর করুন।</p></a>
+        <a class="card" href="/calendar/"><h3>বার্ষিক ক্যালেন্ডার</h3><p class="muted">মাস ও বছর ধরে দিন খুঁজুন।</p></a>
+        <a class="card" href="/festivals/"><h3>পূজা ও উৎসব</h3><p class="muted">আঞ্চলিক রীতি ও যাচাইয়ের অবস্থা দেখুন।</p></a>
+      </div>
+    </section>
+    <section class="section card" id="month">
+      <div class="section-head"><h2>মাসিক ক্যালেন্ডার</h2><a href="/calendar/">অন্য মাস দেখুন</a></div>
+      <nav class="actions" aria-label="মাস বদলান">
+        {displayMonth > '2026-01' && <a class="pill" href={`/?${query}&month=${shiftMonth(-1)}#month`}>আগের মাস</a>}
+        {displayMonth < '2099-12' && <a class="pill" href={`/?${query}&month=${shiftMonth(1)}#month`}>পরের মাস</a>}
+      </nav>
+      <Month {year} {month} {region} today={date} />
+    </section>
+    <section class="section grid">
+      <div class="card"><h2>আসন্ন উৎসব</h2><p>{unavailable}</p><a href="/festivals/2027/">২০২৭-এর উৎসব</a></div>
+      <div class="card"><h2>বিয়ের শুভ দিন</h2><p>শুভ সময় নির্ধারণ একটি প্রথাগত রীতি। {unavailable}</p><a href="/muhurat/marriage/2027/">যাচাইয়ের অবস্থা</a></div>
+      <div class="card"><h2>ক্যালেন্ডার বর্ষ</h2><nav><a href="/calendar/2026/">২০২৬</a><a href="/calendar/2027/">২০২৭</a><a href="/calendar/bengali-year/1433/">১৪৩৩</a><a href="/calendar/bengali-year/1434/">১৪৩৪</a></nav></div>
+    </section>
+    <section class="section card"><h2>গণনাপদ্ধতি ও তথ্যসূত্র</h2><p>বাংলাদেশের নাগরিক বর্ষপঞ্জি ও পশ্চিমবঙ্গের সৌর বর্ষপঞ্জি ভিন্ন নিয়মে চলে। ধর্মীয় দিন নির্ধারণে স্থান ও পালনরীতিও গুরুত্বপূর্ণ।</p><nav><a href="/methodology/">গণনাপদ্ধতি</a><a href="/sources/">তথ্যসূত্র</a></nav></section>
+  </>}
+</Layout>

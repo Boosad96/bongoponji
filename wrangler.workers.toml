@@ -1,0 +1,7 @@
+name = "bongoponji"
+main = "@astrojs/cloudflare/entrypoints/server"
+compatibility_date = "2026-11-27"
+
+[assets]
+binding = "ASSETS"
+directory = "./dist/client"
