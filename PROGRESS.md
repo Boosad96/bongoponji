@@ -24,7 +24,7 @@ Next: obtain the verified 1434 Kolkata month boundaries and permission or an ind
 
 ## Phase 4, Step 1 boundary investigation
 
-Added a research-only Kolkata solar boundary probe based on RKM's described local mean midnight convention and an independently evaluated Sun position. It generated 24 pending candidates. Ten 1433 candidates agree with the existing PAC fixture, and two differ by one civil day. Printed examples reported by RKM corroborate the probe on the two differences. The dated comparison table and method notes are in VALIDATION_REPORT.md. Full printed 1433–1434 coverage and reuse clearance remain unresolved. No daily records or publication paths changed.
+Added a research-only Kolkata solar boundary probe based on RKM's described local mean midnight convention and an independently evaluated Sun position. It generated 24 pending candidates. Ten 1433 candidates agree with the existing PAC fixture, and two differ by one civil day. Printed examples reported by RKM corroborate the probe on the two differences. The dated comparison table and method notes are in VALIDATION_REPORT.md. A follow-up cross-check against the Vivekananda Math, Barrackpore schedule corroborated nine 1433 starts and explicitly anchored 1 Baishakh 1434 to 15 April 2027. Full 1433–1434 coverage and reuse clearance remain unresolved. No daily records or publication paths changed.
 
 GitHub Actions run [45984998863](https://github.com/Boosad96/bongoponji/actions/runs/45984998863) confirms all five Phase 3 browser tests executed and passed on commit 4401e9a. The managed local startup failure remains a separate issue. Phase 4 browser work has not begun because the earlier steps are gated.
 
@@ -32,6 +32,8 @@ The Phase 4 checkpoint passed 21 Vitest tests, Astro diagnostics, the example-or
 
 ## Resume here
 
-1. Finish Step 1. Run `node scripts/check-kolkata-boundaries.mjs`. Compare the pending candidates against the applicable printed Kolkata Bishuddha Siddhanta editions, starting with the unresolved dates in VALIDATION_REPORT.md. Confirm the applicable cutoffs and ayanamsha across both years. Record each dated result and source-use status. PAC may serve as a comparison reference. Obtain rights before importing protected source material.
+1. Finish Step 1. Run `node scripts/check-kolkata-boundaries.mjs`. Compare the pending candidates against the applicable printed Kolkata Bishuddha Siddhanta editions, starting with 1433 Baishakh, Jyaishtha and Chaitra and 1434 Jyaishtha through Chaitra as listed in VALIDATION_REPORT.md. Confirm the applicable cutoffs and ayanamsha across both years. Record each dated result and source-use status. PAC may serve as a comparison reference. Obtain rights before importing protected source material.
 2. After the boundaries are verified, start Step 2 with 4–31 December 2026. Check each day against the Kolkata horizon rows and tithi folio under the existing one-minute tithi tolerance and exact minute-rounded solar comparison. Approve only passing records. Update the reports, run the suite and commit the batch before January–April 2027 or later months.
 3. Continue in order with festival observance rules, muhurat and other traditional fields, local browser and Lighthouse work, then growth features. Keep the review build noindexed with SITE_URL unset. Deployment remains owner-managed.
+
+Step 7 is gated on Steps 1–2. Once daily reference comparisons work against an accessible, authoritative source, implement the October and monthly GitHub Actions schedules plus manual dispatch. Keep generated candidates separate from releasable records, make the workflow reject dates without adequate reference evidence, and verify a real run before marking automation complete.
