@@ -38,7 +38,14 @@ export default {
     check(timestamp(tomorrowHtml) - timestamp(todayHtml) === 86400000, 'tomorrow must be the following local civil day');
     check((await request('/panchang/not-a-city/')).status === 404, 'unknown city must return 404');
     const home = await request('/?city=dhaka&month=2027-01');
-    check((await home.text()).includes('জানুয়ারি ২০২৭'), 'homepage month navigation should work without JavaScript');
+    const homeHtml = await home.text();
+    check(homeHtml.includes('জানুয়ারি ২০২৭'), 'homepage month navigation should work without JavaScript');
+    const schema = [...homeHtml.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)]
+      .map(([, block]) => JSON.parse(block));
+    const website = schema.find(block => block['@type'] === 'WebSite');
+    check(website?.inLanguage === 'bn' && URL.canParse(website.url), 'homepage should serve valid WebSite markup');
+    const publisher = schema.find(block => block['@type'] === 'Organization');
+    check(publisher?.['@id'] === website.publisher['@id'], 'homepage schema should resolve its publisher');
     const dated = await request('/panjika/today/?city=kolkata&date=2026-12-02');
     const datedHtml = await dated.text();
     check(datedHtml.includes('পূর্বফাল্গুনী'), 'expanded element data must appear on the checked date');

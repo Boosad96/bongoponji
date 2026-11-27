@@ -1,7 +1,7 @@
 import { bn } from './dates';
 export const gregorianMonths = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
 export const gregorianSlugs = ['january','february','march','april','may','june','july','august','september','october','november','december'];
-export const years = [2026, 2027, 2028];
+export const years = [2026, 2027, 2028, 2029, 2030];
 export const bdYears = [1433, 1434, 1435];
 export const unavailable = 'এই তথ্যের যাচাই চলছে। যাচাই সম্পূর্ণ হলে এখানে প্রকাশ করা হবে।';
 const configuredEmail = import.meta.env.PUBLIC_CORRECTION_EMAIL;

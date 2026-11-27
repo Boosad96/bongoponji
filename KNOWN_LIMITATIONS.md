@@ -12,3 +12,5 @@
 The scheduled verifier can regenerate candidates and check the reproducibility of approved dates without external access. Automatic promotion requires a reviewed date-specific comparison manifest with evidence that the comparison inputs can be stored in the public repository. The manifest is empty while PAC redistribution clearance remains open. Festival and muhurat promotion remains outside the daily workflow.
 
 The first five sankranti samples missed by four minutes under Lahiri. All five passed with the PAC monthly variable ayanamsa pilot. The site has no ingress field, and ritual windows remain withheld. The v4 search found candidate timing lists for marriage, Annaprashan, Griha Pravesh and Upanayan, with no verified pairing of a complete Kolkata selection rule and independent time reference for any rite. No ritual timing is released.
+
+The 2028–2030 calendar routes carry civil dates only. The 1,096 generated Kolkata Panchang candidates for those years are pending individually reviewed reference rows and remain outside the release.

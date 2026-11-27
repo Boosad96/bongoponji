@@ -71,3 +71,12 @@ test('embeds only verified festival dates and permits framing on the widget rout
   await page.goto('/widgets/embed/?mode=festival&festival=kali-puja');
   await expect(page.getByText('এই উৎসবের যাচাইকৃত তারিখ পাওয়া যায়নি।')).toBeVisible();
 });
+
+
+test('switches civil calendar years while preserving the selected month', async ({ page }) => {
+  await page.goto('/calendar/2028/february/');
+  const years = page.getByRole('navigation', { name: 'ক্যালেন্ডারের বছর বেছে নিন' });
+  await years.getByRole('link', { name: '২০৩০' }).click();
+  await expect(page).toHaveURL(/\/calendar\/2030\/february\/$/);
+  await expect(years.getByRole('link', { name: '২০৩০' })).toHaveAttribute('aria-current', 'page');
+});

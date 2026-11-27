@@ -106,6 +106,10 @@ Compared 57 withheld and 88 approved horizon pairs across six variants and check
 
 Measured three live review pages via mobile Lighthouse. Live LCP was 0.836–0.877 s. Identified the converter's font-driven CLS regression and changed its font display policy. After the automatic review rebuild, live mobile Lighthouse measured CLS 0, LCP 0.843 s and Performance 100. Fixed local Wrangler Pages preview by isolating the package from Astro's generated Workers configuration. Added LAUNCH_CHECKLIST.md for the owner. The suite passed after the reference, diagnostics, expansion, performance and launch checkpoints, including 26 Vitest tests, Astro diagnostics, the configured-origin audit (89 sitemap entries and 112 static pages), and the packaged Worker checks. The final seven Playwright cases passed.
 
+## v4 follow-up, structured data and multi-year calendars
+
+Added homepage and verified festival JSON-LD and extended civil year and month routes through 2030. The local generator processed 1,096 future candidates across 2028–2030 and approved zero. The configured-origin audit passed on 115 sitemap entries and 138 HTML pages. The review audit passed with an empty sitemap. All 26 unit and eight Playwright tests passed, along with Astro diagnostics and packaged Worker checks in both configurations.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.

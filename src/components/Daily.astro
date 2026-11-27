@@ -5,7 +5,7 @@ import { dayNumber, localDate, isoDay, gregorianLabel, bn } from '../lib/dates';
 import { bengaliLabel, calendarEvidence, methods, toBengali } from '../lib/bengali';
 import { verifiedDaily } from '../lib/daily';
 import { verifiedElements } from '../lib/verified-elements';
-import { cityFor, cityNames, unavailable } from '../lib/site';
+import { cityFor, cityNames, unavailable, years } from '../lib/site';
 interface Props { home?: boolean; tomorrow?: boolean; fixedCity?: string; civilOnly?: boolean }
 const { home, tomorrow, fixedCity, civilOnly } = Astro.props;
 const city = cityFor(fixedCity ?? Astro.url.searchParams.get('city'));
@@ -109,7 +109,7 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
     <section class="section grid">
       <div class="card"><h2>আসন্ন উৎসব</h2><p>{unavailable}</p><a href="/festivals/2027/">২০২৭-এর উৎসব</a></div>
       <div class="card"><h2>বিয়ের শুভ দিন</h2><p>শুভ সময় নির্ধারণ একটি প্রথাগত রীতি। {unavailable}</p><a href="/muhurat/marriage/2027/">যাচাইয়ের অবস্থা</a></div>
-      <div class="card"><h2>ক্যালেন্ডার বর্ষ</h2><nav><a href="/calendar/2026/">২০২৬</a><a href="/calendar/2027/">২০২৭</a><a href="/calendar/bengali-year/1433/">১৪৩৩</a><a href="/calendar/bengali-year/1434/">১৪৩৪</a></nav></div>
+      <div class="card"><h2>ক্যালেন্ডার বর্ষ</h2><nav>{years.map(year => <a href={`/calendar/${year}/`}>{bn(year)}</a>)}<a href="/calendar/bengali-year/1433/">১৪৩৩</a><a href="/calendar/bengali-year/1434/">১৪৩৪</a></nav></div>
     </section>
     <section class="section card"><h2>গণনাপদ্ধতি ও তথ্যসূত্র</h2><p>বাংলাদেশের নাগরিক বর্ষপঞ্জি ও পশ্চিমবঙ্গের সৌর বর্ষপঞ্জি ভিন্ন নিয়মে চলে। ধর্মীয় দিন নির্ধারণে স্থান ও পালনরীতিও গুরুত্বপূর্ণ।</p><nav><a href="/methodology/">গণনাপদ্ধতি</a><a href="/sources/">তথ্যসূত্র</a></nav></section>
   </>}

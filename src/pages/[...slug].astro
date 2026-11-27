@@ -9,7 +9,7 @@ import { pages } from '../lib/routes';
 import { sources } from '../data/evidence';
 import { months, toGregorian } from '../lib/bengali';
 import { bn, gregorianLabel } from '../lib/dates';
-import { correctionEmail, unavailable } from '../lib/site';
+import { correctionEmail, gregorianSlugs, unavailable, years } from '../lib/site';
 export function getStaticPaths() {
   return pages.map(page => ({params:{slug:page.slug},props:{page}}));
 }
@@ -23,7 +23,7 @@ const sourceLabels = {
   bdReport:'বাংলাদেশের বর্ষপঞ্জি সংস্কারের সমকালীন প্রতিবেদন',
 };
 ---
-<Layout title={page.title} description={page.description} noindex={page.noindex} preloadBengali={Boolean(page.festival) || page.kind === 'converter'} stableFont={page.kind === 'converter'}>
+<Layout title={page.title} description={page.description} noindex={page.noindex} festival={page.festival} preloadBengali={Boolean(page.festival) || page.kind === 'converter'} stableFont={page.kind === 'converter'}>
   <h1>{page.title}</h1>
   <p class="muted">{page.description}</p>
   {page.festival && <section class="section card">
@@ -38,6 +38,10 @@ const sourceLabels = {
     <FestivalActions date={page.festival.date} />
   </section>}
   {page.kind === 'pending'  && <p class="notice">{unavailable}</p>}
+  {page.kind === 'gregorian' && <nav class="pills section" aria-label="ক্যালেন্ডারের বছর বেছে নিন">
+    {years.map(year => <a class="pill" aria-current={year === page.year ? 'page' : undefined}
+      href={`/calendar/${year}/${page.month ? gregorianSlugs[page.month - 1] + '/' : ''}`}>{bn(year)}</a>)}
+  </nav>}
   {page.links && <nav class="pills section" aria-label="সংশ্লিষ্ট পাতা">{page.links.map(({href,label}) => <a class="pill" href={href}>{label}</a>)}</nav>}
   {page.kind === 'gregorian' && <section class:list={["section grid", {"annual-calendar-print": !page.month}]}>{period.map(month => <div class="card"><Month year={page.year!} {month} region="bangladesh" /></div>)}</section>}
   {page.kind === 'bengali' && <section class="section grid">{period.map(month => {

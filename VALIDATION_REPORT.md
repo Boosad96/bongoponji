@@ -681,3 +681,18 @@ The in-repository Wrangler command reproduced the missing facade error while pic
 ## v4 Step 6 — launch preparation, 2026-11-27 IST
 
 Added LAUNCH_CHECKLIST.md for the owner. The configured example-origin build passed the sitemap, robots, canonical, indexability and internal-link checks across 89 sitemap entries and 112 static HTML pages. It also passed the packaged Worker check. No Cloudflare or Search Console account change was made.
+
+## v4 follow-up — structured data and multi-year scope, 2026-11-27 IST
+
+Added WebSite and Organization JSON-LD to the homepage, including in review builds. The three verified festival pages carry BreadcrumbList and WebPage metadata, including the verified civil date as temporalCoverage, West Bengal as coverage, and the cited source. These are informational articles without a specific event venue or organizer. The build audit parses JSON-LD and matches festival coverage dates to the visible verified dates. Pending pages have no festival date markup. Review builds retain noindex, an empty sitemap and no canonical tag. Schema URLs use the Pages review origin while SITE_URL is unset, and follow the configured origin in a production-origin build.
+
+Gregorian and Bangladesh civil annual and monthly pages now cover 2026–2030. The configured-origin audit checked 115 sitemap entries and 138 static HTML pages. The monthly year switcher preserves the displayed month. No future religious data was added to the release.
+
+| Local workflow scope | V2 candidates | Missing reviewed reference | Approved |
+| --- | ---: | ---: | ---: |
+| 2028 | 366 | 366 | 0 |
+| 2029 | 365 | 365 | 0 |
+| 2030 | 365 | 365 | 0 |
+| 2030-02 | 28 | 28 | 0 |
+
+The same scheduled verifier generated each scope. The three hard conflict holds and exact tolerances are preserved. The daily release dataset stayed unchanged at 88 records.
