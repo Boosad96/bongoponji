@@ -400,3 +400,43 @@ Kolkata v2 exact-minute horizon and sunrise-tithi checks apply, with at most one
 | 2027-03-31 | 05:31 / 05:30 | 17:52 / 17:52 | krishna 9 / krishna 9 | 31 Mar 22:17 / 31 Mar 22:18 | +1 min | WITHHELD |
 
 Nine of 31 March records passed. Only independently computed passing rows were added.
+
+## Step B April 2027 — checked 2026-11-27
+
+Kolkata v2 was computed for all 30 dates. For 1–20 April, compared the printed 1949 Saka Chaitra tithi folio (pp. 98–104) and Kolkata horizon table (p. 117) in PAC's English 2026–27 edition. Its 2027 appendix ends on 20 April. The exact-minute horizon checks, sunrise tithi identity and one-minute tithi end tolerance remain in force. [PAC English edition download](https://packolkata.imd.gov.in/rashtriya-panchang-english.php)
+
+| Date | Sunrise PAC / v2 | Sunset PAC / v2 | Tithi PAC / v2 | End PAC / v2, IST | End difference | Result |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 2027-04-01 | 05:30 / 05:30 | 17:52 / 17:52 | krishna 10 / krishna 10 | 02 Apr 00:46 / 02 Apr 00:46 | +0 min | VERIFIED |
+| 2027-04-02 | 05:29 / 05:29 | 17:52 / 17:52 | krishna 11 / krishna 11 | 03 Apr 02:52 / 03 Apr 02:53 | +1 min | VERIFIED |
+| 2027-04-03 | 05:28 / 05:28 | 17:53 / 17:53 | krishna 12 / krishna 12 | 04 Apr 04:27 / 04 Apr 04:28 | +1 min | VERIFIED |
+| 2027-04-04 | 05:27 / 05:27 | 17:53 / 17:53 | krishna 13 / krishna 13 | 05 Apr 05:24 / 05 Apr 05:24 | +0 min | VERIFIED |
+| 2027-04-05 | 05:26 / 05:26 | 17:53 / 17:53 | krishna 14 / krishna 14 | 06 Apr 05:41 / 06 Apr 05:42 | +1 min | VERIFIED |
+| 2027-04-06 | 05:25 / 05:25 | 17:54 / 17:54 | krishna 15 / krishna 14 | 07 Apr 05:21 / 06 Apr 05:42 | Different tithis | WITHHELD |
+| 2027-04-07 | 05:25 / 05:24 | 17:54 / 17:54 | shukla 1 / shukla 1 | 08 Apr 04:29 / 08 Apr 04:30 | +1 min | WITHHELD |
+| 2027-04-08 | 05:24 / 05:23 | 17:54 / 17:54 | shukla 2 / shukla 2 | 09 Apr 03:11 / 09 Apr 03:11 | +0 min | WITHHELD |
+| 2027-04-09 | 05:23 / 05:22 | 17:55 / 17:55 | shukla 3 / shukla 3 | 10 Apr 01:32 / 10 Apr 01:33 | +1 min | WITHHELD |
+| 2027-04-10 | 05:22 / 05:21 | 17:55 / 17:55 | shukla 4 / shukla 4 | 10 Apr 23:40 / 10 Apr 23:41 | +1 min | WITHHELD |
+| 2027-04-11 | 05:21 / 05:20 | 17:56 / 17:55 | shukla 5 / shukla 5 | 11 Apr 21:40 / 11 Apr 21:41 | +1 min | WITHHELD |
+| 2027-04-12 | 05:20 / 05:19 | 17:56 / 17:56 | shukla 6 / shukla 6 | 12 Apr 19:35 / 12 Apr 19:36 | +1 min | WITHHELD |
+| 2027-04-13 | 05:19 / 05:19 | 17:56 / 17:56 | shukla 7 / shukla 7 | 13 Apr 17:29 / 13 Apr 17:30 | +1 min | VERIFIED |
+| 2027-04-14 | 05:18 / 05:18 | 17:57 / 17:57 | shukla 8 / shukla 8 | 14 Apr 15:24 / 14 Apr 15:25 | +1 min | VERIFIED |
+| 2027-04-15 | 05:17 / 05:17 | 17:57 / 17:57 | shukla 9 / shukla 9 | 15 Apr 13:21 / 15 Apr 13:22 | +1 min | VERIFIED |
+| 2027-04-16 | 05:16 / 05:16 | 17:57 / 17:57 | shukla 10 / shukla 10 | 16 Apr 11:22 / 16 Apr 11:23 | +1 min | VERIFIED |
+| 2027-04-17 | 05:16 / 05:15 | 17:58 / 17:58 | shukla 11 / shukla 11 | 17 Apr 09:28 / 17 Apr 09:29 | +1 min | WITHHELD |
+| 2027-04-18 | 05:15 / 05:14 | 17:58 / 17:58 | shukla 12 / shukla 12 | 18 Apr 07:43 / 18 Apr 07:43 | +0 min | WITHHELD |
+| 2027-04-19 | 05:14 / 05:13 | 17:58 / 17:58 | shukla 13 / shukla 13 | 19 Apr 06:09 / 19 Apr 06:09 | +0 min | WITHHELD |
+| 2027-04-20 | 05:13 / 05:13 | 17:59 / 17:59 | shukla 15 / shukla 15 | 21 Apr 03:57 / 21 Apr 03:58 | +1 min | VERIFIED |
+
+21–30 April were computed and withheld because both applicable PAC fields are unavailable in the inspected edition. Ten of 30 dates passed. The release now has 88 Kolkata records. These daily approvals do not establish Bengali solar month boundaries or festival observance rules.
+
+### May reference availability — 2026-11-27
+
+The required consecutive monthly validation stops here. The official English downloads index and PAC's online folios still identify the 1948 Saka, 2026–27 edition. No accessible full 1949 Saka, 2027–28 Rashtriya Panchang was located. The printed appendix's Kolkata horizon and daily tithi series both end on 20 April 2027. The separate astronomical transit table does not provide the missing daily fields.
+
+| Dates | Kolkata horizon reference | Applicable daily tithi reference | Released |
+| --- | --- | --- | --- |
+| 21–30 April 2027 | Unavailable | Unavailable | 0 |
+| 1–31 May 2027 | Unavailable | Unavailable | 0 |
+
+No May comparisons could be scored and no May records were approved. June–December and the subsequent Phase 4 steps remain pending under the requested stop condition. [PAC English editions](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) · [PAC online folios](https://packolkata.imd.gov.in/panchang/en/panchang)

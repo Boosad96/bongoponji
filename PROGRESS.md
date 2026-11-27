@@ -34,14 +34,6 @@ The Phase 4 checkpoint passed 21 Vitest tests, Astro diagnostics, the example-or
 
 Pinned MIT-licensed Grahan Vedic 1.0.1 as a development dependency and ran the independent sunrise comparison on 24 boundary candidate days and all 393 Step 2 dates. Reproduce the per-date report with `node scripts/cross-check-kolkata.mjs`. See VALIDATION_REPORT.md for agreement counts and the differing sunrise tithi on 5 August 2027. Engine agreement has no publication authority. The 1434 printed edition and equivalent 2027–28 institutional schedule could not be confirmed as published. Eleven 1434 boundaries remain gated on the reference becoming available. The release dataset still covers 27 November–3 December 2026.
 
-## Resume here
-
-1. Finish Step 1. Run `node scripts/check-kolkata-boundaries.mjs`. Compare the pending candidates against the applicable printed Kolkata Bishuddha Siddhanta editions, starting with 1433 Baishakh, Jyaishtha and Chaitra and 1434 Jyaishtha through Chaitra as listed in VALIDATION_REPORT.md. Confirm the applicable cutoffs and ayanamsha across both years. Record each dated result and source-use status. PAC may serve as a comparison reference. Obtain rights before importing protected source material.
-2. The separately authorized December 2026 through February 2027 PAC comparisons are complete. Before starting later batches, resolve the boundary gate and confirm applicable date-specific references. Preserve the remaining December, January and February exclusions unless later evidence and a verified calculation resolve them. Keep 5 August 2027 withheld until an applicable release-grade reference and the calculation agree. Apply the existing exact solar-minute and one-minute tithi end tolerances.
-3. Continue in order with festival observance rules, muhurat and other traditional fields, local browser and Lighthouse work, then growth features. Keep the review build noindexed with SITE_URL unset. Deployment remains owner-managed.
-
-Step 7 is gated on Steps 1–2. Once daily reference comparisons work against an accessible, authoritative source, implement the October and monthly GitHub Actions schedules plus manual dispatch. Keep generated candidates separate from releasable records, make the workflow reject dates without adequate reference evidence, and verify a real run before marking automation complete.
-
 ## Step 2, December-only checkpoint
 
 Resolved the September Grahan sunset anomaly by isolating its higher refraction constant. Published online Kolkata tables assign Shukla Chaturthi on 5 August 2027. The two engines disagree close to sunrise, and the applicable PAC or printed folio is still unavailable, so the date is withheld. Compared all 28 December candidate dates with PAC and approved 22. The six failed dates are listed in VALIDATION_REPORT.md. The authorized December batch does not open the 1434 boundary gate or subsequent months.
@@ -73,3 +65,15 @@ Recorded unrounded v2 residuals for both horizon events on all 25 withheld dates
 ## Phase 4 v3 prompt, Step B March
 
 Checked all 31 March dates with v2 and approved nine. The print edition provides the 2027 Chaitra tithi and horizon rows from 22 March onward. The online Chaitra page contains 2026 data. Next check April against the printed 2027 folio and horizon table.
+
+## Phase 4 v3 prompt, Step B April
+
+Checked all 30 April candidates. The PAC 2027 appendix covers 1–20 April and ten of those dates passed under v2. Withheld 21–30 April for missing applicable references and ten other April dates for failed comparisons. Release total is 88. Next confirm whether PAC has published its full 2027–28 horizon and tithi edition before checking May.
+
+The May batch is blocked: the latest accessible PAC Kolkata horizon and tithi references end on 20 April 2027, and no applicable 2027–28 edition was located. March and April each passed 24 Vitest tests, Astro diagnostics, the example-origin static audit and Worker smoke test. April also passed the noindexed review audit.
+
+## Resume here
+
+1. Step B resumes with May 2027, after the applicable PAC 1949 Saka Kolkata horizon table and daily tithi folios are available. The published 1948 Saka appendix reaches only 20 April. Compare any new reference coverage for 21–30 April before adding those dates. Use `node scripts/prepare-kolkata-sample.mjs --v2 YYYY-MM-DD ...` and the established exact-minute and one-minute tolerances. Validate date by date, document and test each monthly batch, then commit and push before proceeding. Keep the existing withheld dates closed.
+2. Once Step B is complete, run the single Step C publication check for the printed 1434 Bishuddha Siddhanta edition or Vivekananda Math schedule. Eleven 1434 boundaries remain gated. Continue with Steps D–H in order, including local Playwright/Lighthouse and the scheduled workflow after its prerequisites.
+3. Keep SITE_URL unset in review and leave deployment to the owner. The example origin is restricted to build tests.

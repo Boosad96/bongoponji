@@ -1950,6 +1950,256 @@
         "redistribution": "cleared",
         "origin": "independent-computation"
       }
+    },
+    {
+      "date": "2027-04-01",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:30",
+        "sunset": "17:52",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 10,
+          "endsAt": "2027-04-01T19:16:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-02",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:29",
+        "sunset": "17:52",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 11,
+          "endsAt": "2027-04-02T21:23:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-03",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:28",
+        "sunset": "17:53",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 12,
+          "endsAt": "2027-04-03T22:58:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-04",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:27",
+        "sunset": "17:53",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 13,
+          "endsAt": "2027-04-04T23:54:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-05",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:26",
+        "sunset": "17:53",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 14,
+          "endsAt": "2027-04-06T00:12:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-13",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:19",
+        "sunset": "17:56",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 7,
+          "endsAt": "2027-04-13T12:00:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-14",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:18",
+        "sunset": "17:57",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 8,
+          "endsAt": "2027-04-14T09:55:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-15",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:17",
+        "sunset": "17:57",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 9,
+          "endsAt": "2027-04-15T07:52:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-16",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:16",
+        "sunset": "17:57",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 10,
+          "endsAt": "2027-04-16T05:53:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-04-20",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v2",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T12:25:30.659Z",
+      "value": {
+        "sunrise": "05:13",
+        "sunset": "17:59",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 15,
+          "endsAt": "2027-04-20T22:28:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "horizonSource": "https://packolkata.imd.gov.in/download/EnglishRP2627.zip",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
     }
   ]
 }
