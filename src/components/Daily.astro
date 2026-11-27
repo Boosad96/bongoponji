@@ -11,7 +11,12 @@ const city = cityFor(fixedCity ?? Astro.url.searchParams.get('city'));
 const selected = Astro.url.searchParams.get('region');
 const region = selected === 'bangladesh' || (selected !== 'west-bengal' && city.timezone === 'Asia/Dhaka') ? 'bangladesh' : 'west-bengal';
 const localToday = localDate(new Date(), city.timezone);
-const date = tomorrow ? isoDay(dayNumber(localToday) + 1) : localToday;
+const defaultDate = tomorrow ? isoDay(dayNumber(localToday) + 1) : localToday;
+const requestedDate = Astro.url.searchParams.get('date');
+let date = defaultDate;
+if (!home && !civilOnly && requestedDate && requestedDate >= '2019-10-16' && requestedDate <= '2099-12-31') {
+  try { date = isoDay(dayNumber(requestedDate)); } catch { /* Use the local default. */ }
+}
 const result = region === 'bangladesh' ? toBengali(date) : null;
 const daily = verifiedDaily(date, city.id, region);
 const tithi = daily?.value.tithi;
@@ -26,8 +31,9 @@ const requestedMonth = Astro.url.searchParams.get('month') ?? '';
 const displayMonth = /^20(?:2[6-9]|[3-9][0-9])-(?:0[1-9]|1[0-2])$/.test(requestedMonth) ? requestedMonth : date.slice(0,7);
 const [year, month] = displayMonth.split('-').map(Number);
 const shiftMonth = (amount: number) => new Date(Date.UTC(year, month - 1 + amount, 1)).toISOString().slice(0,7);
-const title = home ? 'বাংলা ক্যালেন্ডার ও পঞ্জিকা' : civilOnly ? 'আজকের বাংলা তারিখ' : fixedCity ? `${city.name}র পঞ্জিকা` : tomorrow ? 'আগামীকালের পঞ্জিকা' : 'আজকের পঞ্জিকা';
+const title = home ? 'বাংলা ক্যালেন্ডার ও পঞ্জিকা' : civilOnly ? 'আজকের বাংলা তারিখ' : fixedCity ? `${city.name}র পঞ্জিকা` : date !== defaultDate ? 'দিনের পঞ্জিকা' : tomorrow ? 'আগামীকালের পঞ্জিকা' : 'আজকের পঞ্জিকা';
 const query = new URLSearchParams({ city: city.id, region });
+const dateLink = (offset: number) => `/panjika/today/?${query}&date=${isoDay(dayNumber(date) + offset)}`;
 const description = home ? 'বাংলা তারিখ, মাসিক ক্যালেন্ডার ও তারিখ রূপান্তর। অঞ্চলভেদে পঞ্জিকার পদ্ধতি ও তথ্যসূত্র দেখুন।'
   : `${title}। শহরের স্থানীয় সময়, গণনাপদ্ধতি ও তথ্যের যাচাইয়ের অবস্থা দেখুন।`;
 ---
@@ -42,16 +48,17 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
       <form method="get" action={fixedCity ? '/panjika/today/' : Astro.url.pathname} class="form-row actions">
         <label>শহর <select name="city">{cityNames.map(([id,label]) => <option value={id} selected={id === city.id}>{label}</option>)}</select></label>
         <label>বর্ষপঞ্জি <select name="region"><option value="west-bengal" selected={region === 'west-bengal'}>পশ্চিমবঙ্গ</option><option value="bangladesh" selected={region === 'bangladesh'}>বাংলাদেশ</option></select></label>
+        {date !== defaultDate && <input type="hidden" name="date" value={date} />}
         <button class="button">দেখুন</button>
       </form>
     </div>
     <div class="summary">
-      <h2>{tomorrow ? 'আগামীকালের পঞ্জিকা' : 'দৈনিক পঞ্জিকা'}</h2>
+      <h2>{tomorrow && date === defaultDate ? 'আগামীকালের পঞ্জিকা' : 'দৈনিক পঞ্জিকা'}</h2>
       <p class="muted">তিথি, নক্ষত্র, সূর্যোদয় ও সূর্যাস্ত</p>
       {daily ? <dl><dt>সূর্যোদয়</dt><dd>{bn(daily.value.sunrise)}</dd><dt>সূর্যাস্ত</dt><dd>{bn(daily.value.sunset)}</dd>
         {tithi && <><dt>সূর্যোদয়ের তিথি</dt><dd>{tithi.paksha === 'shukla' ? 'শুক্লপক্ষ' : 'কৃষ্ণপক্ষ'} · {tithiName}</dd>
         <dt>তিথির শেষ</dt><dd><time datetime={tithi.endsAt}>{tithiEndLabel}</time></dd></>}
-      </dl> : <p>{unavailable}</p>}
+      </dl> : <p>এই দিনের পঞ্জিকার তথ্য যাচাই করা হচ্ছে।</p>}
       {daily && <p>{tithi ? "নক্ষত্রের যাচাই চলছে।" : "তিথি ও নক্ষত্রের যাচাই চলছে।"}</p>}
       <dl><dt>স্থান</dt><dd>{city.name}</dd><dt>স্থানীয় সময় অঞ্চল</dt><dd>{city.timezone}</dd>
         <dt>বর্ষপঞ্জি</dt><dd>{methods[region]}</dd><dt>পঞ্জিকার পদ্ধতি</dt><dd>{daily ? 'সূর্যোদয়ভিত্তিক দৃক্‌ গণনা' : 'দৃক্‌ গণনা · যাচাই অপেক্ষমাণ'}</dd>
@@ -62,6 +69,10 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
       </dl>
       <a href={`/panjika/${tomorrow ? 'today' : 'tomorrow'}/?${query}`}>{tomorrow ? 'আজকের পঞ্জিকা' : 'আগামীকালের পঞ্জিকা'}</a>
       <span aria-hidden="true"> · </span><a href="/corrections/">সংশোধন জানান</a>
+      {!home && !civilOnly && <nav class="actions" aria-label="পঞ্জিকার দিন বদলান">
+        {date > '2019-10-16' && <a href={dateLink(-1)}>আগের দিন</a>}
+        {date < '2099-12-31' && <a href={dateLink(1)}>পরের দিন</a>}
+      </nav>}
     </div>
   </section>
   {home && <>

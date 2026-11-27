@@ -15,7 +15,7 @@ See DATA_SOURCES.md for source links. Festival observance rules, muhurat, naksha
 ## Site checks
 
 - Astro diagnostics passed on the upgraded dependency stack.
-- 16 unit and comparison tests passed. The only release records are the three Kolkata samples below.
+- 16 unit and comparison tests passed. This was the baseline before the Phase 3 extension.
 - Production build passed. With the CI test origin, the static audit checked 84 unique sitemap entries and 113 HTML pages, including generated internal links, unique titles and noindex flags for pending festival and muhurat content.
 - The packaged Pages Worker passed a local workerd integration test for daily SSR, cache-control and security headers, no publication of unreviewed sunrise, local day increments, month navigation and unknown-city 404.
 - npm production dependency audit reported zero known vulnerabilities at check time after upgrading Astro and the Cloudflare adapter. The initial Astro 5 build had advisories and was replaced.
@@ -26,3 +26,20 @@ See DATA_SOURCES.md for source links. Festival observance rules, muhurat, naksha
 The 27–29 November 2026 dataset was generated with the MIT-licensed Astronomy Engine using an independently sourced city-center observer. The minute-rounded sunrise and sunset matched the PAC Kolkata table on each date. The sunrise tithi number and paksha matched the corresponding PAC daily entry. The sample's computed end times after rounding were one minute later than PAC on each date, including the transition after midnight on November 30 in the 29 November entry. The stated tolerance is one minute for tithi end times. The source table's own horizon values are presented in a different reference context on the daily folio, so the city-specific horizon table was used for horizon comparisons.
 
 The versioned JSON contains independently computed values. PAC tables and almanac entries were used as comparison references and were not imported into the published dataset. Its clearance flag applies to the independent calculations only. The 1433 month-boundary fixture remains outside the deployed site. [Horizon table](https://packolkata.imd.gov.in/panchang/en/tables) · [PAC daily folio](https://packolkata.imd.gov.in/panchang/en/agrahayana) · [City center](https://mapcarta.com/Kolkata)
+
+## Phase 3 Kolkata extension
+
+Date and location apply to Kolkata, Asia/Kolkata. The method is `drik-sunrise-tithi-v1`, using Astronomy Engine 2.1.19 at the existing observer coordinates. The end-time differences are calculated minus expected. Acceptance requires equality for the minute-rounded solar values and sunrise tithi identity, and an absolute difference of at most one minute for the tithi transition. Times are IST. A reference hour of 24 indicates the following civil day.
+
+| Date | Sunrise expected / calculated | Sunset expected / calculated | Sunrise tithi expected / calculated | End expected / calculated | End difference | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2026-11-30 | 05:59 / 05:59 | 16:51 / 16:51 | Krishna 7 / 7 | Dec 1 00:12 / 00:13 | +1 min | VERIFIED |
+| 2026-12-01 | 06:00 / 06:00 | 16:51 / 16:51 | Krishna 8 / 8 | 23:14 / 23:15 | +1 min | VERIFIED |
+| 2026-12-02 | 06:00 / 06:00 | 16:51 / 16:51 | Krishna 9 / 9 | 22:53 / 22:53 | 0 min | VERIFIED |
+| 2026-12-03 | 06:01 / 06:01 | 16:51 / 16:51 | Krishna 10 / 10 | 23:04 / 23:05 | +1 min | VERIFIED |
+
+The daily release contains only independent computations for 27 November through 3 December 2026 inclusive. These comparisons use the city-specific horizon table and the Agrahayana tithi folio. The PAC almanac carries an all-rights-reserved notice. No permission to redistribute tables or a regional almanac was obtained. [PAC Kolkata horizon table](https://packolkata.imd.gov.in/panchang/en/tables) · [PAC Agrahayana folio](https://packolkata.imd.gov.in/panchang/en/agrahayana) · [PAC disclaimer](https://packolkata.imd.gov.in/disclaimer.php)
+
+The PAC 1948 Saka Bengal and Assam solar table provides an internal 1433 comparison, including 15 April 2026. The RKM reader independently documents portions of the printed Bishuddha Siddhanta 1433 Ashwin edition. These sources establish specific reference dates and reading conventions. A complete Kolkata Bishuddha Siddhanta month-boundary set for both years, authorized reuse, and verified month transition rules remain open. The PAC folio lists nakshatra, yoga and karana, but source entries alone do not verify this project's calculations. Lunar phases, Ekadashi observance, Sankranti, festival rules and Adhik Maas remain outside the approved publication scope. [PAC regional table](https://packolkata.imd.gov.in/panchang/en/regional-calendars) · [RKM Panjika Reader](https://cs.rkmvu.ac.in/~tamal/jyotisha/panjika/)
+
+The Bangladesh rules were reviewed separately. The Teachers' Portal explanation corroborates the October 2019 reform, six 31-day months and the leap-year Falgun adjustment. The portal is a secondary explanation on a government platform. The 2027 Ministry holiday circular was located, but its attachment was not used as a day-by-day civil calendar reference. [Teachers’ Portal](https://teachers.gov.bd/blog/details/593283) · [Ministry of Public Administration holiday notices](https://mopa.gov.bd/pages/public-holiday)

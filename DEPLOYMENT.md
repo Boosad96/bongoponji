@@ -6,7 +6,7 @@ Obtain owner authorization for the GitHub repository, Cloudflare account and any
 
 ## Web interface
 
-1. Create or connect a private GitHub repository named `bongoponji`. Transfer the local Git history using the GitHub integration once repository write access is available. Use the Actions tab to review the validation workflow.
+1. Use the existing [Boosad96/bongoponji repository](https://github.com/Boosad96/bongoponji) and check the latest main-branch validation run.
 2. In Cloudflare, open **Workers & Pages → Create application → Pages → Connect to Git** and select the repository. Select `main` as the production branch.
 3. Use the following build settings.
 
@@ -18,15 +18,17 @@ Obtain owner authorization for the GitHub repository, Cloudflare account and any
    | Root directory | Repository root |
    | Node version | Set `NODE_VERSION` to `24.22.3` or a tested newer version |
    | Astro telemetry | Set `ASTRO_TELEMETRY_DISABLED` to `1` |
-   | Site origin | Set `SITE_URL` to the actual assigned HTTPS Pages origin after review, without a trailing slash |
+   | Site origin | Leave `SITE_URL` unset in both Pages environments for the initial review deployment |
    | Corrections | Set `PUBLIC_CORRECTION_EMAIL` to an owner-managed public address |
 
 4. Deploy the review build and use the assigned Pages link. Confirm the annual calendars, conversion in both directions, source-rendered daily HTML, no-store response headers and real 404. The build packages an Astro Worker under `_worker.js` and uses `_routes.json` to limit Worker invocations to daily routes. Static assets use Pages directly. Inspect Cloudflare deployment logs for packaging and compatibility errors.
-5. Once publication is approved, set the production origin and redeploy. Confirm canonical URLs and sitemap entries point to it. Verify Search Console using its supported ownership flow and submit `/sitemap.xml` through the Sitemaps interface. Keep preview SITE_URL unset. Cloudflare deployment and Search Console still require account access.
+5. Once publication is approved, set `SITE_URL=https://bongoponji.com` in the production environment only and redeploy. Confirm canonical URLs and sitemap entries point to it. Verify Search Console using its supported ownership flow and submit `/sitemap.xml` through the Sitemaps interface. Keep preview SITE_URL unset. Cloudflare deployment and Search Console still require account access.
 
 ## Domain migration
 
-Register the custom domain separately. In Pages, add the domain under **Custom domains**, complete DNS verification and wait for HTTPS. Set SITE_URL to that origin and redeploy. Set a Cloudflare Bulk Redirect from the old Pages address to the custom hostname with 301, path preservation, subpath matching and query preservation. Verify the home page, a nested path, sitemap and social tags. Check that preview addresses remain unindexed. Verify the custom domain property in Search Console and submit its sitemap. Bring any future widgets and hreflang links onto the same origin.
+Confirm ownership of `bongoponji.com` and complete Cloudflare zone setup. Keep the free Pages address noindexed until the custom domain is ready. Add `bongoponji.com` under **Custom domains** in Pages, verify DNS, and wait for the HTTPS certificate. In the Cloudflare DNS dashboard, make `www` a proxied record so the redirect rule can run. In **Rules → Overview → Redirect Rules**, use a Single Redirect matching `http.host eq "www.bongoponji.com"` with a dynamic target `concat("https://bongoponji.com", http.request.uri.path)`, status 301 and query-string preservation. Test the redirect over HTTPS and enable HTTP-to-HTTPS redirection. Once ready, set SITE_URL in the Pages production environment and redeploy. The build rejects a configured Pages origin other than the production apex and rejects indexing configuration on non-main Pages branches.
+
+Use a Cloudflare Bulk Redirect for the assigned `.pages.dev` production hostname after the migration, preserving path and query. Keep preview SITE_URL unset. Verify the homepage and a nested route, HTTPS, canonical URLs, Open Graph, robots and the sitemap. In Google Search Console, add a Domain property for `bongoponji.com`, add the supplied DNS TXT record, verify ownership, and submit `https://bongoponji.com/sitemap.xml`. Submit only the eligible production URLs. [Cloudflare Pages custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/) · [Cloudflare redirects](https://developers.cloudflare.com/rules/url-forwarding/)
 
 ## Resources
 

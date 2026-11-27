@@ -33,3 +33,23 @@ test('city selector and daily dates work without JavaScript', async ({ browser }
   await expect(page.getByText('প্রকাশ অপেক্ষমাণ', {exact:true})).toBeVisible();
   await context.close();
 });
+
+test('navigates dates and preserves the selected calendar', async ({ page }) => {
+  await page.goto('/panjika/today/?city=kolkata&region=west-bengal&date=2026-12-02');
+  await page.getByRole('link', {name:'পরের দিন',exact:true}).click();
+  await expect(page.locator('.hero time').first()).toHaveAttribute('datetime','2026-12-03');
+  await page.getByLabel('বর্ষপঞ্জি').selectOption('bangladesh');
+  await page.getByRole('button', {name:'দেখুন',exact:true}).click();
+  await expect(page.locator('.hero time').first()).toHaveAttribute('datetime','2026-12-03');
+  await expect(page.getByText('প্রকাশ অপেক্ষমাণ',{exact:true})).toBeVisible();
+  await expect(page.getByText('Asia/Kolkata')).toBeVisible();
+});
+
+test('keeps the selected theme through navigation', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' });
+  await page.goto('/');
+  await page.getByRole('button', {name:'আলো বা অন্ধকার রং বদলান'}).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+});

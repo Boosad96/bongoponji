@@ -21,3 +21,9 @@ All 16 Vitest tests, Astro diagnostics and the packaged workerd integration test
 Obtain PAC reuse confirmation or another cleared authoritative dataset for Kolkata and the 1433–1434 boundaries. Expand the calendar beyond the three independently checked Kolkata solar and sunrise-tithi samples for 27–29 November 2026. Generate candidates with the current method, record reference comparisons and approve only date-specific matches. Before changing the West Bengal publication gate, verify the intended Bishuddha Siddhanta rules and its applicable month boundaries. Run `npm test`, `npm run check`, the Example-origin build checks, and Playwright in an environment that can start the web server. See KNOWN_LIMITATIONS.md for account and product milestones.
 
 The GitHub connection supports the source push. Release data, hosting and Google ownership checks remain separate milestones.
+
+## Phase 3, validation and domain preparation
+
+Expanded independently checked Kolkata solar and sunrise-tithi coverage to 27 November–3 December 2026. Added navigable daily dates with invalid-input handling, production-origin restrictions for Cloudflare Pages, publisher metadata and browser regressions for date navigation, regional switching and theme persistence. See PHASE_3_REPORT.md for the execution checklist and VALIDATION_REPORT.md for date-by-date comparisons.
+
+Next: obtain the verified 1434 Kolkata month boundaries and permission or an independently reusable rule set for traditional calendar work. Continue authoritative comparisons beyond 3 December, deploy the noindexed Pages build through the owner account, then verify the custom apex and Search Console after release clearance.

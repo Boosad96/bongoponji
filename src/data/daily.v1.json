@@ -75,6 +75,106 @@
         "redistribution": "cleared",
         "origin": "independent-computation"
       }
+    },
+    {
+      "date": "2026-11-30",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T10:44:14.376Z",
+      "value": {
+        "sunrise": "05:59",
+        "sunset": "16:51",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 7,
+          "endsAt": "2026-11-30T18:43:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/agrahayana",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2026-12-01",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T10:44:14.376Z",
+      "value": {
+        "sunrise": "06:00",
+        "sunset": "16:51",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 8,
+          "endsAt": "2026-12-01T17:45:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/agrahayana",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2026-12-02",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T10:44:14.376Z",
+      "value": {
+        "sunrise": "06:00",
+        "sunset": "16:51",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 9,
+          "endsAt": "2026-12-02T17:23:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/agrahayana",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2026-12-03",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T10:44:14.376Z",
+      "value": {
+        "sunrise": "06:01",
+        "sunset": "16:51",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 10,
+          "endsAt": "2026-12-03T17:35:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/agrahayana",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
     }
   ]
 }

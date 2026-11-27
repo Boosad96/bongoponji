@@ -11,8 +11,12 @@ const webApplication = canonical && Astro.url.pathname === '/tools/date-converte
   inLanguage: 'bn', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: 0, priceCurrency: 'BDT' },
 };
+const publisher = canonical && home && {
+  '@context': 'https://schema.org', '@type': 'Organization',
+  '@id': `${canonical.origin}/#publisher`, name: 'বঙ্গপঞ্জি', url: canonical.origin,
+};
 const schema = canonical && { '@context':'https://schema.org', '@type':home ? 'WebSite' : 'BreadcrumbList',
-  ...(home ? {name:'বঙ্গপঞ্জি', url:canonical.origin} : {itemListElement:[
+  ...(home ? {name:'বঙ্গপঞ্জি', url:canonical.origin, inLanguage:'bn', publisher:{'@id':`${canonical.origin}/#publisher`}} : {itemListElement:[
     {'@type':'ListItem',position:1,name:'প্রচ্ছদ',item:canonical.origin + '/'},
     {'@type':'ListItem',position:2,name:title,item:canonical.href},
   ]}) };
@@ -36,6 +40,7 @@ const links = [['/','প্রচ্ছদ'],['/panjika/today/','পঞ্জি
   <meta name="twitter:description" content={description} />
   <title>{fullTitle}</title>
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replaceAll('<','\\u003c')} />}
+  {publisher && <script type="application/ld+json" set:html={JSON.stringify(publisher)} />}
   {webApplication && <script type="application/ld+json" set:html={JSON.stringify(webApplication)} />}
   <script is:inline>
     try { document.documentElement.dataset.theme = localStorage.getItem('bongoponji-theme') || ''; } catch {}

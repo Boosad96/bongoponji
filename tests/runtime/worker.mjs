@@ -35,7 +35,11 @@ export default {
     check((await request('/panchang/not-a-city/')).status === 404, 'unknown city must return 404');
     const home = await request('/?city=dhaka&month=2027-01');
     check((await home.text()).includes('জানুয়ারি ২০২৭'), 'homepage month navigation should work without JavaScript');
-    instant = '2026-11-30T00:00:00Z';
+    const dated = await request('/panjika/today/?city=kolkata&date=2026-12-02');
+    check(timestamp(await dated.text()) === Date.parse('2026-12-02'), 'dated links must select the requested day');
+    const invalid = await request('/panjika/today/?city=kolkata&date=2026-02-29');
+    check(timestamp(await invalid.text()) === Date.parse('2026-11-27'), 'invalid dates must fall back to the local day');
+    instant = '2026-12-04T00:00:00Z';
     const expiredSample = await request('/panjika/today/?city=kolkata');
     check((await expiredSample.text()).includes('প্রকাশ অপেক্ষমাণ'), 'expired sample must never be carried forward');
     globalThis.Date = RealDate;

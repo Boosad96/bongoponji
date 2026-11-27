@@ -8,8 +8,11 @@ const format = new Intl.DateTimeFormat('en-GB', {
 });
 const rounded = instant => new Date(Math.round(+instant / 60000) * 60000);
 const generatedAt = new Date().toISOString();
-const records = ['2026-11-27','2026-11-28','2026-11-29'].map(date => {
+const defaults = ['2026-11-27','2026-11-28','2026-11-29'];
+const dates = process.argv.slice(2);
+const records = (dates.length ? [...new Set(dates)] : defaults).map(date => {
   const start = new Date(date + 'T00:00:00+05:30');
+  if (!/^20[0-9]{2}-[0-9]{2}-[0-9]{2}$/.test(date) || !Number.isFinite(+start) || new Date(+start + 19800000).toISOString().slice(0,10) !== date) throw new RangeError('Invalid Kolkata civil date: ' + date);
   const rise = SearchRiseSet(Body.Sun,observer,1,start,1).date;
   const set = SearchRiseSet(Body.Sun,observer,-1,start,1).date;
   const index = Math.floor(MoonPhase(rise) / 12);
