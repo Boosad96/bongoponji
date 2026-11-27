@@ -21,3 +21,9 @@ The example origin is for tests. The production target is https://bongoponji.com
 Read [deployment](DEPLOYMENT.md), [validation](VALIDATION_REPORT.md), [known limitations](KNOWN_LIMITATIONS.md) and [progress](PROGRESS.md) before release.
 
 See [Phase 3 report](PHASE_3_REPORT.md) and [SEO report](SEO_REPORT.md) for the current release checklist.
+
+## Scheduled Kolkata verification
+
+GitHub Actions runs a monthly recheck of the current UTC year and a separate October run for the following year. In GitHub, open **Actions → Scheduled calendar verification → Run workflow** and optionally enter a year or a month such as `2027-01`. Read the run summary or download the `calendar-validation-report` artifact. The workflow uses standard public-repository runners and requires no paid service, API key or AI access.
+
+Each new approval requires a reviewed date-specific PAC reference and exact sunrise/sunset minutes, identical sunrise tithi, and tithi end within one minute. Existing approvals keep their original method. Missing inputs leave dates pending. If a check fails, review the artifact and correct the reference or documented rule before rerunning. The checked-in manifest starts empty while PAC reuse is unresolved. Add inputs only after confirming they can be stored in the public repository. The workflow keeps the review build noindexed.

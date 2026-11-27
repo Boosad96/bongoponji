@@ -8,3 +8,5 @@
 - The correction log is public. Sending reports requires configuring an owner-managed email. No private report store is active.
 - Local Playwright and mobile Lighthouse ran against the Astro development service. Wrangler Pages preview remains blocked locally. Production Core Web Vitals and live rate-limit configuration remain unverified.
 - The source repository is public on GitHub. Pages deployment, production domain and Search Console ownership are pending.
+
+The scheduled verifier can regenerate candidates and check the reproducibility of approved dates without external access. Automatic promotion requires a reviewed date-specific comparison manifest with evidence that the comparison inputs can be stored in the public repository. The manifest is empty while PAC redistribution clearance remains open. Festival and muhurat promotion remains outside the daily workflow.

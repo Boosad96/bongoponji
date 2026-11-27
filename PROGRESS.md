@@ -72,12 +72,6 @@ Checked all 30 April candidates. The PAC 2027 appendix covers 1–20 April and t
 
 The May batch is blocked: the latest accessible PAC Kolkata horizon and tithi references end on 20 April 2027, and no applicable 2027–28 edition was located. March and April each passed 24 Vitest tests, Astro diagnostics, the example-origin static audit and Worker smoke test. April also passed the noindexed review audit. The [March CI run](https://github.com/Boosad96/bongoponji/actions/runs/45998528630) and [April CI run](https://github.com/Boosad96/bongoponji/actions/runs/45998665267) also passed. A continuation recheck of the [PAC English editions index](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) still found 2026–27 as the latest listed edition on 2026-11-27. No new daily records qualified for comparison.
 
-## Resume here
-
-1. Step B resumes with May 2027, after the applicable PAC 1949 Saka Kolkata horizon table and daily tithi folios are available. The published 1948 Saka appendix reaches only 20 April. Compare any new reference coverage for 21–30 April before adding those dates. Use `node scripts/prepare-kolkata-sample.mjs --v2 YYYY-MM-DD ...` and the established exact-minute and one-minute tolerances. Validate date by date, document and test each monthly batch, then commit and push before proceeding. Keep the existing withheld dates closed.
-2. Once Step B is complete, run the single Step C publication check for the printed 1434 Bishuddha Siddhanta edition or Vivekananda Math schedule. Eleven 1434 boundaries remain gated. Continue with Steps D–H in order, including local Playwright/Lighthouse and the scheduled workflow after its prerequisites.
-3. Keep SITE_URL unset in review and leave deployment to the owner. The example origin is restricted to build tests.
-
 ## Step D, verified festival pages
 
 Published source-attributed pages in the repository for Saraswati Puja, Maha Shivaratri and Poila Boishakh. Each requires an existing verified Kolkata daily record. The pages show the applicable Bengali calendar convention and no ritual timings. Other festival pages remain noindexed. May validation and the 1434 publication check are deferred by instruction. Next run Step F browser and Lighthouse checks.
@@ -89,3 +83,13 @@ All five Playwright cases passed locally. Captured three mobile screenshots and 
 ## Step G, growth features
 
 Added embeddable today, calendar month and verified-festival countdown views, verified festival sharing, a Bangladesh civil 2027 PDF download, and Bengali birthday and age tools. Local browser checks passed on seven cases. Next implement Step H with a fail-closed reference gate and run the manual workflow.
+
+## Step H, scheduled verification
+
+Added a keyless GitHub Actions workflow for October generation, monthly revalidation and on-demand runs. Local January 2027 dry run regenerated 31 candidates, reproduced 23 prior approvals, found seven missing references and retained one conflict. The release file was unchanged. New approvals require an individually reviewed PAC comparison that clears every existing tolerance.
+
+## Resume here
+
+1. May 2027 daily coverage and eleven 1434 boundaries remain deferred. Resume those checks only when an applicable reference is available and the owner has reopened that work. Keep withheld dates closed.
+2. Continue festival and ritual work when independently verified observance rules, dates and applicable daily records are available. See VALIDATION_REPORT.md and KNOWN_LIMITATIONS.md for current coverage.
+3. Resolve the Wrangler preview facade error and rerun production Lighthouse after a review deployment is available. Keep SITE_URL unset in review and leave deployment to the owner. The example origin is restricted to local build tests.

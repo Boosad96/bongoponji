@@ -1,0 +1,73 @@
+name: Scheduled calendar verification
+on:
+  schedule:
+    - cron: '17 3 1 * *'
+    - cron: '47 3 1 10 *'
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: "Optional UTC year or month (YYYY or YYYY-MM)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+concurrency:
+  group: verified-calendar-main
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Generate and compare Kolkata candidates
+        env:
+          REQUESTED_SCOPE: ${{ inputs.scope }}
+          TRIGGER_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          scope="${REQUESTED_SCOPE:-$(date -u +%Y)}"
+          if [[ "$TRIGGER_SCHEDULE" == '47 3 1 10 *' ]]; then
+            scope=$(( $(date -u +%Y) + 1 ))
+          fi
+          printf '# Kolkata calendar validation\n\nGeneration or comparison did not complete. Published: 0.\n' > calendar-run.md
+          node scripts/validate-kolkata-scheduled.mjs "$scope" calendar-run.md
+      - run: npm test
+      - run: npm run check
+      - run: npm run build
+      - run: node scripts/check-static.mjs --preview
+      - run: node scripts/test-worker.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - name: Commit verified changes
+        id: release
+        run: |
+          if git diff --quiet -- src/data/daily.v1.json; then
+            echo 'outcome=No new records.' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add src/data/daily.v1.json
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Update independently verified Kolkata calendar"
+          git push origin HEAD:main
+          echo "outcome=Pushed $(git rev-parse HEAD)." >> "$GITHUB_OUTPUT"
+      - name: Report outcome
+        if: always()
+        env:
+          OUTCOME: ${{ steps.release.outputs.outcome }}
+        run: |
+          if [[ ! -f calendar-run.md ]]; then echo '# Calendar validation did not start' > calendar-run.md; fi
+          printf '\nPublication outcome: %s\n' "${OUTCOME:-No publication completed.}" >> calendar-run.md
+          cat calendar-run.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: calendar-validation-report
+          path: calendar-run.md

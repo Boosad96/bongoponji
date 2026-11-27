@@ -466,3 +466,7 @@ The Pages package omitted sourcemaps while retaining references to them. Packagi
 ## Step G — growth tools
 
 The birthday and completed-year age tools use the existing Bangladesh civil conversion and Dhaka date. The 30 Falgun anniversary falls on 29 Falgun in a common year. Unit checks cover the anniversary boundary, leap fallback and date-range rejection. Local Chromium passed seven cases, including the age form and the frameable, noindexed festival widget. Widget, countdown and share data come from the verified festival list only. A four-page Bangladesh civil 2027 PDF was generated with Chromium after the Bengali fonts loaded. It contains the twelve calendar tables and no religious date dataset. Ads remain off.
+
+## Step H — scheduled verification
+
+The January 2027 local trial reproduced all 23 previously verified records using their recorded method, left seven candidates pending for missing approved references, and retained the 31 January sunrise-tithi conflict. Zero new daily records qualified. The public fixture contains zero reviewed comparison rows because PAC redistribution clearance is open. Reproducing a previous approval checks reproducibility. Independent reference revalidation requires an approved row for that exact date. Kolkata daily coverage remains 88 records.
