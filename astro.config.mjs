@@ -10,6 +10,10 @@ if (process.env.CF_PAGES === '1' && site &&
 if (site && (new URL(site).origin !== site || !site.startsWith('https://'))) {
   throw new Error('SITE_URL must be an HTTPS origin without a trailing slash');
 }
+// Report only the validated public origin, never the rest of the build environment.
+if (process.argv.includes('build')) {
+  console.info(`[bongoponji] SITE_URL: ${site || 'unset (noindexed review build)'}`);
+}
 export default defineConfig({
   site, devToolbar: { enabled: false }, session: false, adapter: cloudflare({ configPath: 'wrangler.workers.toml', prerenderEnvironment: 'node', imageService: 'passthrough' }), trailingSlash: 'always', vite: { plugins: [tailwind()] },
 });

@@ -118,6 +118,12 @@ Confirmed the live report against desktop and a 390 px Chromium viewport. Preser
 
 After the automatic live rebuild, verified the first-click conversion, adult and covered birthday cases, both themes, the West Bengal and Dhaka data gate, the November today marker, and the three dated festivals. Chromium passed the main pages at 390 px. The 26 unit tests, 11 Playwright tests, and both build audits passed.
 
+## v5.1 Pages production origin
+
+On 27 November 2026 IST, deployment `d070122e` and the Pages project alias both served a zero-entry sitemap and `User-agent: *` followed by `Disallow: /`. That output corresponds to the review build. Local tests could not reproduce the failure with the correct build environment. With Cloudflare Pages production flags and SITE_URL set, the build emitted 115 apex sitemap entries and robots.txt with `Allow: /` and `Sitemap: https://bongoponji.com/sitemap.xml`. With SITE_URL unset, the review build retained zero entries and `Disallow: /`. All 26 unit tests, Astro diagnostics, both builds and static audits, and the production Worker smoke test passed.
+
+Astro now logs the validated public SITE_URL or that it is unset during builds. A fresh main push will test the current dashboard configuration without relying on a retry. Cloudflare sign-in was required to see the original variable type or retry log. The exact dashboard cause is still unconfirmed.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
