@@ -89,3 +89,65 @@ Vivekananda Math, Barrackpore, published an institutional schedule explicitly fo
 The remaining printed comparisons are 1433 Baishakh, Jyaishtha and Chaitra, plus 1434 Jyaishtha through Chaitra. A search for the 1434 printed edition, an equivalent institutional schedule, and the PAC 1949 Saka regional table found no accessible complete applicable reference. The 1434 Baishakh anchor supersedes the earlier pending note for that month only. Step 1 remains open and the release dataset is unchanged.
 
 Anandabazar's 1433 roundup attributes its dates to Bishuddha Siddhanta. It marks 15 April 2026 as 1 Baishakh and pairs 7 Chaitra with 22 March 2027, yielding 16 March as the Chaitra start. Both match the probe with a difference of zero days. These are secondary corroborations for the remaining printed-edition checks. [Anandabazar 1433 roundup](https://www.anandabazar.com/amp/horoscope/puja-dates-for-bengali-year-1433-from-15th-april-2026-to-14th-april-2027-dgtl/cid/1680312)
+
+## Grahan cross-check — 2026-11-27
+
+The research script ran Grahan's `panchangAtSunrise` on every one of the 24 Kolkata boundary candidates and every Step 2 daily date from 4 December 2026 through 31 December 2027 inclusive. The existing Astronomy Engine 2.1.19 daily generator supplies the comparison values. Grahan uses its own MIT-licensed core, with no Astronomy Engine dependency. Both calculations use the same Kolkata observer coordinates and timezone. Sunrise and sunset agree if rounded clock minutes are identical. Tithi agreement requires matching number and paksha at each engine's sunrise. End-time agreement requires a difference within one rounded minute for the same tithi.
+
+This checks the astronomy **on** candidate boundary days. Grahan's sunrise output does not assign Bengali solar month starts or establish the printed calendar convention. All results below are research only. Agreement never changes publication status. A date-specific published source is still required. Run `node scripts/cross-check-kolkata.mjs` to reproduce the per-date JSON with both engine values and signed end-time differences. [Grahan source and API](https://github.com/svarbhanu/grahan)
+
+### Boundary candidate days
+
+| Year/month | Candidate date | Sunrise | Sunset | Tithi | End difference, Grahan minus Astronomy Engine |
+| --- | --- | --- | --- | --- | ---: |
+| 1433/1 | 2026-04-15 | Match | Match | Match | 0 min |
+| 1433/2 | 2026-05-16 | Match | Match | Match | 0 min |
+| 1433/3 | 2026-06-16 | Match | Match | Match | 0 min |
+| 1433/4 | 2026-07-18 | Match | Differs | Match | -1 min |
+| 1433/5 | 2026-08-18 | Differs | Match | Match | -1 min |
+| 1433/6 | 2026-09-18 | Match | Match | Match | -1 min |
+| 1433/7 | 2026-10-18 | Match | Match | Match | -1 min |
+| 1433/8 | 2026-11-17 | Match | Differs | Match | -1 min |
+| 1433/9 | 2026-12-17 | Match | Match | Match | -1 min |
+| 1433/10 | 2027-01-15 | Match | Match | Match | -1 min |
+| 1433/11 | 2027-02-14 | Match | Differs | Match | -1 min |
+| 1433/12 | 2027-03-16 | Match | Match | Match | 0 min |
+| 1434/1 | 2027-04-15 | Match | Match | Match | -1 min |
+| 1434/2 | 2027-05-16 | Match | Match | Match | -1 min |
+| 1434/3 | 2027-06-16 | Match | Match | Match | 0 min |
+| 1434/4 | 2027-07-18 | Match | Differs | Match | -1 min |
+| 1434/5 | 2027-08-18 | Match | Differs | Match | -1 min |
+| 1434/6 | 2027-09-18 | Match | Differs | Match | -1 min |
+| 1434/7 | 2027-10-19 | Match | Differs | Match | 0 min |
+| 1434/8 | 2027-11-18 | Match | Match | Match | -1 min |
+| 1434/9 | 2027-12-17 | Differs | Match | Match | 0 min |
+| 1434/10 | 2028-01-16 | Match | Differs | Match | -1 min |
+| 1434/11 | 2028-02-14 | Match | Match | Match | -1 min |
+| 1434/12 | 2028-03-15 | Match | Match | Match | -1 min |
+
+All 24 tithi labels matched, and all 24 end-time differences were within one minute. Minute-rounded sunrise matched on 22 dates and sunset on 16. All four fields agreed on 14 dates.
+
+### Step 2 daily dates
+
+| Batch | Dates checked | Sunrise matches | Sunset matches | Tithi matches | End-time matches | All four |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 2026-12 | 28 | 23 | 22 | 28 | 28 | 20 |
+| 2027-01 | 31 | 25 | 25 | 31 | 31 | 22 |
+| 2027-02 | 28 | 20 | 23 | 28 | 28 | 16 |
+| 2027-03 | 31 | 24 | 25 | 31 | 31 | 20 |
+| 2027-04 | 30 | 26 | 24 | 30 | 30 | 20 |
+| 2027-05 | 31 | 22 | 24 | 31 | 31 | 17 |
+| 2027-06 | 30 | 23 | 25 | 30 | 30 | 18 |
+| 2027-07 | 31 | 25 | 25 | 31 | 31 | 19 |
+| 2027-08 | 31 | 26 | 25 | 30 | 30 | 20 |
+| 2027-09 | 30 | 21 | 6 | 30 | 30 | 4 |
+| 2027-10 | 31 | 22 | 26 | 31 | 31 | 18 |
+| 2027-11 | 30 | 26 | 26 | 30 | 30 | 23 |
+| 2027-12 | 31 | 25 | 22 | 31 | 31 | 18 |
+| Total | 393 | 308 | 298 | 392 | 392 | 235 |
+
+The only sunrise-tithi disagreement was 2027-08-05. Astronomy Engine labeled it shukla 3 at 05:09 IST. Grahan labeled it shukla 4 at 05:09 IST. The two end times belong to different tithis, so this row cannot establish end-time agreement.
+
+### 1434 source availability
+
+The printed 1434 Bishuddha Siddhanta Panjika could not be confirmed as published on 27 November 2026. The retailer listing still said “Coming Soon” and was out of stock, and a secondary reference described the edition as forthcoming. The Vivekananda Math search still surfaced only its 2026–27 observance schedule. Its separate 2027–28 school notice is unrelated. The remaining eleven 1434 boundaries are gated on publication or access to an authoritative reference. Computed candidates already exist. Reuse clearance remains open and the site dataset was unchanged. [Edition listing](https://bongohridoy.com/product/bisuddha-siddhanta-panjika-1434/) · [Publication status note](https://myastrology.in/en/bengali-calendar/marriage-dates-1434) · [Vivekananda Math 2026–27 schedule](https://asvarkvm.org/sites/default/files/Yearly%20Events%202026-2027.pdf)

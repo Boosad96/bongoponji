@@ -1,5 +1,6 @@
 import { Body, MoonPhase, Observer, SearchMoonPhase, SearchRiseSet } from 'astronomy-engine';
 import { readFile } from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
 
 const engine = JSON.parse(await readFile(new URL('../package.json',import.meta.url))).dependencies['astronomy-engine'];
 const observer = new Observer(22.5726, 88.3639, 0);
@@ -7,21 +8,27 @@ const format = new Intl.DateTimeFormat('en-GB', {
   timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
 });
 const rounded = instant => new Date(Math.round(+instant / 60000) * 60000);
-const generatedAt = new Date().toISOString();
-const defaults = ['2026-11-27','2026-11-28','2026-11-29'];
-const dates = process.argv.slice(2);
-const records = (dates.length ? [...new Set(dates)] : defaults).map(date => {
-  const start = new Date(date + 'T00:00:00+05:30');
-  if (!/^20[0-9]{2}-[0-9]{2}-[0-9]{2}$/.test(date) || !Number.isFinite(+start) || new Date(+start + 19800000).toISOString().slice(0,10) !== date) throw new RangeError('Invalid Kolkata civil date: ' + date);
-  const rise = SearchRiseSet(Body.Sun,observer,1,start,1).date;
-  const set = SearchRiseSet(Body.Sun,observer,-1,start,1).date;
-  const index = Math.floor(MoonPhase(rise) / 12);
-  const end = SearchMoonPhase(((index + 1) * 12) % 360,rise,3).date;
-  return {
-    date, location: 'kolkata', region: 'west-bengal', method: 'drik-sunrise-tithi-v1',
-    engine: 'astronomy-engine@' + engine, status: 'PENDING_VERIFICATION', generatedAt,
-    value: { sunrise: format.format(rounded(rise)), sunset: format.format(rounded(set)),
-      tithi: { paksha: index < 15 ? 'shukla' : 'krishna', number: index % 15 + 1, endsAt: rounded(end).toISOString() } },
-  };
-});
-console.log(JSON.stringify({schemaVersion:1,records},null,2));
+export function kolkataDailyCandidates(dates) {
+  const generatedAt = new Date().toISOString();
+  return [...new Set(dates)].map(date => {
+    const start = new Date(date + 'T00:00:00+05:30');
+    if (!/^20[0-9]{2}-[0-9]{2}-[0-9]{2}$/.test(date) || !Number.isFinite(+start) || new Date(+start + 19800000).toISOString().slice(0,10) !== date) throw new RangeError('Invalid Kolkata civil date: ' + date);
+    const rise = SearchRiseSet(Body.Sun,observer,1,start,1).date;
+    const set = SearchRiseSet(Body.Sun,observer,-1,start,1).date;
+    const index = Math.floor(MoonPhase(rise) / 12);
+    const end = SearchMoonPhase(((index + 1) * 12) % 360,rise,3).date;
+    return {
+      date, location: 'kolkata', region: 'west-bengal', method: 'drik-sunrise-tithi-v1',
+      engine: 'astronomy-engine@' + engine, status: 'PENDING_VERIFICATION', generatedAt,
+      value: { sunrise: format.format(rounded(rise)), sunset: format.format(rounded(set)),
+        tithi: { paksha: index < 15 ? 'shukla' : 'krishna', number: index % 15 + 1, endsAt: rounded(end).toISOString() } },
+    };
+  });
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const dates = process.argv.slice(2);
+  const defaults = ['2026-11-27','2026-11-28','2026-11-29'];
+  const records = kolkataDailyCandidates(dates.length ? dates : defaults);
+  console.log(JSON.stringify({schemaVersion:1,records},null,2));
+}
