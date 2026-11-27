@@ -37,7 +37,7 @@ Pinned MIT-licensed Grahan Vedic 1.0.1 as a development dependency and ran the i
 ## Resume here
 
 1. Finish Step 1. Run `node scripts/check-kolkata-boundaries.mjs`. Compare the pending candidates against the applicable printed Kolkata Bishuddha Siddhanta editions, starting with 1433 Baishakh, Jyaishtha and Chaitra and 1434 Jyaishtha through Chaitra as listed in VALIDATION_REPORT.md. Confirm the applicable cutoffs and ayanamsha across both years. Record each dated result and source-use status. PAC may serve as a comparison reference. Obtain rights before importing protected source material.
-2. The separately authorized December 2026 and January 2027 PAC comparisons are complete. Before starting later batches, resolve the boundary gate and confirm applicable date-specific references. Preserve the six December exclusions unless later evidence and a verified calculation resolve them. Keep 5 August 2027 withheld until an applicable release-grade reference and the calculation agree. Apply the existing exact solar-minute and one-minute tithi end tolerances.
+2. The separately authorized December 2026 through February 2027 PAC comparisons are complete. Before starting later batches, resolve the boundary gate and confirm applicable date-specific references. Preserve the remaining December, January and February exclusions unless later evidence and a verified calculation resolve them. Keep 5 August 2027 withheld until an applicable release-grade reference and the calculation agree. Apply the existing exact solar-minute and one-minute tithi end tolerances.
 3. Continue in order with festival observance rules, muhurat and other traditional fields, local browser and Lighthouse work, then growth features. Keep the review build noindexed with SITE_URL unset. Deployment remains owner-managed.
 
 Step 7 is gated on Steps 1–2. Once daily reference comparisons work against an accessible, authoritative source, implement the October and monthly GitHub Actions schedules plus manual dispatch. Keep generated candidates separate from releasable records, make the workflow reject dates without adequate reference evidence, and verify a real run before marking automation complete.
@@ -59,3 +59,9 @@ Local checks passed 23 Vitest tests, Astro diagnostics, the example-origin build
 ## Step 2, versioned horizon correction
 
 Adopted `drik-sunrise-tithi-v2` for new approvals. Earlier v1 approvals keep their method and values. The v2 rerun approved December 12 and 29 and January 1, 5, 10, 13, 21, 23 and 26. The other twelve reruns remain withheld. January 31 and December 9 retain the sunrise-tithi conflicts. December 27 still misses the exact solar comparison. Next batch is February 2027 under v2.
+
+## Step 2, February checkpoint
+
+Compared 28 February Kolkata dates under v2. Approved 15, bringing the release total to 69. The 13 withheld February dates and their comparisons are in VALIDATION_REPORT.md. Future daily batches should use v2 for new approvals, retain v1 provenance on existing records, and use the same date-specific PAC checks. The separate 1434 month-boundary publication gate remains unresolved.
+
+Local validation passed 24 Vitest tests, Astro diagnostics, the example-origin static and packaged Worker checks, and the noindexed review build audit.

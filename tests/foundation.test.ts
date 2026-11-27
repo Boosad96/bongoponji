@@ -142,3 +142,18 @@ it('publishes only passing January dates from the applicable PAC folio', () => {
     }
   }
 });
+
+it('publishes only passing February v2 dates from the applicable PAC folio', () => {
+  const held = new Set([2, 5, 6, 7, 8, 10, 12, 15, 18, 19, 21, 23, 25]);
+  for (let day = 1; day <= 28; day++) {
+    const date = `2027-02-${String(day).padStart(2, '0')}`;
+    const record = verifiedDaily(date, 'kolkata', 'west-bengal');
+    expect(Boolean(record), date).toBe(!held.has(day));
+    if (record) {
+      expect(record.method).toBe('drik-sunrise-tithi-v2');
+      expect(record.evidence.source).toBe(
+        `https://packolkata.imd.gov.in/panchang/en/${day <= 19 ? 'magha' : 'phalguna'}`,
+      );
+    }
+  }
+});

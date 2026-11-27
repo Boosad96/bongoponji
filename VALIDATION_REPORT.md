@@ -277,3 +277,40 @@ New approvals use `drik-sunrise-tithi-v2`. Astronomy Engine computes both horizo
 | 2027-01-31 | 06:16 / 06:16 | 17:24 / 17:24 | krishna 10 / krishna 9 | 01 Feb 08:42 / 31 Jan 06:35 | Different tithis | WITHHELD |
 
 Nine of 21 reruns passed. December 9 and January 31 retain their sunrise-tithi conflicts. December 27 still misses the PAC sunset minute and now also misses the sunrise minute. December 4 and 15 pass sunset in isolation, but fail the v2 sunrise check.
+
+## Step 2 February batch — checked 2026-11-27
+
+All 28 Kolkata dates were computed with `drik-sunrise-tithi-v2` and compared against the PAC Kolkata horizon rows for February 2027 and the applicable tithi folio. Magha covers 1–19 February and Phalguna covers 20–28 February. The exact-minute solar and one-minute tithi end tolerances are the same as for the previous batches. Only independently computed passing rows were added. [PAC Kolkata horizon](https://packolkata.imd.gov.in/panchang/en/tables) · [Magha folio](https://packolkata.imd.gov.in/panchang/en/magha) · [Phalguna folio](https://packolkata.imd.gov.in/panchang/en/phalguna)
+
+| Date | Sunrise PAC / v2 | Sunset PAC / v2 | Tithi PAC / v2 | End PAC / v2, IST | End difference | Result |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 2027-02-01 | 06:16 / 06:16 | 17:25 / 17:25 | krishna 10 / krishna 10 | 01 Feb 08:42 / 01 Feb 08:42 | +0 min | VERIFIED |
+| 2027-02-02 | 06:15 / 06:15 | 17:26 / 17:25 | krishna 11 / krishna 11 | 02 Feb 11:11 / 02 Feb 11:11 | +0 min | WITHHELD |
+| 2027-02-03 | 06:15 / 06:15 | 17:26 / 17:26 | krishna 12 / krishna 12 | 03 Feb 13:51 / 03 Feb 13:51 | +0 min | VERIFIED |
+| 2027-02-04 | 06:14 / 06:14 | 17:27 / 17:27 | krishna 13 / krishna 13 | 04 Feb 16:32 / 04 Feb 16:32 | +0 min | VERIFIED |
+| 2027-02-05 | 06:14 / 06:14 | 17:28 / 17:27 | krishna 14 / krishna 14 | 05 Feb 19:06 / 05 Feb 19:06 | +0 min | WITHHELD |
+| 2027-02-06 | 06:14 / 06:13 | 17:28 / 17:28 | krishna 15 / krishna 15 | 06 Feb 21:26 / 06 Feb 21:27 | +1 min | WITHHELD |
+| 2027-02-07 | 06:13 / 06:13 | 17:29 / 17:28 | shukla 1 / shukla 1 | 07 Feb 23:28 / 07 Feb 23:28 | +0 min | WITHHELD |
+| 2027-02-08 | 06:13 / 06:12 | 17:29 / 17:29 | shukla 2 / shukla 2 | 09 Feb 01:07 / 09 Feb 01:08 | +1 min | WITHHELD |
+| 2027-02-09 | 06:12 / 06:12 | 17:30 / 17:30 | shukla 3 / shukla 3 | 10 Feb 02:20 / 10 Feb 02:21 | +1 min | VERIFIED |
+| 2027-02-10 | 06:12 / 06:11 | 17:31 / 17:30 | shukla 4 / shukla 4 | 11 Feb 03:05 / 11 Feb 03:06 | +1 min | WITHHELD |
+| 2027-02-11 | 06:11 / 06:11 | 17:31 / 17:31 | shukla 5 / shukla 5 | 12 Feb 03:19 / 12 Feb 03:19 | +0 min | VERIFIED |
+| 2027-02-12 | 06:10 / 06:10 | 17:32 / 17:31 | shukla 6 / shukla 6 | 13 Feb 03:00 / 13 Feb 03:00 | +0 min | WITHHELD |
+| 2027-02-13 | 06:10 / 06:10 | 17:32 / 17:32 | shukla 7 / shukla 7 | 14 Feb 02:07 / 14 Feb 02:08 | +1 min | VERIFIED |
+| 2027-02-14 | 06:09 / 06:09 | 17:33 / 17:33 | shukla 8 / shukla 8 | 15 Feb 00:42 / 15 Feb 00:42 | +0 min | VERIFIED |
+| 2027-02-15 | 06:09 / 06:08 | 17:33 / 17:33 | shukla 9 / shukla 9 | 15 Feb 22:45 / 15 Feb 22:45 | +0 min | WITHHELD |
+| 2027-02-16 | 06:08 / 06:08 | 17:34 / 17:34 | shukla 10 / shukla 10 | 16 Feb 20:20 / 16 Feb 20:20 | +0 min | VERIFIED |
+| 2027-02-17 | 06:07 / 06:07 | 17:34 / 17:34 | shukla 11 / shukla 11 | 17 Feb 17:32 / 17 Feb 17:33 | +1 min | VERIFIED |
+| 2027-02-18 | 06:07 / 06:06 | 17:35 / 17:35 | shukla 12 / shukla 12 | 18 Feb 14:28 / 18 Feb 14:29 | +1 min | WITHHELD |
+| 2027-02-19 | 06:06 / 06:06 | 17:36 / 17:35 | shukla 13 / shukla 13 | 19 Feb 11:15 / 19 Feb 11:15 | +0 min | WITHHELD |
+| 2027-02-20 | 06:05 / 06:05 | 17:36 / 17:36 | shukla 14 / shukla 14 | 20 Feb 08:00 / 20 Feb 08:01 | +1 min | VERIFIED |
+| 2027-02-21 | 06:05 / 06:04 | 17:37 / 17:36 | krishna 1 / krishna 1 | 22 Feb 02:04 / 22 Feb 02:04 | +0 min | WITHHELD |
+| 2027-02-22 | 06:04 / 06:04 | 17:37 / 17:37 | krishna 2 / krishna 2 | 22 Feb 23:40 / 22 Feb 23:40 | +0 min | VERIFIED |
+| 2027-02-23 | 06:03 / 06:03 | 17:38 / 17:37 | krishna 3 / krishna 3 | 23 Feb 21:50 / 23 Feb 21:50 | +0 min | WITHHELD |
+| 2027-02-24 | 06:02 / 06:02 | 17:38 / 17:38 | krishna 4 / krishna 4 | 24 Feb 20:41 / 24 Feb 20:41 | +0 min | VERIFIED |
+| 2027-02-25 | 06:02 / 06:01 | 17:38 / 17:38 | krishna 5 / krishna 5 | 25 Feb 20:18 / 25 Feb 20:19 | +1 min | WITHHELD |
+| 2027-02-26 | 06:01 / 06:01 | 17:39 / 17:39 | krishna 6 / krishna 6 | 26 Feb 20:44 / 26 Feb 20:44 | +0 min | VERIFIED |
+| 2027-02-27 | 06:00 / 06:00 | 17:39 / 17:39 | krishna 7 / krishna 7 | 27 Feb 21:55 / 27 Feb 21:56 | +1 min | VERIFIED |
+| 2027-02-28 | 05:59 / 05:59 | 17:40 / 17:40 | krishna 8 / krishna 8 | 28 Feb 23:47 / 28 Feb 23:47 | +0 min | VERIFIED |
+
+15 dates passed and 13 remain withheld. The release now has 69 Kolkata records, of which 45 use v1 and 24 use v2. These approvals cover the recorded horizon and tithi fields only.
