@@ -55,3 +55,7 @@ Reran the six withheld December dates as a sunset diagnostic with Grahan's refra
 Validated all 31 January dates against the PAC Kolkata horizon table and Pausha or Magha folio under the established method. Approved 16 dates and withheld 15. See VALIDATION_REPORT.md for each comparison. The release dataset now contains 45 records. Later batches and the traditional month-boundary gate remain open tasks.
 
 Local checks passed 23 Vitest tests, Astro diagnostics, the example-origin build and static audit, the packaged Worker test, and the noindexed review build audit.
+
+## Step 2, versioned horizon correction
+
+Adopted `drik-sunrise-tithi-v2` for new approvals. Earlier v1 approvals keep their method and values. The v2 rerun approved December 12 and 29 and January 1, 5, 10, 13, 21, 23 and 26. The other twelve reruns remain withheld. January 31 and December 9 retain the sunrise-tithi conflicts. December 27 still misses the exact solar comparison. Next batch is February 2027 under v2.

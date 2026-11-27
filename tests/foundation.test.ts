@@ -113,12 +113,13 @@ it.each([
 });
 
 it('publishes only passing December dates in the PAC batch', () => {
-  const held = new Set([4, 9, 12, 15, 27, 29]);
+  const held = new Set([4, 9, 15, 27]);
   for (let day = 4; day <= 31; day++) {
     const date = `2026-12-${String(day).padStart(2, '0')}`;
     const record = verifiedDaily(date, 'kolkata', 'west-bengal');
     expect(Boolean(record), date).toBe(!held.has(day));
     if (record) {
+      expect(record.method).toBe([12, 29].includes(day) ? 'drik-sunrise-tithi-v2' : dailyMethod);
       expect(record.evidence.source).toBe(
         `https://packolkata.imd.gov.in/panchang/en/${day <= 21 ? 'agrahayana' : 'pausha'}`,
       );
@@ -128,12 +129,13 @@ it('publishes only passing December dates in the PAC batch', () => {
 });
 
 it('publishes only passing January dates from the applicable PAC folio', () => {
-  const held = new Set([1, 4, 5, 7, 10, 13, 17, 20, 21, 23, 24, 26, 27, 30, 31]);
+  const held = new Set([4, 7, 17, 20, 24, 27, 30, 31]);
   for (let day = 1; day <= 31; day++) {
     const date = `2027-01-${String(day).padStart(2, '0')}`;
     const record = verifiedDaily(date, 'kolkata', 'west-bengal');
     expect(Boolean(record), date).toBe(!held.has(day));
     if (record) {
+      expect(record.method).toBe([1, 5, 10, 13, 21, 23, 26].includes(day) ? 'drik-sunrise-tithi-v2' : dailyMethod);
       expect(record.evidence.source).toBe(
         `https://packolkata.imd.gov.in/panchang/en/${day <= 20 ? 'pausha' : 'magha'}`,
       );

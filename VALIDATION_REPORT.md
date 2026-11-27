@@ -247,3 +247,33 @@ January uses the existing `drik-sunrise-tithi-v1` method throughout. Both solar 
 | 2027-01-31 | 06:16 / 06:16 | 17:24 / 17:24 | krishna 10 / krishna 9 | 01 Feb 08:42 / 31 Jan 06:35 | Different tithis | WITHHELD |
 
 16 of 31 dates passed. Only independently computed passing records entered the release. The PAC figures were used for comparison only.
+
+## Version 2 December and January reruns — checked 2026-11-27
+
+New approvals use `drik-sunrise-tithi-v2`. Astronomy Engine computes both horizon events with Grahan's 0.6117° refraction and the distance-dependent solar semidiameter (959.63 arcseconds at 1 AU), using the engine's geocentric solar distance at the baseline event as the distance estimate for the corrected altitude search. Tithi is sampled at the unrounded v2 sunrise. Existing verified v1 records retain their original method and values. Both horizon minutes must still match exactly, the sunrise tithi label must match, and the end time must be within one minute. [PAC Kolkata horizon](https://packolkata.imd.gov.in/panchang/en/tables) · [Agrahayana](https://packolkata.imd.gov.in/panchang/en/agrahayana) · [Pausha](https://packolkata.imd.gov.in/panchang/en/pausha) · [Magha](https://packolkata.imd.gov.in/panchang/en/magha)
+
+| Date | Sunrise PAC / v2 | Sunset PAC / v2 | Tithi PAC / v2 | End PAC / v2, IST | End difference | Result |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 2026-12-04 | 06:02 / 06:01 | 16:52 / 16:52 | krishna 11 / krishna 11 | 04 Dec 23:45 / 04 Dec 23:46 | +1 min | WITHHELD |
+| 2026-12-09 | 06:05 / 06:05 | 16:53 / 16:53 | shukla 1 / krishna 15 | 10 Dec 08:47 / 09 Dec 06:23 | Different tithis | WITHHELD |
+| 2026-12-12 | 06:07 / 06:07 | 16:54 / 16:54 | shukla 3 / shukla 3 | 12 Dec 14:07 / 12 Dec 14:07 | +0 min | VERIFIED |
+| 2026-12-15 | 06:09 / 06:08 | 16:55 / 16:55 | shukla 6 / shukla 6 | 15 Dec 21:20 / 15 Dec 21:21 | +1 min | WITHHELD |
+| 2026-12-27 | 06:15 / 06:14 | 17:01 / 17:00 | krishna 4 / krishna 4 | 27 Dec 17:14 / 27 Dec 17:14 | +0 min | WITHHELD |
+| 2026-12-29 | 06:15 / 06:15 | 17:02 / 17:02 | krishna 6 / krishna 6 | 29 Dec 13:25 / 29 Dec 13:26 | +1 min | VERIFIED |
+| 2027-01-01 | 06:16 / 06:16 | 17:04 / 17:04 | krishna 9 / krishna 9 | 01 Jan 13:11 / 01 Jan 13:11 | +0 min | VERIFIED |
+| 2027-01-04 | 06:17 / 06:17 | 17:06 / 17:05 | krishna 12 / krishna 12 | 04 Jan 18:16 / 04 Jan 18:17 | +1 min | WITHHELD |
+| 2027-01-05 | 06:17 / 06:17 | 17:06 / 17:06 | krishna 13 / krishna 13 | 05 Jan 20:40 / 05 Jan 20:41 | +1 min | VERIFIED |
+| 2027-01-07 | 06:18 / 06:18 | 17:08 / 17:07 | krishna 15 / krishna 15 | 08 Jan 01:54 / 08 Jan 01:55 | +1 min | WITHHELD |
+| 2027-01-10 | 06:18 / 06:18 | 17:10 / 17:10 | shukla 2 / shukla 2 | 10 Jan 07:08 / 10 Jan 07:08 | +0 min | VERIFIED |
+| 2027-01-13 | 06:19 / 06:19 | 17:12 / 17:12 | shukla 5 / shukla 5 | 13 Jan 13:02 / 13 Jan 13:03 | +1 min | VERIFIED |
+| 2027-01-17 | 06:19 / 06:19 | 17:15 / 17:14 | shukla 9 / shukla 9 | 17 Jan 12:27 / 17 Jan 12:28 | +1 min | WITHHELD |
+| 2027-01-20 | 06:19 / 06:18 | 17:17 / 17:17 | shukla 13 / shukla 13 | 21 Jan 01:12 / 21 Jan 01:13 | +1 min | WITHHELD |
+| 2027-01-21 | 06:18 / 06:18 | 17:17 / 17:17 | shukla 14 / shukla 14 | 21 Jan 21:31 / 21 Jan 21:31 | +0 min | VERIFIED |
+| 2027-01-23 | 06:18 / 06:18 | 17:19 / 17:19 | krishna 1 / krishna 1 | 23 Jan 14:13 / 23 Jan 14:14 | +1 min | VERIFIED |
+| 2027-01-24 | 06:18 / 06:18 | 17:20 / 17:19 | krishna 2 / krishna 2 | 24 Jan 10:58 / 24 Jan 10:58 | +0 min | WITHHELD |
+| 2027-01-26 | 06:17 / 06:17 | 17:21 / 17:21 | krishna 5 / krishna 5 | 27 Jan 04:34 / 27 Jan 04:34 | +0 min | VERIFIED |
+| 2027-01-27 | 06:17 / 06:17 | 17:22 / 17:21 | krishna 6 / krishna 6 | 28 Jan 03:54 / 28 Jan 03:55 | +1 min | WITHHELD |
+| 2027-01-30 | 06:16 / 06:16 | 17:24 / 17:23 | krishna 9 / krishna 9 | 31 Jan 06:34 / 31 Jan 06:35 | +1 min | WITHHELD |
+| 2027-01-31 | 06:16 / 06:16 | 17:24 / 17:24 | krishna 10 / krishna 9 | 01 Feb 08:42 / 31 Jan 06:35 | Different tithis | WITHHELD |
+
+Nine of 21 reruns passed. December 9 and January 31 retain their sunrise-tithi conflicts. December 27 still misses the PAC sunset minute and now also misses the sunrise minute. December 4 and 15 pass sunset in isolation, but fail the v2 sunrise check.

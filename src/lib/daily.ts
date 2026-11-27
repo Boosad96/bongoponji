@@ -3,12 +3,15 @@ import { type Region } from './bengali';
 import { dayNumber, localDate } from './dates';
 import { published, type RecordEnvelope } from './publication';
 
-export const dailyMethod = 'drik-sunrise-tithi-v1';
+import { acceptedDailyMethods } from './daily-methods.mjs';
+export { legacyDailyMethod as dailyMethod } from './daily-methods.mjs';
 export const dailyEngine = 'astronomy-engine@2.1.19';
 type Tithi = { paksha: string; number: number; endsAt: string };
 type DailyValues = { sunrise: string; sunset: string; tithi?: Tithi };
 const localClock = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
-const records: RecordEnvelope<DailyValues>[] = dataset.records.map(record => ({
+type DailyRecord = RecordEnvelope<DailyValues>;
+type VerifiedDailyRecord = DailyRecord & { evidence: NonNullable<DailyRecord['evidence']> };
+const records: DailyRecord[] = dataset.records.map(record => ({
   ...record, evidence: record.evidence as RecordEnvelope<DailyValues>['evidence'], status: record.status as RecordEnvelope<DailyValues>['status'],
 }));
 
@@ -19,9 +22,11 @@ export function verifiedDaily(
   candidates = records,
 ) {
   if (dataset.schemaVersion !== 1) return null;
-  const matches = candidates.filter(record => published(record, {
-    date, location, region, method: dailyMethod, engine: dailyEngine,
-  }));
+  const matches = candidates.filter((record): record is VerifiedDailyRecord =>
+    acceptedDailyMethods.includes(record.method) && published(record, {
+      date, location, region, method: record.method, engine: dailyEngine,
+    }),
+  );
   if (matches.length !== 1) return null;
   const record = matches[0];
   const { sunrise, sunset, tithi } = record.value ?? {};
