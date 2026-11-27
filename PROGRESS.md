@@ -132,7 +132,7 @@ The owner confirmed that Production has a plaintext SITE_URL with the correct ap
 
 GitHub's Cloudflare Pages check for the main push at 7da6fdc points to the expected bongoponji project and deployment. That corroborates the reported branch and Git connection. The reported build command and output match package.json and the root Pages configuration. The dashboard build preset and effective Node version still need inspection. The repository runs Astro directly and packages its output afterward. Neither GitHub workflow deploys to Pages. The root Pages config has no vars, and the Workers config is used by the Astro adapter. Cloudflare documents that a Pages Wrangler file can take precedence over dashboard settings, making the active root config a plausible lead. Which source the builder used for this deployment remains unconfirmed. [Cloudflare Pages configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/)
 
-The dashboard session is signed out and displayed a verification error. The Production re-save, retry of d341a5ca, and subsequent fresh Git build remain pending in that order. Record the deployment ID, resolved-origin log line and direct sitemap/robots responses after each attempt before moving on. Repo code and staging configuration were untouched. If these dashboard remedies fail, obtain owner approval before testing a build-configuration fallback. One candidate is to have the dashboard own the Pages configuration in a controlled trial, preserving the output directory and compatibility date and keeping the Workers configuration in place. Avoid a default SITE_URL.
+The dashboard session is signed out and displayed a verification error. At that checkpoint, the Production re-save, retry, and fresh Git build remained pending. See the subsequent checks below. Record the deployment ID, resolved-origin log line and direct sitemap/robots responses after each attempt before moving on. Repo code and staging configuration were untouched. If these dashboard remedies fail, obtain owner approval before testing a build-configuration fallback. One candidate is to have the dashboard own the Pages configuration in a controlled trial, preserving the output directory and compatibility date and keeping the Workers configuration in place. Avoid a default SITE_URL.
 
 Local verification passed all 26 unit tests and Astro diagnostics. The configured build produced 115 apex URLs, `Allow: /` and the apex sitemap line. The unset preview build produced zero URLs and `Disallow: /`. Both static audits passed on 138 pages. Production deployment verification remains open.
 
@@ -141,6 +141,19 @@ Local verification passed all 26 unit tests and Astro diagnostics. The configure
 The owner confirmed that d341a5ca remained the latest Production deployment. The two intervening documentation commits skipped CI, so neither tested the current dashboard settings. The owner reconfirmed that Production SITE_URL is plaintext and Preview has no SITE_URL. This documentation commit intentionally triggers a fresh Git-connected Production build without changing configuration. Verify the resolved SITE_URL in the new deployment log and check the deployment URL for exactly 115 apex sitemap URLs, `Allow: /` and the apex sitemap directive.
 
 The non-skipped main commit `9a1038e` triggered [deployment b0063586-4413-4b11-b06e-45f5928d03c2](https://b0063586.bongoponji.pages.dev), which the Cloudflare Pages GitHub check reported successful. Direct requests after completion returned an empty sitemap (0 URLs) and robots.txt with `User-agent: *` and `Disallow: /`. The fresh deployment therefore still lacks an effective canonical origin. The GitHub check links to the authenticated Cloudflare log and does not expose its lines. The new deployment's exact SITE_URL log line and the cause of variable delivery remain unconfirmed. No local checks were repeated and no configuration was changed.
+
+### Production re-save and retry, 27 November 2026 at about 23:23 IST
+
+The owner re-saved the Production Text variable. The dashboard required a value change to enable Save, so the owner temporarily saved a trailing slash and then restored exactly `https://bongoponji.com`. Preview was untouched. Both retry clicks created deployments. The latest [Production attempt 8b8b2405](https://8b8b2405.bongoponji.pages.dev), built from `9a1038e`, succeeded in 30 seconds according to the owner. The owner reported these exact build log lines:
+
+```text
+Build environment variables: (none found)
+[bongoponji] SITE_URL: unset (noindexed review build)
+```
+
+Direct requests to that deployment confirmed 0 sitemap URLs and robots.txt containing `User-agent: *` and `Disallow: /`. The fresh Git build and the retry after a re-save both reproduced the failure. The underlying configuration precedence is still a hypothesis.
+
+Proposed next step, pending owner approval: confirm the dashboard holds the same Pages build command, output directory and compatibility date, then temporarily remove only the root Pages `wrangler.toml` so the dashboard controls Pages configuration for one fresh Git build. Leave `wrangler.workers.toml` and Astro's SITE_URL handling in place. Check the production build log and direct sitemap/robots responses, and verify a Preview build still blocks crawling. If the test fails or deviates from the expected settings, revert the one-file change. No build behavior was changed in this documentation update. [Cloudflare Pages configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/)
 
 ## Resume here
 
