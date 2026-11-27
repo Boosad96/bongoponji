@@ -110,6 +110,8 @@ Measured three live review pages via mobile Lighthouse. Live LCP was 0.836–0.8
 
 Added homepage and verified festival JSON-LD and extended civil year and month routes through 2030. The local generator processed 1,096 future candidates across 2028–2030 and approved zero. The configured-origin audit passed on 115 sitemap entries and 138 HTML pages. The review audit passed with an empty sitemap. All 26 unit and eight Playwright tests passed, along with Astro diagnostics and packaged Worker checks in both configurations.
 
+The [2028 workflow dispatch](https://github.com/Boosad96/bongoponji/actions/runs/46015687227) passed and published zero records. The live Git-connected review now serves the homepage and all three verified festival JSON-LD blocks, plus the February 2030 civil calendar. The tested review routes retain noindex.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.

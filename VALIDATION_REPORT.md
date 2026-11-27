@@ -696,3 +696,5 @@ Gregorian and Bangladesh civil annual and monthly pages now cover 2026–2030. T
 | 2030-02 | 28 | 28 | 0 |
 
 The same scheduled verifier generated each scope. The three hard conflict holds and exact tolerances are preserved. The daily release dataset stayed unchanged at 88 records.
+
+After the automatic Git-connected rebuild, live HTTPS responses for the homepage and three verified festival routes served the expected JSON-LD, and all four still showed noindex and omitted a canonical tag. The February 2030 civil route returned successfully and retained noindex. The [2028 manual workflow dispatch](https://github.com/Boosad96/bongoponji/actions/runs/46015687227) passed, uploaded its report and recorded zero new records.
