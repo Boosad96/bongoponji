@@ -9,7 +9,7 @@ permissions:
   contents: read
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       ASTRO_TELEMETRY_DISABLED: '1'
       SITE_URL: https://bongoponji.example
