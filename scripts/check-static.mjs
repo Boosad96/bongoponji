@@ -3,9 +3,22 @@ import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const root = new URL('../dist/client/',import.meta.url).pathname;
+const preview = process.argv.includes('--preview');
+const robots = await readFile(join(root,'robots.txt'),'utf8');
 const sitemap = await readFile(join(root,'sitemap.xml'),'utf8');
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>new URL(match[1]));
-assert.ok(locs.length > 70);
+if (preview) {
+  assert.equal(locs.length,0,'Review builds must have an empty sitemap.');
+  assert.equal(robots,'User-agent: *\nDisallow: /\n','Review builds must block crawling.');
+} else {
+  assert.ok(locs.length > 70);
+  const origin = locs[0].origin;
+  assert.equal(robots,`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
+  for (const url of locs) {
+    assert.equal(url.origin,origin);
+    assert.ok(!/^(?:\/festivals|\/muhurat)\//.test(url.pathname),'Pending observances must stay out of the sitemap.');
+  }
+}
 assert.equal(new Set(locs.map(url=>url.href)).size,locs.length);
 for (const url of locs) {
   if (url.pathname === '/') continue;
@@ -25,6 +38,9 @@ for (const file of files.filter(file=>file.endsWith('/index.html'))) {
   const title = html.match(/<title>(.*?)<\/title>/)?.[1];
   assert.ok(title && !titles.has(title),`Missing or duplicate title in ${file}`);
   titles.add(title);
-  if (/^(festivals|muhurat)\//.test(file)) assert.ok(html.includes('content="noindex,follow"'));
+  if (preview || /^(festivals|muhurat)\//.test(file)) {
+    assert.ok(html.includes('content="noindex,follow"'), `${file} must be noindexed`);
+  }
+  if (preview) assert.ok(!html.includes('rel="canonical"'), `${file} must omit the canonical in review builds`);
 }
 console.log(`Checked ${locs.length} sitemap entries and ${titles.size} static HTML pages.`);

@@ -16,6 +16,6 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The example origin is for tests. Without SITE_URL the build is noindexed. The Cloudflare Pages output is `dist/client`, including its advanced-mode Worker. `npm run build:workers` builds the native Workers adapter output without Pages packaging.
+The example origin is for tests. To audit a review build, run `npm run build` with SITE_URL unset, then `node scripts/check-static.mjs --preview`. Without SITE_URL the build is noindexed. The Cloudflare Pages output is `dist/client`, including its advanced-mode Worker. `npm run build:workers` builds the native Workers adapter output without Pages packaging.
 
 Read [deployment](DEPLOYMENT.md), [validation](VALIDATION_REPORT.md), [known limitations](KNOWN_LIMITATIONS.md) and [progress](PROGRESS.md) before release.

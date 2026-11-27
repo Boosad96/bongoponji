@@ -7,4 +7,4 @@
 - Remaining P1 work includes widgets, automated PDF and ICS, religious event calendars, birthday and age utilities, countdowns and installable PWA. Calendar pages include browser print styles. Telegram, admin, monetization and automatic approved-dataset promotion are pending.
 - The correction log is public. Sending reports requires configuring an owner-managed email. No private report store is active.
 - Managed preview and Playwright could not start a web server. No screenshots, browser accessibility assessment, Lighthouse runs, Core Web Vitals data or live rate-limit configuration were verified.
-- GitHub repository creation, Pages deployment, production domain and Search Console ownership are pending. GitHub CLI authentication was unavailable.
+- The source repository is public on GitHub. Pages deployment, production domain and Search Console ownership are pending.

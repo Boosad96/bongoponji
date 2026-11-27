@@ -10,8 +10,14 @@ Built the Bengali-first homepage, light and dark themes, local-time daily routes
 
 Added conditional sitemap and canonical origins, noindexed festival and muhurat routes, Search Console and migration guidance, CI and competitor research. These are support for the core milestone. Phase 3 verification and deployment are open.
 
+## Phase 3, GitHub recovery and indexing checks
+
+Reconnected the existing checkout to the public repository `Boosad96/bongoponji`. The initial remote `main` already matched the two original local commits, and local `main` now tracks `origin/main`. This checkpoint adds an audit for both review and configured-origin builds. The configured-origin build passed checks for 84 sitemap URLs and 113 static pages. The review build passed checks for an empty sitemap, blocked crawling and noindex metadata on all 113 static pages. Pending festival and muhurat routes stay out of the configured-origin sitemap. No daily Panchang records or observance dates were added.
+
+All 16 Vitest tests, Astro diagnostics and the packaged workerd integration test passed. The Playwright web server exited before browser cases could run. Cloudflare deployment and Search Console verification remain open.
+
 ## Resume here
 
 Obtain PAC reuse confirmation or another cleared authoritative dataset for Kolkata and the 1433–1434 boundaries. Expand the calendar beyond the three independently checked Kolkata solar and sunrise-tithi samples for 27–29 November 2026. Generate candidates with the current method, record reference comparisons and approve only date-specific matches. Before changing the West Bengal publication gate, verify the intended Bishuddha Siddhanta rules and its applicable month boundaries. Run `npm test`, `npm run check`, the Example-origin build checks, and Playwright in an environment that can start the web server. See KNOWN_LIMITATIONS.md for account and product milestones.
 
-The local repository has no configured remote. GitHub CLI reported invalid credentials. Release data, hosting and Google ownership checks require owner access.
+The GitHub connection supports the source push. Release data, hosting and Google ownership checks remain separate milestones.
