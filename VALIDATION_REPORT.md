@@ -439,7 +439,7 @@ The required consecutive monthly validation stops here. The official English dow
 | 21–30 April 2027 | Unavailable | Unavailable | 0 |
 | 1–31 May 2027 | Unavailable | Unavailable | 0 |
 
-No May comparisons could be scored and no May records were approved. June–December and the subsequent Phase 4 steps remain pending under the requested stop condition. [PAC English editions](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) · [PAC online folios](https://packolkata.imd.gov.in/panchang/en/panchang)
+No May comparisons could be scored and no May records were approved. June–December remain pending. The festival, browser, growth and automation work below uses the existing approved coverage. [PAC English editions](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) · [PAC online folios](https://packolkata.imd.gov.in/panchang/en/panchang)
 
 ## Step D — festival date verification, 2026-11-27
 
@@ -470,3 +470,5 @@ The birthday and completed-year age tools use the existing Bangladesh civil conv
 ## Step H — scheduled verification
 
 The January 2027 local trial reproduced all 23 previously verified records using their recorded method, left seven candidates pending for missing approved references, and retained the 31 January sunrise-tithi conflict. Zero new daily records qualified. The public fixture contains zero reviewed comparison rows because PAC redistribution clearance is open. Reproducing a previous approval checks reproducibility. Independent reference revalidation requires an approved row for that exact date. Kolkata daily coverage remains 88 records.
+
+The [GitHub Actions January 2027 dispatch](https://github.com/Boosad96/bongoponji/actions/runs/46001172951) succeeded. Its release step reported “No new records.” GitHub lists the uploaded validation artifact, and CI logs confirm all seven browser cases passed.

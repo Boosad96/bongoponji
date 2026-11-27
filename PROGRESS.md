@@ -86,7 +86,9 @@ Added embeddable today, calendar month and verified-festival countdown views, ve
 
 ## Step H, scheduled verification
 
-Added a keyless GitHub Actions workflow for October generation, monthly revalidation and on-demand runs. Local January 2027 dry run regenerated 31 candidates, reproduced 23 prior approvals, found seven missing references and retained one conflict. The release file was unchanged. New approvals require an individually reviewed PAC comparison that clears every existing tolerance.
+Added a keyless GitHub Actions workflow for October generation, monthly revalidation and on-demand runs. Local January 2027 dry run regenerated 31 candidates, reproduced 23 prior approvals, found seven missing references and retained one conflict. The release file was unchanged. New approvals require an individually reviewed PAC comparison that clears every existing tolerance. The local suite passed 26 Vitest tests, Astro diagnostics, seven Playwright cases, and packaged Worker tests for both build configurations. The configured-origin and review audits passed with 89 and zero sitemap entries respectively, over 112 static HTML pages.
+
+The [manual January workflow run](https://github.com/Boosad96/bongoponji/actions/runs/46001172951) succeeded, uploaded the report, ran seven browser cases and recorded zero new records. The [main-branch CI run](https://github.com/Boosad96/bongoponji/actions/runs/46001171920) also passed.
 
 ## Resume here
 
