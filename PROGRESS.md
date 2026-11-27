@@ -65,3 +65,7 @@ Adopted `drik-sunrise-tithi-v2` for new approvals. Earlier v1 approvals keep the
 Compared 28 February Kolkata dates under v2. Approved 15, bringing the release total to 69. The 13 withheld February dates and their comparisons are in VALIDATION_REPORT.md. Future daily batches should use v2 for new approvals, retain v1 provenance on existing records, and use the same date-specific PAC checks. The separate 1434 month-boundary publication gate remains unresolved.
 
 Local validation passed 24 Vitest tests, Astro diagnostics, the example-origin static and packaged Worker checks, and the noindexed review build audit.
+
+## Phase 4 v3 prompt, Step A
+
+Recorded unrounded v2 residuals for both horizon events on all 25 withheld dates with PAC rows. Flooring matches 9 of 50 compared events versus 24 for nearest-minute rounding, and rescues no misses. The evidence does not justify v3. Proceed with the March Step B batch using v2 and the existing gate.

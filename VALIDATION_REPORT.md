@@ -314,3 +314,49 @@ All 28 Kolkata dates were computed with `drik-sunrise-tithi-v2` and compared aga
 | 2027-02-28 | 05:59 / 05:59 | 17:40 / 17:40 | krishna 8 / krishna 8 | 28 Feb 23:47 / 28 Feb 23:47 | +0 min | VERIFIED |
 
 15 dates passed and 13 remain withheld. The release now has 69 Kolkata records, of which 45 use v1 and 24 use v2. These approvals cover the recorded horizon and tithi fields only.
+
+## Step A — Kolkata horizon rounding diagnostic, 2026-11-27
+
+Recomputed both unrounded v2 horizon events for each of the 25 withheld December–February dates. Residual is the computed instant minus the PAC minute interpreted at second zero. For 5 August 2027, there is no applicable published PAC horizon minute to compare. No values below enter the release dataset. [PAC Kolkata horizon table](https://packolkata.imd.gov.in/panchang/en/tables)
+
+| Date | Sunrise PAC / computed IST | Δ seconds | Sunset PAC / computed IST | Δ seconds |
+| --- | --- | ---: | --- | ---: |
+| 2026-12-04 | 06:02 / 06:01:26.664 | -33.336 | 16:52 / 16:51:40.828 | -19.172 |
+| 2026-12-09 | 06:05 / 06:04:42.397 | -17.603 | 16:53 / 16:52:42.715 | -17.285 |
+| 2026-12-15 | 06:09 / 06:08:23.446 | -36.554 | 16:55 / 16:54:39.482 | -20.518 |
+| 2026-12-27 | 06:15 / 06:14:26.929 | -33.071 | 17:01 / 17:00:29.798 | -30.202 |
+| 2027-01-04 | 06:17 / 06:17:08.947 | +8.947 | 17:06 / 17:05:28.392 | -31.608 |
+| 2027-01-07 | 06:18 / 06:17:49.864 | -10.136 | 17:08 / 17:07:29.170 | -30.830 |
+| 2027-01-17 | 06:19 / 06:18:39.156 | -20.844 | 17:15 / 17:14:27.407 | -32.593 |
+| 2027-01-20 | 06:19 / 06:18:26.783 | -33.217 | 17:17 / 17:16:33.680 | -26.320 |
+| 2027-01-24 | 06:18 / 06:17:50.833 | -9.167 | 17:20 / 17:19:20.278 | -39.722 |
+| 2027-01-27 | 06:17 / 06:17:09.588 | +9.588 | 17:22 / 17:21:23.139 | -36.861 |
+| 2027-01-30 | 06:16 / 06:16:16.447 | +16.447 | 17:24 / 17:23:23.644 | -36.356 |
+| 2027-01-31 | 06:16 / 06:15:56.152 | -3.848 | 17:24 / 17:24:03.206 | +3.206 |
+| 2027-02-02 | 06:15 / 06:15:11.768 | +11.768 | 17:26 / 17:25:21.316 | -38.684 |
+| 2027-02-05 | 06:14 / 06:13:55.922 | -4.078 | 17:28 / 17:27:15.687 | -44.313 |
+| 2027-02-06 | 06:14 / 06:13:28.224 | -31.776 | 17:28 / 17:27:53.001 | -6.999 |
+| 2027-02-07 | 06:13 / 06:12:59.342 | -0.658 | 17:29 / 17:28:29.887 | -30.113 |
+| 2027-02-08 | 06:13 / 06:12:29.293 | -30.707 | 17:29 / 17:29:06.331 | +6.331 |
+| 2027-02-10 | 06:12 / 06:11:25.757 | -34.243 | 17:31 / 17:30:17.851 | -42.149 |
+| 2027-02-12 | 06:10 / 06:10:17.758 | +17.758 | 17:32 / 17:31:27.491 | -32.509 |
+| 2027-02-15 | 06:09 / 06:08:27.753 | -32.247 | 17:33 / 17:33:08.339 | +8.339 |
+| 2027-02-18 | 06:07 / 06:06:28.698 | -31.302 | 17:35 / 17:34:44.842 | -15.158 |
+| 2027-02-19 | 06:06 / 06:05:47.122 | -12.878 | 17:36 / 17:35:16.060 | -43.940 |
+| 2027-02-21 | 06:05 / 06:04:21.294 | -38.706 | 17:37 / 17:36:17.114 | -42.886 |
+| 2027-02-23 | 06:03 / 06:02:52.087 | -7.913 | 17:38 / 17:37:16.387 | -43.613 |
+| 2027-02-25 | 06:02 / 06:01:19.724 | -40.276 | 17:38 / 17:38:13.961 | +13.961 |
+
+| Residual interval, seconds | Sunrise | Sunset |
+| --- | ---: | ---: |
+| [-60, -45) | 0 | 0 |
+| [-45, -40) | 1 | 5 |
+| [-40, -35) | 2 | 4 |
+| [-35, -30) | 8 | 6 |
+| [-30, -15) | 2 | 5 |
+| [-15, 0) | 7 | 1 |
+| [0, 15) | 3 | 4 |
+| [15, 30) | 2 | 0 |
+| [30, 60) | 0 | 0 |
+
+Nearest-minute rounding matches 14/25 sunrises and 10/25 sunsets. Flooring the same instants matches only 5/25 sunrises and 4/25 sunsets, and rescues zero misses. Every nearest-minute miss lies before the PAC minute, so flooring moves the displayed value in the wrong direction. Failed sunrise residuals range from −40.276 to −30.707 seconds, and failed sunsets range from −44.313 to −30.113 seconds. This shows a systematic early offset in the selected withheld sample. It does not establish a physical cause or a PAC-wide rounding convention. The sample is conditioned on failed days. No v3, tolerance change or promotion was made.
