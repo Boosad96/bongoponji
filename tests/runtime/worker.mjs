@@ -29,6 +29,10 @@ export default {
     const kolkata = await request('/panjika/today/?city=kolkata');
     const kolkataHtml = await kolkata.text();
     check(kolkataHtml.includes('সূর্যোদয়ের তিথি যাচাইকৃত') && kolkataHtml.includes('তৃতীয়া'), 'Kolkata sample should render with its provenance state');
+    check(kolkataHtml.includes('সূর্যোদয়ের নক্ষত্র') && kolkataHtml.includes('আর্দ্রা') &&
+      kolkataHtml.includes('সূর্যোদয়ের যোগ') && kolkataHtml.includes('সূর্যোদয়ের করণ'),
+      'approved Kolkata elements should render on their exact date');
+    check(!todayHtml.includes('সূর্যোদয়ের নক্ষত্র'), 'approved Kolkata elements must not leak into other regions');
     check(timestamp(kolkataHtml) === Date.parse('2026-11-27'), 'Kolkata date must stay on its local day');
     check(timestamp(todayHtml) === Date.parse('2026-11-28'), 'Dhaka date must roll over at local midnight');
     check(timestamp(tomorrowHtml) - timestamp(todayHtml) === 86400000, 'tomorrow must be the following local civil day');
@@ -36,7 +40,9 @@ export default {
     const home = await request('/?city=dhaka&month=2027-01');
     check((await home.text()).includes('জানুয়ারি ২০২৭'), 'homepage month navigation should work without JavaScript');
     const dated = await request('/panjika/today/?city=kolkata&date=2026-12-02');
-    check(timestamp(await dated.text()) === Date.parse('2026-12-02'), 'dated links must select the requested day');
+    const datedHtml = await dated.text();
+    check(!datedHtml.includes('সূর্যোদয়ের নক্ষত্র'), 'a verified tithi does not verify other elements');
+    check(timestamp(datedHtml) === Date.parse('2026-12-02'), 'dated links must select the requested day');
     const invalid = await request('/panjika/today/?city=kolkata&date=2026-02-29');
     check(timestamp(await invalid.text()) === Date.parse('2026-11-27'), 'invalid dates must fall back to the local day');
     instant = '2026-12-04T00:00:00Z';

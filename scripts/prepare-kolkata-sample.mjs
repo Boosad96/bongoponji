@@ -17,6 +17,10 @@ function horizonEvent(start, direction, method) {
   return SearchAltitude(Body.Sun, observer, direction, start, 1, -(0.6117 + semidiameter)).date;
 }
 
+export function kolkataSunrise(date, method) {
+  return horizonEvent(new Date(date + 'T00:00:00+05:30'), 1, method);
+}
+
 export function kolkataDailyCandidates(dates, method = legacyDailyMethod) {
   if (!acceptedDailyMethods.includes(method)) throw new RangeError('Unsupported daily method: ' + method);
   const generatedAt = new Date().toISOString();

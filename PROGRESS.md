@@ -90,8 +90,14 @@ Added a keyless GitHub Actions workflow for October generation, monthly revalida
 
 The [manual January workflow run](https://github.com/Boosad96/bongoponji/actions/runs/46001172951) succeeded, uploaded the report, ran seven browser cases and recorded zero new records. The [main-branch CI run](https://github.com/Boosad96/bongoponji/actions/runs/46001171920) also passed.
 
+## Step E, ritual review, sunrise elements, and festival performance
+
+Reviewed marriage, Annaprashan, Griha Pravesh and Upanayan in that order. All remain UNVERIFIED and noindexed pending a complete Kolkata rule and independent dated reference. Verified and exposed sunrise nakshatra, yoga and karana for five previously approved Kolkata dates only. The other dates and later karanas remain pending. Five sankranti candidates matched the signs but missed their PAC times by four minutes, so the timings stay withheld. See VALIDATION_REPORT.md for each comparison and the exact scope.
+
+Added a Bengali font preload to verified festival pages. Lighthouse mobile lab medians on the built Poila Boishakh page were 0.75 s before and after, and the earlier 4.1-second dev result did not reproduce. The suite passed 26 Vitest tests, seven Chromium cases, Astro diagnostics, build audits and packaged Worker checks.
+
 ## Resume here
 
 1. May 2027 daily coverage and eleven 1434 boundaries remain deferred. Resume those checks only when an applicable reference is available and the owner has reopened that work. Keep withheld dates closed.
-2. Continue festival and ritual work when independently verified observance rules, dates and applicable daily records are available. See VALIDATION_REPORT.md and KNOWN_LIMITATIONS.md for current coverage.
+2. For Step E expansion, obtain a Kolkata tradition-specific published rule and dated timing reference for each rite. For sankranti, compare the PAC variable ayanamsa and geocentric longitude conventions against the five residuals before running further checks. For sunrise element expansion, run `node scripts/probe-pac-elements.mjs YYYY-MM-DD ...` and compare each label and ending time against the applicable folio. See VALIDATION_REPORT.md and KNOWN_LIMITATIONS.md for current coverage.
 3. Resolve the Wrangler preview facade error and rerun production Lighthouse after a review deployment is available. Keep SITE_URL unset in review and leave deployment to the owner. The example origin is restricted to local build tests.

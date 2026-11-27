@@ -10,3 +10,5 @@
 - The source repository is public on GitHub. Pages deployment, production domain and Search Console ownership are pending.
 
 The scheduled verifier can regenerate candidates and check the reproducibility of approved dates without external access. Automatic promotion requires a reviewed date-specific comparison manifest with evidence that the comparison inputs can be stored in the public repository. The manifest is empty while PAC redistribution clearance remains open. Festival and muhurat promotion remains outside the daily workflow.
+
+Step E adds verified sunrise nakshatra, yoga and karana for five Kolkata dates. Later karanas and other dates are pending. Five sampled sankranti ingresses fell four minutes before PAC and are withheld. Marriage, Annaprashan, Griha Pravesh and Upanayan still need complete Kolkata tradition-specific rules and independent date-specific timing references. No ritual timing is released.

@@ -38,7 +38,7 @@ const festivalPages = festivals.map(([slug,title,description]): Page => {
     ? { ...text(`festivals/${slug}/2027`, `${festival.title} ২০২৭`, festival.note), festival }
     : text(`festivals/${slug}/2027`, `${title} ২০২৭`, description, 'pending', true);
 });
-const muhuratPages = muhurats.map(([slug,title]) => text(`muhurat/${slug}/2027`, `${title} ২০২৭`, 'শুভ সময় নির্ধারণ একটি প্রথাগত বিশ্বাস। অঞ্চল ও পরিবারভেদে আচারের নিয়ম বদলাতে পারে।', 'pending', true));
+const muhuratPages = muhurats.map(([slug,title]) => text(`muhurat/${slug}/2027`, `${title} ২০২৭`, 'শুভ সময় নির্ধারণ একটি প্রথাগত বিশ্বাস। অঞ্চল ও পরিবারভেদে আচারের নিয়ম বদলাতে পারে। কলকাতার জন্য প্রযোজ্য রীতির নিয়ম ও সময় যাচাই হলে এখানে প্রকাশ করা হবে।', 'pending', true));
 export const pages: Page[] = [
   {...text('calendar','বার্ষিক ও মাসিক ক্যালেন্ডার','গ্রেগরিয়ান বছর বা বাংলা সন বেছে নিয়ে বাংলাদেশের নাগরিক তারিখ ও মাস দেখুন।'),links:[
     ...years.map(year=>link(`calendar/${year}`,`${bn(year)} ক্যালেন্ডার`)),

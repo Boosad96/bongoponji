@@ -23,7 +23,7 @@ const sourceLabels = {
   bdReport:'বাংলাদেশের বর্ষপঞ্জি সংস্কারের সমকালীন প্রতিবেদন',
 };
 ---
-<Layout title={page.title} description={page.description} noindex={page.noindex}>
+<Layout title={page.title} description={page.description} noindex={page.noindex} preloadBengali={Boolean(page.festival)}>
   <h1>{page.title}</h1>
   <p class="muted">{page.description}</p>
   {page.festival && <section class="section card">

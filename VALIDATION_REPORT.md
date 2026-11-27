@@ -472,3 +472,51 @@ The birthday and completed-year age tools use the existing Bangladesh civil conv
 The January 2027 local trial reproduced all 23 previously verified records using their recorded method, left seven candidates pending for missing approved references, and retained the 31 January sunrise-tithi conflict. Zero new daily records qualified. The public fixture contains zero reviewed comparison rows because PAC redistribution clearance is open. Reproducing a previous approval checks reproducibility. Independent reference revalidation requires an approved row for that exact date. Kolkata daily coverage remains 88 records.
 
 The [GitHub Actions January 2027 dispatch](https://github.com/Boosad96/bongoponji/actions/runs/46001172951) succeeded. Its release step reported “No new records.” GitHub lists the uploaded validation artifact, and CI logs confirm all seven browser cases passed.
+
+## Step E — ritual rules and PAC comparisons, 2026-11-27
+
+| Rite, reviewed in order | Result for Kolkata |
+| --- | --- |
+| Marriage | UNVERIFIED. The RKM reader documents printed selection checks, including tara and lunar exclusions, but does not establish a complete Kolkata wedding-date and lagna rule or supply a complete date-specific comparison set. |
+| Annaprashan | UNVERIFIED. No complete, region-specific selection rule and independent dated timing reference were established. Annapurna Puja in the PAC observance list is a different rite. |
+| Griha Pravesh | UNVERIFIED. Public computed lists use their own exclusion rules. The PAC edition supplies astronomical inputs rather than a Kolkata house-entry schedule or its controlling rule. |
+| Upanayan | UNVERIFIED. No complete Kolkata rule and independent dated timing reference were established. |
+
+All four routes retain noindex, a traditional-belief label and an explanation of what must be checked before publication. [RKM Panjika Reader](https://cs.rkmvu.ac.in/~tamal/jyotisha/panjika/) · [PAC edition index](https://packolkata.imd.gov.in/rashtriya-panchang-english.php)
+
+The research probe uses Astronomy Engine 2.1.19 geocentric ecliptic positions and Grahan Vedic 1.0.1 Lahiri ayanamsa. It samples unrounded Kolkata sunrise using the method attached to each previously verified daily record. Nakshatra divides the sidereal lunar longitude into 27 segments. Yoga divides the sum of sidereal solar and lunar longitude into 27 segments. Karana divides the Moon–Sun elongation into 60 segments, with the fixed and repeating traditional names. Tests of the three sunrise labels compare the first listed element applicable at sunrise and its ending instant, with exact identity and a one-minute ending tolerance. The five checked dates already passed the exact-minute Kolkata horizon gate.
+
+### Nakshatra, yoga and sunrise karana
+
+Cells show PAC / independently calculated IST ending time, followed by the signed difference in minutes. Equivalent PAC spellings are normalized in the labels. The 1948 Saka Agrahayana folios contain the November dates. The 1949 Saka Chaitra appendix, pp. 102–103, contains the April dates. Only the independently calculated values enter the release records. Karana coverage is limited to the karana active at sunrise.
+
+| Date | Nakshatra | Yoga | Sunrise karana | Result |
+| --- | --- | --- | --- | --- |
+| 2026-11-27 | Ardra 15:09 / 15:08 (−1) | Shubha 23:52 / 23:51 (−1) | Vishti 09:49 / 09:50 (+1) | VERIFIED |
+| 2026-11-28 | Punarvasu 12:51 / 12:50 (−1) | Shukla 20:18 / 20:18 (0) | Balava 06:40 / 06:41 (+1) | VERIFIED |
+| 2026-11-29 | Pushya 11:00 / 11:00 (0) | Brahma 17:09 / 17:08 (−1) | Gara 14:48 / 14:49 (+1) | VERIFIED |
+| 2027-04-14 | Punarvasu 10:53 / 10:52 (−1) | Sukarma 11:10 / 11:10 (0) | Bava 15:24 / 15:25 (+1) | VERIFIED |
+| 2027-04-15 | Pushya 09:34 / 09:33 (−1) | Dhriti 08:23 / 08:23 (0) | Kaulava 13:21 / 13:22 (+1) | VERIFIED |
+
+### Sankranti
+
+Compared the sidereal Sun's 30° boundary crossing against the PAC Nirayana Rasi transits table and the April Mesha ingress in the daily folio. The fixed-ayanamsa Saura Vaisakhadi entry is a separate event. All signs matched. All times failed the one-minute criterion with the same signed difference. This pilot does not establish which longitude or ayanamsa convention accounts for the offset. The workflow and the website publish no proposed ingress times or associated ritual windows.
+
+| Date | Sign | PAC IST | Computed IST | Difference | Result |
+| --- | --- | --- | --- | --- | --- |
+| 2026-12-16 | Dhanu | 10:25 | 10:21 | −4 min | UNVERIFIED |
+| 2027-01-14 | Makara | 21:10 | 21:06 | −4 min | UNVERIFIED |
+| 2027-02-13 | Kumbha | 10:09 | 10:05 | −4 min | UNVERIFIED |
+| 2027-03-15 | Meena | 07:00 | 06:56 | −4 min | UNVERIFIED |
+| 2027-04-14 | Mesha | 15:28 | 15:24 | −4 min | UNVERIFIED |
+
+### Festival LCP diagnostic
+
+The original 4.1-second Lighthouse result identified the introductory paragraph as the LCP element. A fresh pre-change Astro dev run measured 0.824 s, so the original delay did not reproduce. The verified festival template now preloads the exact Bengali WOFF2 used by its stylesheet. The Astro development toolbar is disabled to remove its dev-only network traffic from local page work.
+
+Lighthouse 13.6.0, Chromium, default mobile simulation, three runs on each set of built static files over loopback. The baseline and changed medians both measured 0.75 s. The preload moves Bengali font discovery ahead of stylesheet parsing. Test results do not establish an LCP gain or production field performance.
+
+| Build | LCP runs (s) | Median LCP | Performance |
+| --- | --- | --- | --- |
+| Baseline | 0.758, 0.752, 0.753 | 0.753 s | 100 in all three |
+| With preload | 0.751, 0.767, 0.752 | 0.752 s | 100 in all three |

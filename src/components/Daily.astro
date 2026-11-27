@@ -4,6 +4,7 @@ import Month from './Month.astro';
 import { dayNumber, localDate, isoDay, gregorianLabel, bn } from '../lib/dates';
 import { bengaliLabel, calendarEvidence, methods, toBengali } from '../lib/bengali';
 import { verifiedDaily } from '../lib/daily';
+import { verifiedElements } from '../lib/verified-elements';
 import { cityFor, cityNames, unavailable } from '../lib/site';
 interface Props { home?: boolean; tomorrow?: boolean; fixedCity?: string; civilOnly?: boolean }
 const { home, tomorrow, fixedCity, civilOnly } = Astro.props;
@@ -20,6 +21,10 @@ if (!home && !civilOnly && requestedDate && requestedDate >= '2019-10-16' && req
 const result = region === 'bangladesh' ? toBengali(date) : null;
 const daily = verifiedDaily(date, city.id, region);
 const tithi = daily?.value.tithi;
+const elements = daily && verifiedElements(date, city.id, region);
+const elementTime = new Intl.DateTimeFormat('bn-BD', {
+  timeZone: city.timezone, hour: 'numeric', minute: 'numeric',
+});
 const tithiNames = ['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী',
   'নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী'];
 const tithiName = tithi ? tithiNames[tithi.number - 1] ?? (tithi.paksha === 'shukla' ? 'পূর্ণিমা' : 'অমাবস্যা') : '';
@@ -59,7 +64,17 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
         {tithi && <><dt>সূর্যোদয়ের তিথি</dt><dd>{tithi.paksha === 'shukla' ? 'শুক্লপক্ষ' : 'কৃষ্ণপক্ষ'} · {tithiName}</dd>
         <dt>তিথির শেষ</dt><dd><time datetime={tithi.endsAt}>{tithiEndLabel}</time></dd></>}
       </dl> : <p>এই দিনের পঞ্জিকার তথ্য যাচাই করা হচ্ছে।</p>}
-      {daily && <p>{tithi ? "নক্ষত্রের যাচাই চলছে।" : "তিথি ও নক্ষত্রের যাচাই চলছে।"}</p>}
+      {elements ? <section aria-label="সূর্যোদয়ের নক্ষত্র, যোগ ও করণ">
+        <dl>{([
+          ['নক্ষত্র', elements.value.nakshatra],
+          ['যোগ', elements.value.yoga],
+          ['করণ', elements.value.karana],
+        ] as const).map(([label, event]) => <>
+          <dt>সূর্যোদয়ের {label}</dt><dd>{event.label} · শেষ <time datetime={event.endsAt}>{elementTime.format(new Date(event.endsAt))}</time></dd>
+        </>)}</dl>
+        <p class="muted">লাহিড়ী অয়নাংশভিত্তিক দৃক্‌ গণনা · <a href={elements.evidence.source}>রাষ্ট্রীয় পঞ্চাঙ্গে যাচাইকৃত</a> · {gregorianLabel(elements.evidence.checked)}। শুভ সময় বাছাইয়ে এসবের ব্যবহার প্রথাগত বিশ্বাসের অংশ।</p>
+      </section> : daily && <p>নক্ষত্র, যোগ ও করণের যাচাই চলছে।</p>}
+      {daily && <p class="muted">সংক্রান্তির সময় যাচাই চলছে।</p>}
       <dl><dt>স্থান</dt><dd>{city.name}</dd><dt>স্থানীয় সময় অঞ্চল</dt><dd>{city.timezone}</dd>
         <dt>বর্ষপঞ্জি</dt><dd>{methods[region]}</dd><dt>পঞ্জিকার পদ্ধতি</dt><dd>{daily ? (daily.method.endsWith('-v2') ? 'সূর্যোদয়ভিত্তিক দৃক্‌ গণনা · সংস্করণ ২' : 'সূর্যোদয়ভিত্তিক দৃক্‌ গণনা · সংস্করণ ১') : 'দৃক্‌ গণনা · যাচাই অপেক্ষমাণ'}</dd>
         <dt>তথ্যসূত্র</dt><dd><a href={daily?.evidence?.source ?? "/sources/"}>{daily ? 'রাষ্ট্রীয় পঞ্চাঙ্গ' : 'তথ্যসূত্র দেখুন'}</a>
