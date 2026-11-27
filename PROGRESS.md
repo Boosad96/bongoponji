@@ -81,3 +81,7 @@ The May batch is blocked: the latest accessible PAC Kolkata horizon and tithi re
 ## Step D, verified festival pages
 
 Published source-attributed pages in the repository for Saraswati Puja, Maha Shivaratri and Poila Boishakh. Each requires an existing verified Kolkata daily record. The pages show the applicable Bengali calendar convention and no ritual timings. Other festival pages remain noindexed. May validation and the 1434 publication check are deferred by instruction. Next run Step F browser and Lighthouse checks.
+
+## Step F, local browser and Lighthouse
+
+All five Playwright cases passed locally. Captured three mobile screenshots and measured Lighthouse on the local Astro dev service. See VALIDATION_REPORT.md for scores and metric caveats. Fixed dangling sourcemap references in the Pages package. The Wrangler preview still hits a local missing-facade error. Next implement Step G growth features with verified festival inputs only.

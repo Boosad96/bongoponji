@@ -450,3 +450,15 @@ No May comparisons could be scored and no May records were approved. June–Dece
 | Poila Boishakh | 2027-04-15 | 1 Baishakh 1434, Barrackpore Bishuddha Siddhanta schedule | The published Math schedule explicitly pairs the dates. Kolkata record passes Step B. Bangladesh civil New Year is 14 April. |
 
 The first two Bengali dates use the independently corroborated Magh and Falgun starts on 15 January and 14 February. No ceremonial start/end times were approved. Dolayatra on 22 March, Kali Puja on 8 November, and Jagaddhatri Puja on 19 November have source listings but lack released daily comparisons in this scope. Poush observance labels vary by source and remain pending. [PAC edition](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) · [Barrackpore schedule](https://asvarkvm.org/sites/default/files/Yearly%20Events%202026-2027.pdf)
+
+## Step F — local browser and lab measurements
+
+Five Playwright cases executed and passed in local Chromium against the already running Astro dev service. Captured full-page Pixel 7 screenshots of the homepage, converter, and Poila Boishakh page. Lighthouse 13.6.0 ran with mobile throttling against the same local service. These are development-server lab scores.
+
+| Page | Performance | Accessibility | Best practices | SEO | LCP | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Home | 84 | 100 | 96 | 100 | 0.9 s | 0 |
+| Date converter | 86 | 96 | 96 | 100 | 0.8 s | 0.19 |
+| Poila Boishakh | 84 | 100 | 96 | 100 | 4.1 s | 0 |
+
+The Pages package omitted sourcemaps while retaining references to them. Packaging now removes the dangling directives. The packaged Worker test passed. Wrangler Pages preview moved past the sourcemap check and failed to start in this environment with a missing middleware facade. Live production and field INP remain unmeasured.

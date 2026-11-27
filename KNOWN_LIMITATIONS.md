@@ -6,5 +6,5 @@
 - Tithi has an internal transition test. Nakshatra, yoga, karana, sankranti, religious observance logic, regional disagreements, approved festival dates and marriage dates are pending.
 - Remaining P1 work includes widgets, automated PDF and ICS, religious event calendars, birthday and age utilities, countdowns and installable PWA. Calendar pages include browser print styles. Telegram, admin, monetization and automatic approved-dataset promotion are pending.
 - The correction log is public. Sending reports requires configuring an owner-managed email. No private report store is active.
-- The managed preview could not start a web server. GitHub Actions provides Chromium browser coverage. No screenshots, browser accessibility assessment, Lighthouse runs, Core Web Vitals data or live rate-limit configuration were verified.
+- Local Playwright and mobile Lighthouse ran against the Astro development service. Wrangler Pages preview remains blocked locally. Production Core Web Vitals and live rate-limit configuration remain unverified.
 - The source repository is public on GitHub. Pages deployment, production domain and Search Console ownership are pending.
