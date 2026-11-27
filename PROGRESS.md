@@ -175,6 +175,8 @@ The privacy policy describes aggregate reporting rather than promising anonymous
 
 Passed 26 unit tests, Astro diagnostics, both static audits and Worker smoke tests. The configured build emitted 118 distinct apex sitemap URLs and the production robots directives. The built calendar emitted the direct tag and the policy pages had apex canonicals. The review build emitted an empty sitemap and `Disallow: /`, with no indexing or analytics tag on the checked pages.
 
+Cloudflare deployed `c151959` as `4cbb81fb-d9cf-4f99-9c8e-6c702fa4592b`. Direct apex checks confirmed 118 unique sitemap URLs, the expected robots directives, HTTP 200 with Bengali content and apex canonicals on all three policy pages, and their footer links. The homepage, 2027 calendar and all three policy pages contained the tag exactly once. The old privacy URL redirects with HTTP 301. Chromium confirmed Cloudflare's email obfuscation decodes to the expected mailto link. [Implementation CI passed](https://github.com/Boosad96/bongoponji/actions/runs/46055091672). GA4 reporting or ingestion was not inspected.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
