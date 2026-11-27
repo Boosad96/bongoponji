@@ -122,7 +122,9 @@ After the automatic live rebuild, verified the first-click conversion, adult and
 
 On 27 November 2026 IST, deployment `d070122e` and the Pages project alias both served a zero-entry sitemap and `User-agent: *` followed by `Disallow: /`. That output corresponds to the review build. Local tests could not reproduce the failure with the correct build environment. With Cloudflare Pages production flags and SITE_URL set, the build emitted 115 apex sitemap entries and robots.txt with `Allow: /` and `Sitemap: https://bongoponji.com/sitemap.xml`. With SITE_URL unset, the review build retained zero entries and `Disallow: /`. All 26 unit tests, Astro diagnostics, both builds and static audits, and the production Worker smoke test passed.
 
-Astro now logs the validated public SITE_URL or that it is unset during builds. A fresh main push will test the current dashboard configuration without relying on a retry. Cloudflare sign-in was required to see the original variable type or retry log. The exact dashboard cause is still unconfirmed.
+Astro now logs the validated public SITE_URL or that it is unset during builds. A fresh Git push of `7da6fdc` triggered successful Pages deployment [d341a5ca-ce4f-4606-a9f6-908fe0bff121](https://d341a5ca.bongoponji.pages.dev). Direct requests confirmed zero sitemap entries and robots.txt containing exactly `User-agent: *` and `Disallow: /`. Retry reuse alone cannot explain both deployments. The fresh artifacts still have no effective production origin. Cloudflare sign-in was required to check the deployment log and whether SITE_URL was stored as plaintext or encrypted, or scoped incorrectly. The exact dashboard cause remains unconfirmed.
+
+Next for v5.1: in Cloudflare Pages → bongoponji → Settings → Variables and Secrets, select Production and check that SITE_URL is a Text variable with value `https://bongoponji.com`. Keep it unset in Preview. On the next fresh build, check the `[bongoponji] SITE_URL:` log line, then fetch the new deployment's sitemap and robots files directly. Acceptance requires exactly 115 apex URLs and the two production robots directives recorded above.
 
 ## Resume here
 
