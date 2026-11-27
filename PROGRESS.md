@@ -155,6 +155,18 @@ Direct requests to that deployment confirmed 0 sitemap URLs and robots.txt conta
 
 Proposed next step, pending owner approval: confirm the dashboard holds the same Pages build command, output directory and compatibility date, then temporarily remove only the root Pages `wrangler.toml` so the dashboard controls Pages configuration for one fresh Git build. Leave `wrangler.workers.toml` and Astro's SITE_URL handling in place. Check the production build log and direct sitemap/robots responses, and verify a Preview build still blocks crawling. If the test fails or deviates from the expected settings, revert the one-file change. No build behavior was changed in this documentation update. [Cloudflare Pages configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/)
 
+### Dashboard-managed Pages test
+
+The owner confirmed the Production command `npm run build`, output `dist/client`, blank root directory and runtime compatibility date `2026-11-27`. With approval, commit `e4acf22` removed only the root Pages `wrangler.toml` and triggered one fresh Git build. Cloudflare reported success for [deployment 91be1933-315b-4bd7-bab6-748fc6c098b2](https://91be1933.bongoponji.pages.dev). Its sitemap served exactly 115 URLs, all under `https://bongoponji.com`. Its robots.txt served:
+
+```text
+User-agent: *
+Allow: /
+Sitemap: https://bongoponji.com/sitemap.xml
+```
+
+The artifacts confirm the production origin reached Astro after the one-file change, which was retained. The authenticated Cloudflare build log is unavailable from this session, so the exact origin line was not read directly. With the trial checkout, an unset SITE_URL and the Preview branch environment, a local Preview build logged `[bongoponji] SITE_URL: unset (noindexed review build)`, served zero sitemap entries and emitted `Disallow: /`. Its 138-page static audit and Worker smoke test passed. No new remote Preview deployment was triggered.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
