@@ -116,6 +116,8 @@ The [2028 workflow dispatch](https://github.com/Boosad96/bongoponji/actions/runs
 
 Confirmed the live report against desktop and a 390 px Chromium viewport. Preserved the West Bengal and Bangladesh publication gate. Fixed converter first use, birthday results and explicit historical coverage, hero and calendar density, navigation affordances, labels, and the verified festival lists. See VALIDATION_REPORT.md for the findings that did not reproduce.
 
+After the automatic live rebuild, verified the first-click conversion, adult and covered birthday cases, both themes, the West Bengal and Dhaka data gate, the November today marker, and the three dated festivals. Chromium passed the main pages at 390 px. The 26 unit tests, 11 Playwright tests, and both build audits passed.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
