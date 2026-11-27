@@ -136,6 +136,10 @@ The dashboard session is signed out and displayed a verification error. The Prod
 
 Local verification passed all 26 unit tests and Astro diagnostics. The configured build produced 115 apex URLs, `Allow: /` and the apex sitemap line. The unset preview build produced zero URLs and `Disallow: /`. Both static audits passed on 138 pages. Production deployment verification remains open.
 
+### Fresh production build request, 27 November 2026 at about 23:01 IST
+
+The owner confirmed that d341a5ca remained the latest Production deployment. The two intervening documentation commits skipped CI, so neither tested the current dashboard settings. The owner reconfirmed that Production SITE_URL is plaintext and Preview has no SITE_URL. This documentation commit intentionally triggers a fresh Git-connected Production build without changing configuration. Verify the resolved SITE_URL in the new deployment log and check the deployment URL for exactly 115 apex sitemap URLs, `Allow: /` and the apex sitemap directive.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
