@@ -16,14 +16,22 @@ Reconnected the existing checkout to the public repository `Boosad96/bongoponji`
 
 All 16 Vitest tests, Astro diagnostics and the packaged workerd integration test passed. The Playwright web server exited before browser cases could run. Cloudflare deployment and Search Console verification remain open.
 
-## Resume here
-
-Obtain PAC reuse confirmation or another cleared authoritative dataset for Kolkata and the 1433–1434 boundaries. Expand the calendar beyond the three independently checked Kolkata solar and sunrise-tithi samples for 27–29 November 2026. Generate candidates with the current method, record reference comparisons and approve only date-specific matches. Before changing the West Bengal publication gate, verify the intended Bishuddha Siddhanta rules and its applicable month boundaries. Run `npm test`, `npm run check`, the Example-origin build checks, and Playwright in an environment that can start the web server. See KNOWN_LIMITATIONS.md for account and product milestones.
-
-The GitHub connection supports the source push. Release data, hosting and Google ownership checks remain separate milestones.
-
 ## Phase 3, validation and domain preparation
 
 Expanded independently checked Kolkata solar and sunrise-tithi coverage to 27 November–3 December 2026. Added navigable daily dates with invalid-input handling, production-origin restrictions for Cloudflare Pages, publisher metadata and browser regressions for date navigation, regional switching and theme persistence. See PHASE_3_REPORT.md for the execution checklist and VALIDATION_REPORT.md for date-by-date comparisons.
 
 Next: obtain the verified 1434 Kolkata month boundaries and permission or an independently reusable rule set for traditional calendar work. Continue authoritative comparisons beyond 3 December, deploy the noindexed Pages build through the owner account, then verify the custom apex and Search Console after release clearance.
+
+## Phase 4, Step 1 boundary investigation
+
+Added a research-only Kolkata solar boundary probe based on RKM's described local mean midnight convention and an independently evaluated Sun position. It generated 24 pending candidates. Ten 1433 candidates agree with the existing PAC fixture, and two differ by one civil day. Printed examples reported by RKM corroborate the probe on the two differences. The dated comparison table and method notes are in VALIDATION_REPORT.md. Full printed 1433–1434 coverage and reuse clearance remain unresolved. No daily records or publication paths changed.
+
+GitHub Actions run [45984998863](https://github.com/Boosad96/bongoponji/actions/runs/45984998863) confirms all five Phase 3 browser tests executed and passed on commit 4401e9a. The managed local startup failure remains a separate issue. Phase 4 browser work has not begun because the earlier steps are gated.
+
+The Phase 4 checkpoint passed 21 Vitest tests, Astro diagnostics, the example-origin audit (84 sitemap entries and 113 static pages), the packaged Worker integration, and the noindexed review build audit (zero sitemap entries and 113 static pages).
+
+## Resume here
+
+1. Finish Step 1. Run `node scripts/check-kolkata-boundaries.mjs`. Compare the pending candidates against the applicable printed Kolkata Bishuddha Siddhanta editions, starting with the unresolved dates in VALIDATION_REPORT.md. Confirm the applicable cutoffs and ayanamsha across both years. Record each dated result and source-use status. PAC may serve as a comparison reference. Obtain rights before importing protected source material.
+2. After the boundaries are verified, start Step 2 with 4–31 December 2026. Check each day against the Kolkata horizon rows and tithi folio under the existing one-minute tithi tolerance and exact minute-rounded solar comparison. Approve only passing records. Update the reports, run the suite and commit the batch before January–April 2027 or later months.
+3. Continue in order with festival observance rules, muhurat and other traditional fields, local browser and Lighthouse work, then growth features. Keep the review build noindexed with SITE_URL unset. Deployment remains owner-managed.

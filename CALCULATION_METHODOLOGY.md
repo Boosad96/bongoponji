@@ -8,4 +8,6 @@ Astronomy Engine 2.1.19 returns apparent tropical Sun longitude and true-of-date
 
 Sidereal work needs a verified ayanamsha and independent comparisons. Nakshatra, yoga and sankranti are withheld pending that work. Karana, Ekadashi and festival observances need independent verification of their rules and the relevant local day, sunrise or observance window. Gupta Press and Bishuddha Siddhanta are future verification targets.
 
-Daily JSON records have a state, date, location, region, method, engine version, generation time and approval evidence. Exact keys, valid time values, reference URL and clearance are required. Duplicate matches are rejected. The release dataset contains only the independent Kolkata solar and sunrise-tithi sample for 27–29 November 2026.
+Daily JSON records have a state, date, location, region, method, engine version, generation time and approval evidence. Exact keys, valid time values, reference URL and clearance are required. Duplicate matches are rejected. The release dataset contains only the independently validated Kolkata solar and sunrise-tithi records for 27 November–3 December 2026.
+
+The separate boundary research CLI uses Astronomy Engine's apparent solar longitude, RKM's published effective ayanamsha calibration and the Kolkata local mean midnight cutoff. Its annual walkthrough labels every month start pending. It is separate from the PAC fixture and the site runtime. See VALIDATION_REPORT.md for the exact date comparisons and outstanding printed references.
