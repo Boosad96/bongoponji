@@ -21,6 +21,6 @@ for (const filename of await readdir(worker, { recursive: true })) {
 await writeFile(new URL('index.js', worker), 'export { default } from "./entry.mjs";\n');
 await writeFile(new URL('_routes.json', client), JSON.stringify({
   version: 1,
-  include: ['/', '/today', '/today/', '/panjika/*', '/panchang/*'],
+  include: ['/', '/today', '/today/', '/panjika/*', '/panchang/*', '/widgets', '/widgets/*'],
   exclude: [],
 }, null, 2) + '\n');

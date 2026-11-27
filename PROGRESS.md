@@ -85,3 +85,7 @@ Published source-attributed pages in the repository for Saraswati Puja, Maha Shi
 ## Step F, local browser and Lighthouse
 
 All five Playwright cases passed locally. Captured three mobile screenshots and measured Lighthouse on the local Astro dev service. See VALIDATION_REPORT.md for scores and metric caveats. Fixed dangling sourcemap references in the Pages package. The Wrangler preview still hits a local missing-facade error. Next implement Step G growth features with verified festival inputs only.
+
+## Step G, growth features
+
+Added embeddable today, calendar month and verified-festival countdown views, verified festival sharing, a Bangladesh civil 2027 PDF download, and Bengali birthday and age tools. Local browser checks passed on seven cases. Next implement Step H with a fail-closed reference gate and run the manual workflow.

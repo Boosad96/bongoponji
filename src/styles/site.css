@@ -42,3 +42,9 @@ dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem .85rem;margin:.8rem 0}
 footer{border-block:1px solid var(--line) 0;color:var(--muted)}.footer-inner{padding-block:1.5rem}
 @media(max-width:670px){.hero{grid-template-columns:1fr}.header-inner nav{order:3;width:100%;gap:.25rem .9rem}.top nav a{font-size:.91rem}.card{padding:.9rem}dl{grid-template-columns:1fr;gap:.15rem}dd{margin-bottom:.4rem}}
 @media print{.top,footer,.crumb,.actions,form{display:none}.wrap{width:100%}.card{break-inside:avoid}}
+textarea { display: block; width: 100%; margin-top: .35rem; padding: .5rem; border: 1px solid var(--line); border-radius: .4rem; }
+@media print {
+  .annual-calendar-print { display: grid; grid-template-columns: 1fr 1fr; }
+  .annual-calendar-print .card { padding: .45rem; }
+  .annual-calendar-print .calendar th, .annual-calendar-print .calendar td { padding: .15rem; }
+}

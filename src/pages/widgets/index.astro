@@ -1,0 +1,10 @@
+---
+import Layout from '../../components/Layout.astro';
+import WidgetGuide from '../../components/WidgetGuide.astro';
+export const prerender = false;
+Astro.response.headers.set('Cache-Control','no-store');
+---
+<Layout title="ক্যালেন্ডার উইজেট" description="ওয়েবসাইটে বাংলা তারিখ, ক্যালেন্ডার ও উৎসবের দিন গণনা দেখান।" noindex>
+  <h1>ক্যালেন্ডার উইজেট</h1>
+  <WidgetGuide origin={(Astro.site ?? Astro.url).origin} />
+</Layout>

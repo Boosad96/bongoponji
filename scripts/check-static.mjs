@@ -31,7 +31,7 @@ for (const url of locs) {
 }
 const files = await readdir(root,{recursive:true});
 const paths = new Set(files.filter(file=>file.endsWith('/index.html')).map(file=>`/${file.slice(0,-10)}`));
-for (const path of ['/','/today/','/panjika/today/','/panjika/tomorrow/','/panchang/kolkata/']) paths.add(path);
+for (const path of ['/','/today/','/panjika/today/','/panjika/tomorrow/','/panchang/kolkata/','/widgets/']) paths.add(path);
 const titles = new Set();
 const converter = await readFile(join(root,'tools/date-converter/index.html'),'utf8');
 assert.ok(!converter.includes('2026-04-15'), 'Uncleared PAC data must stay out of the converter bundle.');

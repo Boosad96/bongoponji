@@ -1,0 +1,16 @@
+---
+const { origin } = Astro.props;
+const options = [
+  ['আজকের বাংলা তারিখ','?mode=today',150],
+  ['চলতি মাসের ক্যালেন্ডার','?mode=month',410],
+  ['পয়লা বৈশাখের দিন গণনা','?mode=festival&festival=pohela-boishakh',170],
+] as const;
+---
+<p>আপনার ওয়েবসাইটে দেখাতে নিচের কোডটি কপি করুন। তারিখ ও মাসের উইজেট বাংলাদেশের নাগরিক বর্ষপঞ্জি অনুসরণ করে।</p>
+{options.map(([label,query,height]) => <section class="section card">
+  <h2>{label}</h2>
+  <a href={`/widgets/embed/${query}`}>উইজেট দেখুন</a>
+  <label>এম্বেড কোড
+    <textarea readonly rows="3" spellcheck="false">{`<iframe title="${label}" src="${origin}/widgets/embed/${query.replaceAll('&','&amp;')}" width="360" height="${height}" loading="lazy"></iframe>`}</textarea>
+  </label>
+</section>)}

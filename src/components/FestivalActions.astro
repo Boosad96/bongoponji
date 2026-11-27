@@ -1,0 +1,29 @@
+---
+const { date } = Astro.props;
+---
+<p data-festival-countdown={date}></p>
+<button type="button" class="button" id="share-festival">উৎসবের তথ্য শেয়ার করুন</button>
+<p id="share-status" role="status"></p>
+<script>
+  import { bn, dayNumber, localDate } from '../lib/dates';
+  const countdown = document.querySelector<HTMLElement>('[data-festival-countdown]');
+  if (countdown?.dataset.festivalCountdown) {
+    const days = dayNumber(countdown.dataset.festivalCountdown) - dayNumber(localDate(new Date(), 'Asia/Kolkata'));
+    countdown.textContent = days > 0 ? `বাকি ${bn(days)} দিন` : days === 0 ? 'উৎসব আজ' : 'এই বছরের উৎসব হয়ে গেছে।';
+  }
+  const share = document.querySelector<HTMLButtonElement>('#share-festival');
+  const status = document.querySelector('#share-status');
+  share?.addEventListener('click', async () => {
+    const url = new URL(location.pathname, location.origin).href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: document.title, url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        if (status) status.textContent = 'পাতার ঠিকানা কপি হয়েছে।';
+      }
+    } catch {
+      if (status) status.textContent = `পাতার ঠিকানা ${url}`;
+    }
+  });
+</script>

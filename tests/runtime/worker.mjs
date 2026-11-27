@@ -42,6 +42,12 @@ export default {
     instant = '2026-12-04T00:00:00Z';
     const expiredSample = await request('/panjika/today/?city=kolkata');
     check((await expiredSample.text()).includes('প্রকাশ অপেক্ষমাণ'), 'expired sample must never be carried forward');
+    const widget = await request('/widgets/embed/?mode=festival&festival=pohela-boishakh');
+    check(widget.status === 200 && widget.headers.get('X-Robots-Tag') === 'noindex', 'widget must be noindexed');
+    check(!widget.headers.has('X-Frame-Options'), 'widget must be embeddable');
+    check((await widget.text()).includes('পয়লা বৈশাখ'), 'widget must show verified observance');
+    const unavailableWidget = await request('/widgets/embed/?mode=festival&festival=kali-puja');
+    check((await unavailableWidget.text()).includes('যাচাইকৃত তারিখ পাওয়া যায়নি'), 'widget must withhold unverified observances');
     globalThis.Date = RealDate;
   },
 };

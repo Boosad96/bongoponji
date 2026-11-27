@@ -53,3 +53,21 @@ test('keeps the selected theme through navigation', async ({ page }) => {
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
 });
+
+test('shows the civil Bengali age and next birthday', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2027-04-13T12:00:00Z'));
+  await page.goto('/tools/age-calculator/');
+  await page.getByLabel('গ্রেগরিয়ান জন্মতারিখ').fill('2020-04-14');
+  await page.getByRole('button', {name:'হিসাব করুন'}).click();
+  await expect(page.locator('#birthday-result')).toContainText('পূর্ণ বয়স ৬ বছর');
+  await expect(page.locator('#birthday-result')).toContainText('১৪ এপ্রিল');
+});
+
+test('embeds only verified festival dates and permits framing on the widget route', async ({ page }) => {
+  const response = await page.goto('/widgets/embed/?mode=festival&festival=pohela-boishakh');
+  expect(response?.headers()['x-frame-options']).toBeUndefined();
+  expect(response?.headers()['x-robots-tag']).toBe('noindex');
+  await expect(page.getByRole('heading', {name:'পয়লা বৈশাখ'})).toBeVisible();
+  await page.goto('/widgets/embed/?mode=festival&festival=kali-puja');
+  await expect(page.getByText('এই উৎসবের যাচাইকৃত তারিখ পাওয়া যায়নি।')).toBeVisible();
+});

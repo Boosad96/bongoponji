@@ -1,0 +1,34 @@
+---
+const { age = false } = Astro.props;
+---
+<section class="section card">
+  <p>বাংলাদেশের সংশোধিত নাগরিক বর্ষপঞ্জি অনুযায়ী হিসাব করা হয়। জন্মদিন ৩০ ফাল্গুন হলে সাধারণ বছরে ২৯ ফাল্গুন ধরা হয়।</p>
+  <form id="birthday-calculator" class="form-row" data-age={age ? '1' : '0'}>
+    <label>গ্রেগরিয়ান জন্মতারিখ <input name="birth" type="date" required min="2019-10-16" max="2099-12-31" /></label>
+    <button class="button">হিসাব করুন</button>
+  </form>
+  <output id="birthday-result" form="birthday-calculator" aria-live="polite"></output>
+</section>
+<script>
+  import { bengaliBirthday } from '../lib/birthday';
+  import { bengaliLabel } from '../lib/bengali';
+  import { bn, gregorianLabel, localDate } from '../lib/dates';
+  const form = document.querySelector<HTMLFormElement>('#birthday-calculator');
+  const out = document.querySelector('#birthday-result');
+  form?.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!out) return;
+    const birth = String(new FormData(form).get('birth') ?? '');
+    const today = localDate(new Date(), 'Asia/Dhaka');
+    try {
+      const result = bengaliBirthday(birth, today);
+      if (result) {
+        const age = form.dataset.age === '1' ? ` · পূর্ণ বয়স ${bn(result.age)} বছর` : '';
+        const next = result.next ? ` · পরের জন্মদিন ${gregorianLabel(result.next)}` : '';
+        out.textContent = `বাংলা জন্মতারিখ ${bengaliLabel(result.original)}${age}${next}`;
+        return;
+      }
+    } catch { /* Invalid input receives the same message. */ }
+    out.textContent = 'সীমার মধ্যে একটি সঠিক জন্মতারিখ দিন।';
+  });
+</script>

@@ -462,3 +462,7 @@ Five Playwright cases executed and passed in local Chromium against the already 
 | Poila Boishakh | 84 | 100 | 96 | 100 | 4.1 s | 0 |
 
 The Pages package omitted sourcemaps while retaining references to them. Packaging now removes the dangling directives. The packaged Worker test passed. Wrangler Pages preview moved past the sourcemap check and failed to start in this environment with a missing middleware facade. Live production and field INP remain unmeasured.
+
+## Step G — growth tools
+
+The birthday and completed-year age tools use the existing Bangladesh civil conversion and Dhaka date. The 30 Falgun anniversary falls on 29 Falgun in a common year. Unit checks cover the anniversary boundary, leap fallback and date-range rejection. Local Chromium passed seven cases, including the age form and the frameable, noindexed festival widget. Widget, countdown and share data come from the verified festival list only. A four-page Bangladesh civil 2027 PDF was generated with Chromium after the Bengali fonts loaded. It contains the twelve calendar tables and no religious date dataset. Ads remain off.

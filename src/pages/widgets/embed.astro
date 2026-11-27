@@ -1,0 +1,41 @@
+---
+import '../../styles/site.css';
+import Month from '../../components/Month.astro';
+import { bengaliLabel, toBengali } from '../../lib/bengali';
+import { bn, dayNumber, gregorianLabel, localDate } from '../../lib/dates';
+import { verifiedFestivals } from '../../lib/verified-festivals';
+
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'no-store');
+Astro.response.headers.set('X-Robots-Tag', 'noindex');
+const mode = Astro.url.searchParams.get('mode');
+const today = localDate(new Date(), mode === 'festival' ? 'Asia/Kolkata' : 'Asia/Dhaka');
+const [year, month] = today.split('-').map(Number);
+const date = toBengali(today);
+const festival = verifiedFestivals.find(row => row.slug === Astro.url.searchParams.get('festival'));
+const days = festival ? dayNumber(festival.date) - dayNumber(today) : null;
+---
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>বঙ্গপঞ্জি · ক্যালেন্ডার উইজেট</title>
+</head>
+<body>
+  <main class="wrap">
+    {mode === 'month' ? <Month {year} {month} region="bangladesh" {today} /> :
+      mode === 'festival' ? (festival && days !== null ? <>
+        <h1>{festival.title}</h1>
+        <p>{gregorianLabel(festival.date)} · {days > 0 ? `বাকি ${bn(days)} দিন` : days === 0 ? 'উৎসব আজ' : 'উৎসব হয়ে গেছে'}</p>
+      </> : <p>এই উৎসবের যাচাইকৃত তারিখ পাওয়া যায়নি।</p>) : <>
+        <h1>{date ? bengaliLabel(date) : 'বাংলা তারিখ উপলব্ধ নেই'}</h1>
+        <p>{gregorianLabel(today)} · বাংলাদেশের নাগরিক বর্ষপঞ্জি</p>
+      </>}
+    {mode === 'month' && <p>বাংলাদেশের নাগরিক বর্ষপঞ্জি</p>}
+    <p><a href="/" target="_blank" rel="noopener">বঙ্গপঞ্জি</a></p>
+  </main>
+</body>
+</html>
+<style>main { padding-block: .75rem; min-height: 0; } h1 { font-size: 1.35rem; }</style>

@@ -157,3 +157,13 @@ it('publishes only passing February v2 dates from the applicable PAC folio', () 
     }
   }
 });
+
+import { bengaliBirthday } from '../src/lib/birthday';
+
+it('computes completed civil Bengali years and handles leap Falgun anniversaries', () => {
+  expect(bengaliBirthday('2020-04-14','2027-04-13')).toMatchObject({ age: 6, next: '2027-04-14' });
+  expect(bengaliBirthday('2020-04-14','2027-04-14')).toMatchObject({ age: 7, next: '2027-04-14' });
+  expect(bengaliBirthday('2024-03-14','2025-03-13')).toMatchObject({ age: 0, next: '2025-03-14' });
+  expect(bengaliBirthday('2024-03-14','2025-03-14')).toMatchObject({ age: 1, next: '2025-03-14' });
+  expect(bengaliBirthday('2019-10-15','2027-04-14')).toBeNull();
+});

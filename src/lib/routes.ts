@@ -3,7 +3,7 @@ import { months, monthSlugs } from './bengali';
 import { bn } from './dates';
 import { verifiedFestivals } from './verified-festivals';
 type Page = {
-  slug: string; title: string; description: string; kind: 'text' | 'gregorian' | 'bengali' | 'converter' | 'pending';
+  slug: string; title: string; description: string; kind: 'text' | 'gregorian' | 'bengali' | 'converter' | 'pending' | 'birthday' | 'age';
   festival?: typeof verifiedFestivals[number];
   noindex?: boolean; year?: number; month?: number; links?: { label: string; href: string }[]; bd?: boolean;
 };
@@ -50,9 +50,8 @@ export const pages: Page[] = [
   ...festivalPages.map(page=>({...page,links:[link('festivals/2027','২০২৭-এর সব উৎসব'),link('sources','তথ্যসূত্র')]})),
   ...muhuratPages.map(page=>({...page,links:muhuratPages.filter(other=>other.slug!==page.slug).map(other=>link(other.slug,other.title))})),
   text('tools/date-converter','বাংলা তারিখ রূপান্তর','বাংলাদেশের সংশোধিত নাগরিক নিয়মে ১৬ অক্টোবর ২০১৯ থেকে ৩১ ডিসেম্বর ২০৯৯ পর্যন্ত বাংলা ও গ্রেগরিয়ান তারিখ রূপান্তর করুন।','converter'),
-  text('tools/bengali-birthday','বাংলা জন্মদিন','জন্মদিন গণনার জন্য জন্মস্থানের বর্ষপঞ্জির নিয়ম প্রযোজ্য।','pending',true),
-  text('tools/age-calculator','বয়স গণনা','বাংলা জন্মতারিখ থেকে বয়স গণনার সুবিধা প্রস্তুত হচ্ছে।','pending',true),
-  text('widgets','ক্যালেন্ডার উইজেট','অন্য ওয়েবসাইটে বাংলা তারিখ দেখানোর সুবিধা প্রস্তুত হচ্ছে।','pending',true),
+  text('tools/bengali-birthday','বাংলা জন্মদিন','বাংলাদেশের নাগরিক বর্ষপঞ্জিতে জন্মতারিখ ও পরের বাংলা জন্মদিন দেখুন।','birthday'),
+  text('tools/age-calculator','বয়স গণনা','বাংলাদেশের নাগরিক বর্ষপঞ্জি অনুযায়ী পূর্ণ বয়স গণনা করুন।','age'),
   text('methodology','গণনাপদ্ধতি','বাংলাদেশের নাগরিক বাংলাবর্ষ ১৪ এপ্রিল শুরু হয়। প্রথম ছয় মাস ৩১ দিনের। ফাল্গুন সাধারণ বছরে ২৯ দিন এবং সংশ্লিষ্ট গ্রেগরিয়ান অধিবর্ষে ৩০ দিন। বাকি পাঁচ মাস ৩০ দিনের। পশ্চিমবঙ্গের সৌর বর্ষপঞ্জির জন্য পৃথক তথ্যসূত্র প্রযোজ্য।'),
   text('sources','তথ্যসূত্র','নাগরিক বর্ষপঞ্জি, আঞ্চলিক সৌর বর্ষপঞ্জি ও জ্যোতির্বৈজ্ঞানিক গণনার জন্য পর্যালোচিত তথ্যসূত্র।'),
   text('about','বঙ্গপঞ্জির পরিচয়','বঙ্গপঞ্জি বাংলা তারিখ দেখার, ক্যালেন্ডার পড়ার ও দিন রূপান্তরের একটি বাংলা ভাষার সরঞ্জাম।'),

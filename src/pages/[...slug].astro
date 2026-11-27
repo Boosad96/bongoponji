@@ -2,6 +2,8 @@
 import Layout from '../components/Layout.astro';
 import Month from '../components/Month.astro';
 import Converter from '../components/Converter.astro';
+import Birthday from '../components/Birthday.astro';
+import FestivalActions from '../components/FestivalActions.astro';
 import { festivalChecked } from '../lib/verified-festivals';
 import { pages } from '../lib/routes';
 import { sources } from '../data/evidence';
@@ -33,10 +35,11 @@ const sourceLabels = {
     </dl>
     <p>{page.festival.rule}</p>
     <p><a href={page.festival.source}>উৎস দেখুন</a></p>
+    <FestivalActions date={page.festival.date} />
   </section>}
   {page.kind === 'pending'  && <p class="notice">{unavailable}</p>}
   {page.links && <nav class="pills section" aria-label="সংশ্লিষ্ট পাতা">{page.links.map(({href,label}) => <a class="pill" href={href}>{label}</a>)}</nav>}
-  {page.kind === 'gregorian' && <section class="section grid">{period.map(month => <div class="card"><Month year={page.year!} {month} region="bangladesh" /></div>)}</section>}
+  {page.kind === 'gregorian' && <section class:list={["section grid", {"annual-calendar-print": !page.month}]}>{period.map(month => <div class="card"><Month year={page.year!} {month} region="bangladesh" /></div>)}</section>}
   {page.kind === 'bengali' && <section class="section grid">{period.map(month => {
     const days = Array.from({length:31}, (_,i) => toGregorian({year:page.year!,month,day:i+1})).filter((date): date is string => Boolean(date));
     return <div class="card"><h2>{months[month-1]} {bn(page.year!)}</h2>
@@ -44,7 +47,9 @@ const sourceLabels = {
     </div>;
   })}</section>}
   {['bengali','gregorian','converter'].includes(page.kind) && <p class="section notice">পদ্ধতি · বাংলাদেশের সংশোধিত নাগরিক বর্ষপঞ্জি। <a href="/methodology/">নিয়ম দেখুন</a>। পশ্চিমবঙ্গের সৌর বর্ষপঞ্জির প্রকাশ অপেক্ষমাণ।</p>}
-  {page.kind === 'converter' && <Converter />}
+  {page.kind === 'converter' && <><Converter /><p class="actions"><a href="/tools/bengali-birthday/">বাংলা জন্মদিন</a><a href="/tools/age-calculator/">বয়স গণনা</a></p></>}
+  {(page.kind === 'birthday' || page.kind === 'age') && <Birthday age={page.kind === 'age'} />}
+  {page.slug === 'calendar/2027' && <p class="actions"><a href="/downloads/bangladesh-calendar-2027.pdf" download>ক্যালেন্ডারের পিডিএফ ডাউনলোড করুন</a></p>}
   {page.slug === 'sources' && <ul class="section">{Object.entries(sources).map(([key,source]) => <li><a href={source}>{sourceLabels[key as keyof typeof sourceLabels]}</a></li>)}</ul>}
   {page.slug === 'corrections' && <section class="section card"><h2>প্রকাশিত সংশোধন</h2><p>এখনও কোনো সংশোধন নথিভুক্ত হয়নি।</p>{correctionEmail ? <a href={`mailto:${correctionEmail}`}>সংশোধন জানান</a> : <p>সংশোধন পাঠানোর ঠিকানা এখনও চালু হয়নি।</p>}</section>}
   {page.slug === 'contact' && <a href="/corrections/">সংশোধন নথি</a>}
