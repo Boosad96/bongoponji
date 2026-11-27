@@ -725,6 +725,406 @@
         "redistribution": "cleared",
         "origin": "independent-computation"
       }
+    },
+    {
+      "date": "2027-01-02",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:17",
+        "sunset": "17:04",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 10,
+          "endsAt": "2027-01-02T08:55:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-03",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:17",
+        "sunset": "17:05",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 11,
+          "endsAt": "2027-01-03T10:39:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-06",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:18",
+        "sunset": "17:07",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 14,
+          "endsAt": "2027-01-06T17:45:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-08",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:18",
+        "sunset": "17:08",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 1,
+          "endsAt": "2027-01-08T23:05:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-09",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:18",
+        "sunset": "17:09",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 2,
+          "endsAt": "2027-01-10T01:38:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-11",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:19",
+        "sunset": "17:10",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 3,
+          "endsAt": "2027-01-11T04:00:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-12",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:19",
+        "sunset": "17:11",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 4,
+          "endsAt": "2027-01-12T06:00:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-14",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:19",
+        "sunset": "17:12",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 6,
+          "endsAt": "2027-01-14T08:30:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-15",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:19",
+        "sunset": "17:13",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 7,
+          "endsAt": "2027-01-15T08:45:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-16",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:19",
+        "sunset": "17:14",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 8,
+          "endsAt": "2027-01-16T08:14:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-18",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:19",
+        "sunset": "17:15",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 10,
+          "endsAt": "2027-01-18T04:58:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-19",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:19",
+        "sunset": "17:16",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 11,
+          "endsAt": "2027-01-19T02:20:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/pausha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-22",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:18",
+        "sunset": "17:18",
+        "tithi": {
+          "paksha": "shukla",
+          "number": 15,
+          "endsAt": "2027-01-22T12:18:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/magha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-25",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:18",
+        "sunset": "17:20",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 3,
+          "endsAt": "2027-01-25T02:41:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/magha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-28",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:17",
+        "sunset": "17:22",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 7,
+          "endsAt": "2027-01-28T22:34:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/magha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
+    },
+    {
+      "date": "2027-01-29",
+      "location": "kolkata",
+      "region": "west-bengal",
+      "method": "drik-sunrise-tithi-v1",
+      "engine": "astronomy-engine@2.1.19",
+      "status": "VERIFIED",
+      "generatedAt": "2026-11-27T11:58:47.581Z",
+      "value": {
+        "sunrise": "06:17",
+        "sunset": "17:23",
+        "tithi": {
+          "paksha": "krishna",
+          "number": 8,
+          "endsAt": "2027-01-29T23:29:00.000Z"
+        }
+      },
+      "evidence": {
+        "source": "https://packolkata.imd.gov.in/panchang/en/magha",
+        "horizonSource": "https://packolkata.imd.gov.in/panchang/en/tables",
+        "checked": "2026-11-27",
+        "redistribution": "cleared",
+        "origin": "independent-computation"
+      }
     }
   ]
 }

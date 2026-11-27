@@ -194,3 +194,56 @@ This batch is limited to independently calculated Kolkata `drik-sunrise-tithi-v1
 | 2026-12-31 | 06:16 / 06:16 | 17:03 / 17:03 | krishna 8 / krishna 8 | 31 Dec 12:33 / 31 Dec 12:34 | +1 min | VERIFIED |
 
 22 of 28 dates verified. 4, 9, 12, 15, 27 and 29 December remain withheld. All six missed the exact sunset check by one minute. On 9 December the local Astronomy Engine sunrise also precedes the calculated Amavasya end, while the PAC folio labels the day Pratipad. Limits and methods were kept fixed.
+
+## December sunset rerun and January batch — checked 2026-11-27
+
+The December diagnostic used the same Kolkata observer and nearest-minute rounding. Astronomy Engine searched for the Sun's centre crossing the altitude defined by Grahan's 0.6117° refraction plus the distance-dependent solar semidiameter (959.63 arcseconds at 1 AU). The PAC sunset check still requires exactly the same displayed minute. [PAC Kolkata horizon](https://packolkata.imd.gov.in/panchang/en/tables) · [Grahan source](https://github.com/svarbhanu/grahan)
+
+| December date | PAC sunset | Released method candidate | Corrected sunset IST | Exact-minute sunset result |
+| --- | --- | --- | --- | --- |
+| 4 | 16:52 | 16:51 | 16:51:40.828 → 16:52 | Pass |
+| 9 | 16:53 | 16:52 | 16:52:42.715 → 16:53 | Pass |
+| 12 | 16:54 | 16:53 | 16:53:35.596 → 16:54 | Pass |
+| 15 | 16:55 | 16:54 | 16:54:39.482 → 16:55 | Pass |
+| 27 | 17:01 | 17:00 | 17:00:29.798 → 17:00 | Fail |
+| 29 | 17:02 | 17:01 | 17:01:40.521 → 17:02 | Pass |
+
+The rerun is a sunset-only sensitivity check. The published method remains `drik-sunrise-tithi-v1`, and December release records were left as they were. 9 December also retains its independently established sunrise-tithi conflict.
+
+January uses the existing `drik-sunrise-tithi-v1` method throughout. Both solar events must match the Kolkata table at the exact minute. Sunrise tithi number and paksha must agree and its end must be within ±1 minute. The Pausha folio covers 1–20 January and Magha covers 21–31 January. The next entry supplies the end time when a tithi lasts all day. Times after hour 24 roll into the following civil day. [PAC Kolkata horizon](https://packolkata.imd.gov.in/panchang/en/tables) · [Pausha folio](https://packolkata.imd.gov.in/panchang/en/pausha) · [Magha folio](https://packolkata.imd.gov.in/panchang/en/magha)
+
+| Date | Sunrise PAC / computed | Sunset PAC / computed | Sunrise tithi PAC / computed | End PAC / computed, IST | End difference | Result |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 2027-01-01 | 06:16 / 06:16 | 17:04 / 17:03 | krishna 9 / krishna 9 | 01 Jan 13:11 / 01 Jan 13:11 | +0 min | WITHHELD |
+| 2027-01-02 | 06:17 / 06:17 | 17:04 / 17:04 | krishna 10 / krishna 10 | 02 Jan 14:25 / 02 Jan 14:25 | +0 min | VERIFIED |
+| 2027-01-03 | 06:17 / 06:17 | 17:05 / 17:05 | krishna 11 / krishna 11 | 03 Jan 16:09 / 03 Jan 16:09 | +0 min | VERIFIED |
+| 2027-01-04 | 06:17 / 06:17 | 17:06 / 17:05 | krishna 12 / krishna 12 | 04 Jan 18:16 / 04 Jan 18:17 | +1 min | WITHHELD |
+| 2027-01-05 | 06:17 / 06:18 | 17:06 / 17:06 | krishna 13 / krishna 13 | 05 Jan 20:40 / 05 Jan 20:41 | +1 min | WITHHELD |
+| 2027-01-06 | 06:18 / 06:18 | 17:07 / 17:07 | krishna 14 / krishna 14 | 06 Jan 23:15 / 06 Jan 23:15 | +0 min | VERIFIED |
+| 2027-01-07 | 06:18 / 06:18 | 17:08 / 17:07 | krishna 15 / krishna 15 | 08 Jan 01:54 / 08 Jan 01:55 | +1 min | WITHHELD |
+| 2027-01-08 | 06:18 / 06:18 | 17:08 / 17:08 | shukla 1 / shukla 1 | 09 Jan 04:34 / 09 Jan 04:35 | +1 min | VERIFIED |
+| 2027-01-09 | 06:18 / 06:18 | 17:09 / 17:09 | shukla 2 / shukla 2 | 10 Jan 07:08 / 10 Jan 07:08 | +0 min | VERIFIED |
+| 2027-01-10 | 06:18 / 06:19 | 17:10 / 17:09 | shukla 2 / shukla 2 | 10 Jan 07:08 / 10 Jan 07:08 | +0 min | WITHHELD |
+| 2027-01-11 | 06:19 / 06:19 | 17:10 / 17:10 | shukla 3 / shukla 3 | 11 Jan 09:29 / 11 Jan 09:30 | +1 min | VERIFIED |
+| 2027-01-12 | 06:19 / 06:19 | 17:11 / 17:11 | shukla 4 / shukla 4 | 12 Jan 11:30 / 12 Jan 11:30 | +0 min | VERIFIED |
+| 2027-01-13 | 06:19 / 06:19 | 17:12 / 17:11 | shukla 5 / shukla 5 | 13 Jan 13:02 / 13 Jan 13:03 | +1 min | WITHHELD |
+| 2027-01-14 | 06:19 / 06:19 | 17:12 / 17:12 | shukla 6 / shukla 6 | 14 Jan 13:59 / 14 Jan 14:00 | +1 min | VERIFIED |
+| 2027-01-15 | 06:19 / 06:19 | 17:13 / 17:13 | shukla 7 / shukla 7 | 15 Jan 14:14 / 15 Jan 14:15 | +1 min | VERIFIED |
+| 2027-01-16 | 06:19 / 06:19 | 17:14 / 17:14 | shukla 8 / shukla 8 | 16 Jan 13:43 / 16 Jan 13:44 | +1 min | VERIFIED |
+| 2027-01-17 | 06:19 / 06:19 | 17:15 / 17:14 | shukla 9 / shukla 9 | 17 Jan 12:27 / 17 Jan 12:28 | +1 min | WITHHELD |
+| 2027-01-18 | 06:19 / 06:19 | 17:15 / 17:15 | shukla 10 / shukla 10 | 18 Jan 10:28 / 18 Jan 10:28 | +0 min | VERIFIED |
+| 2027-01-19 | 06:19 / 06:19 | 17:16 / 17:16 | shukla 11 / shukla 11 | 19 Jan 07:50 / 19 Jan 07:50 | +0 min | VERIFIED |
+| 2027-01-20 | 06:19 / 06:19 | 17:17 / 17:16 | shukla 13 / shukla 13 | 21 Jan 01:12 / 21 Jan 01:13 | +1 min | WITHHELD |
+| 2027-01-21 | 06:18 / 06:19 | 17:17 / 17:17 | shukla 14 / shukla 14 | 21 Jan 21:31 / 21 Jan 21:31 | +0 min | WITHHELD |
+| 2027-01-22 | 06:18 / 06:18 | 17:18 / 17:18 | shukla 15 / shukla 15 | 22 Jan 17:47 / 22 Jan 17:48 | +1 min | VERIFIED |
+| 2027-01-23 | 06:18 / 06:18 | 17:19 / 17:18 | krishna 1 / krishna 1 | 23 Jan 14:13 / 23 Jan 14:14 | +1 min | WITHHELD |
+| 2027-01-24 | 06:18 / 06:18 | 17:20 / 17:19 | krishna 2 / krishna 2 | 24 Jan 10:58 / 24 Jan 10:58 | +0 min | WITHHELD |
+| 2027-01-25 | 06:18 / 06:18 | 17:20 / 17:20 | krishna 3 / krishna 3 | 25 Jan 08:11 / 25 Jan 08:11 | +0 min | VERIFIED |
+| 2027-01-26 | 06:17 / 06:18 | 17:21 / 17:20 | krishna 5 / krishna 5 | 27 Jan 04:34 / 27 Jan 04:34 | +0 min | WITHHELD |
+| 2027-01-27 | 06:17 / 06:17 | 17:22 / 17:21 | krishna 6 / krishna 6 | 28 Jan 03:54 / 28 Jan 03:55 | +1 min | WITHHELD |
+| 2027-01-28 | 06:17 / 06:17 | 17:22 / 17:22 | krishna 7 / krishna 7 | 29 Jan 04:03 / 29 Jan 04:04 | +1 min | VERIFIED |
+| 2027-01-29 | 06:17 / 06:17 | 17:23 / 17:23 | krishna 8 / krishna 8 | 30 Jan 04:59 / 30 Jan 04:59 | +0 min | VERIFIED |
+| 2027-01-30 | 06:16 / 06:16 | 17:24 / 17:23 | krishna 9 / krishna 9 | 31 Jan 06:34 / 31 Jan 06:35 | +1 min | WITHHELD |
+| 2027-01-31 | 06:16 / 06:16 | 17:24 / 17:24 | krishna 10 / krishna 9 | 01 Feb 08:42 / 31 Jan 06:35 | Different tithis | WITHHELD |
+
+16 of 31 dates passed. Only independently computed passing records entered the release. The PAC figures were used for comparison only.

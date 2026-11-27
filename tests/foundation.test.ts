@@ -126,3 +126,17 @@ it('publishes only passing December dates in the PAC batch', () => {
   }
   expect(verifiedDaily('2027-08-05', 'kolkata', 'west-bengal')).toBeNull();
 });
+
+it('publishes only passing January dates from the applicable PAC folio', () => {
+  const held = new Set([1, 4, 5, 7, 10, 13, 17, 20, 21, 23, 24, 26, 27, 30, 31]);
+  for (let day = 1; day <= 31; day++) {
+    const date = `2027-01-${String(day).padStart(2, '0')}`;
+    const record = verifiedDaily(date, 'kolkata', 'west-bengal');
+    expect(Boolean(record), date).toBe(!held.has(day));
+    if (record) {
+      expect(record.evidence.source).toBe(
+        `https://packolkata.imd.gov.in/panchang/en/${day <= 20 ? 'pausha' : 'magha'}`,
+      );
+    }
+  }
+});
