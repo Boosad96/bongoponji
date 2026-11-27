@@ -440,3 +440,13 @@ The required consecutive monthly validation stops here. The official English dow
 | 1–31 May 2027 | Unavailable | Unavailable | 0 |
 
 No May comparisons could be scored and no May records were approved. June–December and the subsequent Phase 4 steps remain pending under the requested stop condition. [PAC English editions](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) · [PAC online folios](https://packolkata.imd.gov.in/panchang/en/panchang)
+
+## Step D — festival date verification, 2026-11-27
+
+| Festival | Verified date | Bengali date and system | Independent date check |
+| --- | --- | --- | --- |
+| Saraswati Puja | 2027-02-11 | 28 Magh 1433, PAC Bengal and Assam solar convention | PAC principal festivals entry 76 and Magha folio both name the observance. Kolkata record passes Step B. |
+| Maha Shivaratri | 2027-03-06 | 21 Falgun 1433, PAC Bengal and Assam solar convention | PAC principal festivals entry 81 and Phalguna folio name the observance. Kolkata record passes Step B. The night observance is distinct from the sunrise tithi. |
+| Poila Boishakh | 2027-04-15 | 1 Baishakh 1434, Barrackpore Bishuddha Siddhanta schedule | The published Math schedule explicitly pairs the dates. Kolkata record passes Step B. Bangladesh civil New Year is 14 April. |
+
+The first two Bengali dates use the independently corroborated Magh and Falgun starts on 15 January and 14 February. No ceremonial start/end times were approved. Dolayatra on 22 March, Kali Puja on 8 November, and Jagaddhatri Puja on 19 November have source listings but lack released daily comparisons in this scope. Poush observance labels vary by source and remain pending. [PAC edition](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) · [Barrackpore schedule](https://asvarkvm.org/sites/default/files/Yearly%20Events%202026-2027.pdf)

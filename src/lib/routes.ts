@@ -1,8 +1,10 @@
 import { bdYears, festivals, gregorianMonths, gregorianSlugs, muhurats, years } from './site';
 import { months, monthSlugs } from './bengali';
 import { bn } from './dates';
+import { verifiedFestivals } from './verified-festivals';
 type Page = {
   slug: string; title: string; description: string; kind: 'text' | 'gregorian' | 'bengali' | 'converter' | 'pending';
+  festival?: typeof verifiedFestivals[number];
   noindex?: boolean; year?: number; month?: number; links?: { label: string; href: string }[]; bd?: boolean;
 };
 const link = (slug: string, label: string) => ({ href: `/${slug}/`, label });
@@ -30,7 +32,12 @@ const bengali: Page[] = bdYears.flatMap(year => {
   return [{ ...text(slug, `বাংলা ক্যালেন্ডার ${bn(year)}`, `বাংলাদেশের সংশোধিত নাগরিক বর্ষপঞ্জি অনুযায়ী ${bn(year)} সনের সব মাস ও গ্রেগরিয়ান তারিখ।`, 'bengali'),
     year, links: entries.map((page,i) => link(page.slug, months[i])) }, ...entries];
 });
-const festivalPages = festivals.map(([slug,title,description]) => text(`festivals/${slug}/2027`, `${title} ২০২৭`, description, 'pending', true));
+const festivalPages = festivals.map(([slug,title,description]): Page => {
+  const festival = verifiedFestivals.find(record => record.slug === slug);
+  return festival
+    ? { ...text(`festivals/${slug}/2027`, `${festival.title} ২০২৭`, festival.note), festival }
+    : text(`festivals/${slug}/2027`, `${title} ২০২৭`, description, 'pending', true);
+});
 const muhuratPages = muhurats.map(([slug,title]) => text(`muhurat/${slug}/2027`, `${title} ২০২৭`, 'শুভ সময় নির্ধারণ একটি প্রথাগত বিশ্বাস। অঞ্চল ও পরিবারভেদে আচারের নিয়ম বদলাতে পারে।', 'pending', true));
 export const pages: Page[] = [
   {...text('calendar','বার্ষিক ও মাসিক ক্যালেন্ডার','গ্রেগরিয়ান বছর বা বাংলা সন বেছে নিয়ে বাংলাদেশের নাগরিক তারিখ ও মাস দেখুন।'),links:[

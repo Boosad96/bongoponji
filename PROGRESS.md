@@ -77,3 +77,7 @@ The May batch is blocked: the latest accessible PAC Kolkata horizon and tithi re
 1. Step B resumes with May 2027, after the applicable PAC 1949 Saka Kolkata horizon table and daily tithi folios are available. The published 1948 Saka appendix reaches only 20 April. Compare any new reference coverage for 21–30 April before adding those dates. Use `node scripts/prepare-kolkata-sample.mjs --v2 YYYY-MM-DD ...` and the established exact-minute and one-minute tolerances. Validate date by date, document and test each monthly batch, then commit and push before proceeding. Keep the existing withheld dates closed.
 2. Once Step B is complete, run the single Step C publication check for the printed 1434 Bishuddha Siddhanta edition or Vivekananda Math schedule. Eleven 1434 boundaries remain gated. Continue with Steps D–H in order, including local Playwright/Lighthouse and the scheduled workflow after its prerequisites.
 3. Keep SITE_URL unset in review and leave deployment to the owner. The example origin is restricted to build tests.
+
+## Step D, verified festival pages
+
+Published source-attributed pages in the repository for Saraswati Puja, Maha Shivaratri and Poila Boishakh. Each requires an existing verified Kolkata daily record. The pages show the applicable Bengali calendar convention and no ritual timings. Other festival pages remain noindexed. May validation and the 1434 publication check are deferred by instruction. Next run Step F browser and Lighthouse checks.

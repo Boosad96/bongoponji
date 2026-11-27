@@ -3,6 +3,9 @@ import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const root = new URL('../dist/client/',import.meta.url).pathname;
+const verifiedFestivalPaths = new Set([
+  '/festivals/pohela-boishakh/2027/', '/festivals/saraswati-puja/2027/', '/festivals/shivaratri/2027/',
+]);
 const preview = process.argv.includes('--preview');
 const robots = await readFile(join(root,'robots.txt'),'utf8');
 const sitemap = await readFile(join(root,'sitemap.xml'),'utf8');
@@ -16,7 +19,7 @@ if (preview) {
   assert.equal(robots,`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
   for (const url of locs) {
     assert.equal(url.origin,origin);
-    assert.ok(!/^(?:\/festivals|\/muhurat)\//.test(url.pathname),'Pending observances must stay out of the sitemap.');
+    assert.ok(!/^(?:\/festivals|\/muhurat)\//.test(url.pathname) || verifiedFestivalPaths.has(url.pathname),'Pending observances must stay out of the sitemap.');
   }
 }
 assert.equal(new Set(locs.map(url=>url.href)).size,locs.length);
@@ -38,7 +41,12 @@ for (const file of files.filter(file=>file.endsWith('/index.html'))) {
   const title = html.match(/<title>(.*?)<\/title>/)?.[1];
   assert.ok(title && !titles.has(title),`Missing or duplicate title in ${file}`);
   titles.add(title);
-  if (preview || /^(festivals|muhurat)\//.test(file)) {
+  const path = `/${file.slice(0,-10)}`;
+  if (verifiedFestivalPaths.has(path)) {
+    assert.ok(html.includes('যাচাইয়ের তারিখ'));
+    assert.equal(locs.some(url => url.pathname === path), !preview);
+  }
+  if (preview || (/^(festivals|muhurat)\//.test(file) && !verifiedFestivalPaths.has(path))) {
     assert.ok(html.includes('content="noindex,follow"'), `${file} must be noindexed`);
   }
   if (preview) assert.ok(!html.includes('rel="canonical"'), `${file} must omit the canonical in review builds`);

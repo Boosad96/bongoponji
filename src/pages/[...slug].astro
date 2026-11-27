@@ -2,6 +2,7 @@
 import Layout from '../components/Layout.astro';
 import Month from '../components/Month.astro';
 import Converter from '../components/Converter.astro';
+import { festivalChecked } from '../lib/verified-festivals';
 import { pages } from '../lib/routes';
 import { sources } from '../data/evidence';
 import { months, toGregorian } from '../lib/bengali';
@@ -23,7 +24,17 @@ const sourceLabels = {
 <Layout title={page.title} description={page.description} noindex={page.noindex}>
   <h1>{page.title}</h1>
   <p class="muted">{page.description}</p>
-  {page.kind === 'pending' && <p class="notice">{unavailable}</p>}
+  {page.festival && <section class="section card">
+    <dl>
+      <dt>গ্রেগরিয়ান তারিখ</dt><dd><time datetime={page.festival.date}>{gregorianLabel(page.festival.date)}</time></dd>
+      <dt>বাংলা তারিখ</dt><dd>{page.festival.bengaliDate} · {page.festival.calendar}</dd>
+      <dt>স্থান</dt><dd>পশ্চিমবঙ্গ</dd>
+      <dt>যাচাইয়ের তারিখ</dt><dd>{gregorianLabel(festivalChecked)}</dd>
+    </dl>
+    <p>{page.festival.rule}</p>
+    <p><a href={page.festival.source}>উৎস দেখুন</a></p>
+  </section>}
+  {page.kind === 'pending'  && <p class="notice">{unavailable}</p>}
   {page.links && <nav class="pills section" aria-label="সংশ্লিষ্ট পাতা">{page.links.map(({href,label}) => <a class="pill" href={href}>{label}</a>)}</nav>}
   {page.kind === 'gregorian' && <section class="section grid">{period.map(month => <div class="card"><Month year={page.year!} {month} region="bangladesh" /></div>)}</section>}
   {page.kind === 'bengali' && <section class="section grid">{period.map(month => {
