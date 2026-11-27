@@ -14,6 +14,7 @@ export function getStaticPaths() {
   return pages.map(page => ({params:{slug:page.slug},props:{page}}));
 }
 const { page } = Astro.props;
+const publicEmail = correctionEmail ?? 'boosad.96.abhi@gmail.com';
 const period = page.month ? [page.month] : Array.from({length:12},(_,i)=>i+1);
 const festivalIndex = page.slug === 'festivals' || page.slug === 'festivals/2027';
 const sourceLabels = {
@@ -67,5 +68,23 @@ const sourceLabels = {
   {page.slug === 'calendar/2027' && <p class="actions"><a href="/downloads/bangladesh-calendar-2027.pdf" download>ক্যালেন্ডারের পিডিএফ ডাউনলোড করুন</a></p>}
   {page.slug === 'sources' && <ul class="section">{Object.entries(sources).map(([key,source]) => <li><a href={source}>{sourceLabels[key as keyof typeof sourceLabels]}</a></li>)}</ul>}
   {page.slug === 'corrections' && <section class="section card"><h2>প্রকাশিত সংশোধন</h2><p>এখনও কোনো সংশোধন নথিভুক্ত হয়নি।</p>{correctionEmail ? <a href={`mailto:${correctionEmail}`}>সংশোধন জানান</a> : <p>সংশোধন পাঠানোর ঠিকানা এখনও চালু হয়নি।</p>}</section>}
-  {page.slug === 'contact' && <a href="/corrections/">সংশোধন নথি</a>}
+  {page.slug === 'privacy' && <section class="section card" aria-label="গোপনীয়তা নীতি">
+    <h2>সাইট ব্যবহার ও যোগাযোগ</h2>
+    <p>বঙ্গপঞ্জি দেখতে কোনো অ্যাকাউন্ট বা নিবন্ধন লাগে না। তারিখ রূপান্তর ও জন্মদিনের হিসাব আপনার ব্রাউজারেই হয়। এই সরঞ্জামগুলিতে দেওয়া তথ্য বঙ্গপঞ্জি নিজের ডেটাবেসে জমা রাখে না। আমরা ব্যক্তিগত তথ্য বিক্রি করি না। ইমেলে যোগাযোগ করলে আপনার ঠিকানা ও বার্তা উত্তর দেওয়ার জন্য ব্যবহার করা হয়।</p>
+    <h2>ব্যবহার-পরিসংখ্যান ও কুকি</h2>
+    <p>কোন পাতা কতবার দেখা হয়, তা বোঝার জন্য বঙ্গপঞ্জি গুগল অ্যানালিটিক্স ৪ ব্যবহার করে। আমরা সামগ্রিক ব্যবহার-পরিসংখ্যান দেখি। গুগল অ্যানালিটিক্স ব্যবহার মাপতে কুকি ও ব্রাউজার শনাক্তকারী ব্যবহার করতে পারে। গুগল কীভাবে তথ্য ব্যবহার করে, তা <a href="https://policies.google.com/technologies/partner-sites?hl=bn">গুগলের তথ্য ব্যবহার নীতিতে</a> দেখুন।</p>
+    <h2>বিজ্ঞাপন</h2>
+    <p>বঙ্গপঞ্জিতে বর্তমানে গুগল অ্যাডসেন্স চালু নেই। ভবিষ্যতে চালু হলে গুগল বিজ্ঞাপন দেখানো বা ব্যক্তিগত পছন্দ অনুযায়ী বিজ্ঞাপন বাছাইয়ের জন্য কুকি ব্যবহার করতে পারে। বিজ্ঞাপনের পছন্দ বদলাতে <a href="https://adssettings.google.com/">গুগলের বিজ্ঞাপন সেটিংস</a> এবং অংশগ্রহণকারী সংস্থার ব্যক্তিগতকৃত বিজ্ঞাপন বন্ধ করতে <a href="https://www.aboutads.info/choices/">বিজ্ঞাপন পছন্দ নিয়ন্ত্রণের পাতা</a> দেখুন।</p>
+    <p>গোপনীয়তা নিয়ে প্রশ্ন থাকলে লিখুন <a href={`mailto:${publicEmail}`}>{publicEmail}</a>।</p>
+  </section>}
+  {page.slug === 'contact' && <section class="section card" aria-label="যোগাযোগ">
+    <p>তারিখ বা তিথির ভুল, সাইট নিয়ে মতামত কিংবা সাধারণ প্রশ্ন জানাতে ইমেল করুন।</p>
+    <p><a href={`mailto:${publicEmail}`}>{publicEmail}</a></p>
+    <p>সংশোধনের জন্য লিখলে পাতার ঠিকানা, সংশ্লিষ্ট তারিখ ও তথ্যসূত্র দিন।</p>
+  </section>}
+  {page.slug === 'terms' && <section class="section card" aria-label="ব্যবহারের শর্ত">
+    <p>বঙ্গপঞ্জির পঞ্জিকা ও বর্ষপঞ্জি সাধারণ তথ্যের জন্য দেওয়া হয়। পঞ্জিকার তারিখ উল্লেখিত তথ্যসূত্রের সঙ্গে মিলিয়ে যাচাই হলে প্রকাশ করা হয়। যাচাই না হওয়া তারিখ প্রকাশ করা হয় না।</p>
+    <p>প্রকাশিত তথ্যের নির্ভুলতা, সম্পূর্ণতা বা সব সময় পাওয়া যাওয়ার কোনো নিশ্চয়তা দেওয়া হয় না। ধর্মীয় আচারের দিন ঠিক করার সময় আপনার পরিবার বা সম্প্রদায়ের অনুসৃত পঞ্জিকা ও রীতি মিলিয়ে দেখুন।</p>
+    <p>উৎস হিসেবে বঙ্গপঞ্জির নাম এবং মূল পাতার লিংক দিয়ে বঙ্গপঞ্জির নিজস্ব লেখা ও তথ্য ভাগ করতে পারেন। অন্য উৎসের উপকরণে সংশ্লিষ্ট উৎসের শর্ত প্রযোজ্য।</p>
+  </section>}
 </Layout>

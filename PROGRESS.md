@@ -167,6 +167,14 @@ Sitemap: https://bongoponji.com/sitemap.xml
 
 The artifacts confirm the production origin reached Astro after the one-file change, which was retained. The authenticated Cloudflare build log is unavailable from this session, so the exact origin line was not read directly. With the trial checkout, an unset SITE_URL and the Preview branch environment, a local Preview build logged `[bongoponji] SITE_URL: unset (noindexed review build)`, served zero sitemap entries and emitted `Disallow: /`. Its 138-page static audit and Worker smoke test passed. No new remote Preview deployment was triggered.
 
+## v6 analytics and policy pages
+
+The owner reported the apex and www launch and successful sitemap submission on 28 November 2026 IST. Added direct GA4 tag G-WYKF4P7K3L to the shared layout for the configured apex build. Preview and the separate third-party iframe embed remain untracked. Added Bengali Privacy, Contact and Terms with footer links, exposed all three in the production sitemap, and redirected the legacy Privacy Policy path. No advertising code or consent banner was added.
+
+The privacy policy describes aggregate reporting rather than promising anonymous collection. Google can use cookies and browser identifiers, and email correspondence includes the sender's address and message. The policy limits its storage statement to on-site tool inputs, identifies advertising cookie choices, and states that AdSense is currently inactive. GA4 account-level retention and advertising settings were not audited.
+
+Passed 26 unit tests, Astro diagnostics, both static audits and Worker smoke tests. The configured build emitted 118 distinct apex sitemap URLs and the production robots directives. The built calendar emitted the direct tag and the policy pages had apex canonicals. The review build emitted an empty sitemap and `Disallow: /`, with no indexing or analytics tag on the checked pages.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
