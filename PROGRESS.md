@@ -70,7 +70,7 @@ Checked all 31 March dates with v2 and approved nine. The print edition provides
 
 Checked all 30 April candidates. The PAC 2027 appendix covers 1–20 April and ten of those dates passed under v2. Withheld 21–30 April for missing applicable references and ten other April dates for failed comparisons. Release total is 88. Next confirm whether PAC has published its full 2027–28 horizon and tithi edition before checking May.
 
-The May batch is blocked: the latest accessible PAC Kolkata horizon and tithi references end on 20 April 2027, and no applicable 2027–28 edition was located. March and April each passed 24 Vitest tests, Astro diagnostics, the example-origin static audit and Worker smoke test. April also passed the noindexed review audit.
+The May batch is blocked: the latest accessible PAC Kolkata horizon and tithi references end on 20 April 2027, and no applicable 2027–28 edition was located. March and April each passed 24 Vitest tests, Astro diagnostics, the example-origin static audit and Worker smoke test. April also passed the noindexed review audit. The [March CI run](https://github.com/Boosad96/bongoponji/actions/runs/45998528630) and [April CI run](https://github.com/Boosad96/bongoponji/actions/runs/45998665267) also passed. A continuation recheck of the [PAC English editions index](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) still found 2026–27 as the latest listed edition on 2026-11-27. No new daily records qualified for comparison.
 
 ## Resume here
 
