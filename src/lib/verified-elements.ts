@@ -1,3 +1,4 @@
+import expansion from '../data/verified-elements.json';
 import { published, type RecordEnvelope } from './publication';
 
 const method = 'drik-lunar-elements-lahiri-v1';
@@ -11,10 +12,11 @@ function checked(
   nakshatra: Element,
   yoga: Element,
   karana: Element,
+  generatedAt = '2026-11-27T12:57:08Z',
 ): RecordEnvelope<Elements> {
   return {
     date, location: 'kolkata', region: 'west-bengal', method, engine,
-    status: 'VERIFIED', generatedAt: '2026-11-27T12:57:08Z',
+    status: 'VERIFIED', generatedAt,
     evidence: {
       source, checked: '2026-11-27', redistribution: 'cleared', origin: 'independent-computation',
     },
@@ -28,6 +30,9 @@ function element(label: string, date: string, clock: string): Element {
 
 // Independently calculated output. The PAC folio was used for comparison.
 const records = [
+  ...expansion.records.map(({ date, nakshatra, yoga, karana }) =>
+    checked(date, nakshatra, yoga, karana, expansion.generatedAt),
+  ),
   checked('2026-11-27', element('আর্দ্রা', '2026-11-27', '15:08'), element('শুভ', '2026-11-27', '23:51'), element('বিষ্টি', '2026-11-27', '09:50')),
   checked('2026-11-28', element('পুনর্বসু', '2026-11-28', '12:50'), element('শুক্ল', '2026-11-28', '20:18'), element('বালব', '2026-11-28', '06:41')),
   checked('2026-11-29', element('পুষ্যা', '2026-11-29', '11:00'), element('ব্রহ্ম', '2026-11-29', '17:08'), element('গর', '2026-11-29', '14:49')),

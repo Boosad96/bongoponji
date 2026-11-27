@@ -13,7 +13,8 @@
     "check": "astro check",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "build:workers": "astro build"
+    "build:workers": "astro build",
+    "preview:pages": "node scripts/preview-pages.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.9",

@@ -23,7 +23,7 @@ const daily = verifiedDaily(date, city.id, region);
 const tithi = daily?.value.tithi;
 const elements = daily && verifiedElements(date, city.id, region);
 const elementTime = new Intl.DateTimeFormat('bn-BD', {
-  timeZone: city.timezone, hour: 'numeric', minute: 'numeric',
+  timeZone: city.timezone, day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric',
 });
 const tithiNames = ['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী',
   'নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী'];

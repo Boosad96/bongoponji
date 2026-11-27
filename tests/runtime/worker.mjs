@@ -41,7 +41,9 @@ export default {
     check((await home.text()).includes('জানুয়ারি ২০২৭'), 'homepage month navigation should work without JavaScript');
     const dated = await request('/panjika/today/?city=kolkata&date=2026-12-02');
     const datedHtml = await dated.text();
-    check(!datedHtml.includes('সূর্যোদয়ের নক্ষত্র'), 'a verified tithi does not verify other elements');
+    check(datedHtml.includes('পূর্বফাল্গুনী'), 'expanded element data must appear on the checked date');
+    const withheld = await request('/panjika/today/?city=kolkata&date=2026-12-04');
+    check(!(await withheld.text()).includes('সূর্যোদয়ের নক্ষত্র'), 'withheld dates must omit sunrise elements');
     check(timestamp(datedHtml) === Date.parse('2026-12-02'), 'dated links must select the requested day');
     const invalid = await request('/panjika/today/?city=kolkata&date=2026-02-29');
     check(timestamp(await invalid.text()) === Date.parse('2026-11-27'), 'invalid dates must fall back to the local day');

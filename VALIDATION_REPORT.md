@@ -520,3 +520,163 @@ Lighthouse 13.6.0, Chromium, default mobile simulation, three runs on each set o
 | --- | --- | --- | --- |
 | Baseline | 0.758, 0.752, 0.753 | 0.753 s | 100 in all three |
 | With preload | 0.751, 0.767, 0.752 | 0.752 s | 100 in all three |
+
+## v4 Step 1 — reference availability, 2026-11-27 IST
+
+The PAC English index still links the 2026–27 ZIP as its newest English edition. The linked download is the previously inspected 1948 Saka volume with the 1949 appendix through 20 April 2027. The inspected English list exposed no 2027–28 download. The 1434 retailer still advertises the edition as forthcoming. The Barrackpore Math site lists 2026–27 yearly events. The school admission notice for 2027–28 is unrelated. Step 2 was skipped. No reference gate changed. [PAC index](https://packolkata.imd.gov.in/rashtriya-panchang-english.php) · [PAC download](https://packolkata.imd.gov.in/download/EnglishRP2627.zip) · [1434 edition listing](https://bongohridoy.com/product/bisuddha-siddhanta-panjika-1434/) · [Math site](https://rkvmbarrackpore.org/)
+
+## v4 Step 3 — offset diagnostics, 2026-11-27 IST
+
+Run `node scripts/diagnose-pac-offsets.mjs`. The horizon panel includes every withheld date with published horizon minutes (57) and all 88 approved dates. For controls, the exact-minute PAC values equal the stored approval values. The three blocked tithi dates remain blocked. April 21–30 and 5 August lack applicable PAC horizon comparisons and therefore cannot be scored.
+
+| One change from v2 | Withheld horizon pairs matched | Approved horizon pairs matched | Previously v2-matching controls lost | Sunrise / sunset shift vs v2 (seconds) |
+| --- | ---: | ---: | ---: | --- |
+| v2 baseline | 3/57 | 82/88 | 0 | 0 / 0 |
+| 88°22′30″ E inferred from PAC's 23 min 30 s solar-noon difference at the IST meridian | 3/57 | 76/88 | 7 | −2.67…−2.66 / −2.67…−2.66 |
+| 22°34′ N, nearest-arcminute sensitivity | 4/57 | 82/88 | 0 | −0.72…+0.35 / −0.35…+0.72 |
+| PAC's stated 31′ refraction | 12/57 | 39/88 | 49 | +24.68…+27.29 / −27.29…−24.71 |
+| PAC's stated fixed 16′ solar semidiameter | 4/57 | 82/88 | 0 | −0.34…+1.26 / −1.26…+0.35 |
+| JPL Horizons ΔT formula instead of Espenak–Meeus | 3/57 | 82/88 | 0 | −0.02…−0.01 / −0.02…−0.01 |
+| Replace observer longitude with the 82°30′ IST meridian as a sensitivity control | 0/57 | 0/88 | 82 | +1406.39…+1407.99 / +1407.32…+1408.02 |
+
+The printed foreword explicitly gives IST, so the meridian comparison tests a wrong input rather than providing a candidate convention. Rounding latitude to an arcminute has no confirmed station provenance. The fixed radius improves the horizon count by one (8 February) and leaves six historical controls unmatched when used uniformly. It therefore fails the zero-break adoption bar on the full control set. The stated refraction moves the horizon events in opposite directions, losing 49 controls that v2 matched. Using the alternate ΔT has a subsecond effect. The solar offset remains unexplained and no daily method or tolerances changed. [PAC edition](https://packolkata.imd.gov.in/download/EnglishRP2627.zip)
+
+### Sankranti comparison
+
+PAC's foreword assigns its variable ayanamsa to the Nirayana transits. Interpolating its listed monthly ayanamsa values (linearly extrapolating the last segment for April) with Astronomy Engine's apparent geocentric longitude brings all five samples inside the unchanged one-minute tolerance. The alternative PAC mean offset propagated with 50.29″/year leaves residuals of −4 to −5 minutes. Unaberrated geocentric longitude leaves −8 minutes with the monthly ayanamsa and −12 to −13 minutes with the mean or Lahiri. This identifies the published variable offset as the relevant convention on the tested dates. The comparison uses edition-specific parameters and supports only these five geocentric instants. No festival date, ritual window, website ingress field or daily method was derived from it.
+
+| Date | Sign | PAC IST | Apparent / PAC monthly IST | Difference | Result |
+| --- | --- | --- | --- | --- | --- |
+| 2026-12-16 | Dhanu | 10:25 | 10:25 | 0 min | VERIFIED |
+| 2027-01-14 | Makara | 21:10 | 21:11 | +1 min | VERIFIED |
+| 2027-02-13 | Kumbha | 10:09 | 10:09 | 0 min | VERIFIED |
+| 2027-03-15 | Meena | 07:00 | 07:00 | 0 min | VERIFIED |
+| 2027-04-14 | Mesha | 15:28 | 15:28 | 0 min | VERIFIED |
+
+Source for all five rows: Rashtriya Panchang 1948 Saka, Nirayana Rasi transits table. [PAC edition](https://packolkata.imd.gov.in/download/EnglishRP2627.zip)
+
+The apparent-noon cross-check against PAC on 12–13 January and 19–20 April gave residuals of +2.97, +2.96, +3.50 and +2.55 seconds. Equation-of-time and station-longitude effects at this scale do not explain the horizon residuals of several tens of seconds.
+
+## v4 Step 4 — Kolkata sunrise element expansion, 2026-11-27 IST
+
+Compared all 88 horizon-and-tithi approved dates against the 1948 Saka daily folios and the 1949 Chaitra appendix through 20 April. The comparison normalizes equivalent PAC spellings and resolves after-midnight times onto the next civil date. For ahoratra, the corresponding next-folio end is used. The previous folio is checked for an element still active at Kolkata sunrise. All 88 had matching labels and end-time differences within one minute. Five already had approvals. The 83 added rows store computed values only. The scope is the single nakshatra, yoga and karana active at sunrise. No later karana or other date is implied. [PAC edition](https://packolkata.imd.gov.in/download/EnglishRP2627.zip)
+
+Each cell gives the matched label, PAC / calculated IST end, and signed difference in minutes. A leading date indicates an end on the following civil day.
+
+| Date | Nakshatra | Yoga | Sunrise karana | Result |
+| --- | --- | --- | --- | --- |
+| 2026-11-27 | Ardra 15:09 / 15:08 (-1) | Shubha 23:52 / 23:51 (-1) | Vishti 09:49 / 09:50 (+1) | VERIFIED |
+| 2026-11-28 | Punarvasu 12:51 / 12:50 (-1) | Shukla 20:18 / 20:18 (+0) | Balava 06:40 / 06:41 (+1) | VERIFIED |
+| 2026-11-29 | Pushya 11:00 / 11:00 (+0) | Brahma 17:09 / 17:08 (-1) | Gara 14:48 / 14:49 (+1) | VERIFIED |
+| 2026-11-30 | Ashlesha 09:43 / 09:42 (-1) | Indra 14:28 / 14:27 (-1) | Vishti 12:55 / 12:56 (+1) | VERIFIED |
+| 2026-12-01 | Magha 09:01 / 09:01 (+0) | Vaidhriti 12:15 / 12:15 (+0) | Balava 11:39 / 11:39 (+0) | VERIFIED |
+| 2026-12-02 | Purva Phalguni 08:55 / 08:55 (+0) | Vishkambha 10:32 / 10:31 (-1) | Taitila 10:59 / 11:00 (+1) | VERIFIED |
+| 2026-12-03 | Uttara Phalguni 09:24 / 09:24 (+0) | Priti 09:15 / 09:15 (+0) | Vanija 10:54 / 10:55 (+1) | VERIFIED |
+| 2026-12-05 | Chitra 11:49 / 11:49 (+0) | Saubhagya 07:53 / 07:53 (+0) | Kaulava 12:16 / 12:16 (+0) | VERIFIED |
+| 2026-12-06 | Swati 13:38 / 13:38 (+0) | Shobhana 07:42 / 07:41 (-1) | Gara 13:35 / 13:35 (+0) | VERIFIED |
+| 2026-12-07 | Vishakha 15:48 / 15:48 (+0) | Atiganda 07:47 / 07:46 (-1) | Vishti 15:15 / 15:16 (+1) | VERIFIED |
+| 2026-12-08 | Anuradha 18:17 / 18:16 (-1) | Sukarma 08:07 / 08:06 (-1) | Chatushpada 17:15 / 17:16 (+1) | VERIFIED |
+| 2026-12-10 | Mula 23:58 / 23:58 (+0) | Shula 09:25 / 09:24 (-1) | Bava 08:47 / 08:47 (+0) | VERIFIED |
+| 2026-12-11 | Purva Ashadha 12-12 03:05 / 12-12 03:04 (-1) | Ganda 10:18 / 10:18 (+0) | Kaulava 11:24 / 11:24 (+0) | VERIFIED |
+| 2026-12-12 | Uttara Ashadha 12-13 06:12 / 12-13 06:12 (+0) | Vriddhi 11:17 / 11:16 (-1) | Gara 14:07 / 14:07 (+0) | VERIFIED |
+| 2026-12-13 | Uttara Ashadha 06:12 / 06:12 (+0) | Dhruva 12:15 / 12:14 (-1) | Vishti 16:48 / 16:49 (+1) | VERIFIED |
+| 2026-12-14 | Shravana 09:13 / 09:12 (-1) | Vyaghata 13:05 / 13:04 (-1) | Balava 19:17 / 19:17 (+0) | VERIFIED |
+| 2026-12-16 | Shatabhisha 14:03 / 14:02 (-1) | Vajra 13:46 / 13:46 (+0) | Gara 10:08 / 10:09 (+1) | VERIFIED |
+| 2026-12-17 | Purva Bhadrapada 15:31 / 15:31 (+0) | Siddhi 13:22 / 13:21 (-1) | Vishti 11:13 / 11:13 (+0) | VERIFIED |
+| 2026-12-18 | Uttara Bhadrapada 16:10 / 16:10 (+0) | Vyatipata 12:19 / 12:18 (-1) | Balava 11:27 / 11:28 (+1) | VERIFIED |
+| 2026-12-19 | Revati 15:58 / 15:58 (+0) | Variyan 10:35 / 10:35 (+0) | Taitila 10:49 / 10:49 (+0) | VERIFIED |
+| 2026-12-20 | Ashwini 14:56 / 14:56 (+0) | Parigha 08:10 / 08:10 (+0) | Vanija 09:18 / 09:19 (+1) | VERIFIED |
+| 2026-12-21 | Bharani 13:09 / 13:09 (+0) | Siddha 12-22 01:32 / 12-22 01:32 (+0) | Bava 07:01 / 07:01 (+0) | VERIFIED |
+| 2026-12-22 | Krittika 10:46 / 10:45 (-1) | Sadhya 21:32 / 21:32 (+0) | Taitila 14:24 / 14:25 (+1) | VERIFIED |
+| 2026-12-23 | Rohini 07:57 / 07:56 (-1) | Shubha 17:16 / 17:15 (-1) | Vanija 10:48 / 10:48 (+0) | VERIFIED |
+| 2026-12-24 | Ardra 12-25 01:47 / 12-25 01:47 (+0) | Shukla 12:51 / 12:51 (+0) | Bava 06:58 / 06:59 (+1) | VERIFIED |
+| 2026-12-25 | Punarvasu 22:50 / 22:50 (+0) | Brahma 08:29 / 08:28 (-1) | Taitila 13:15 / 13:16 (+1) | VERIFIED |
+| 2026-12-26 | Pushya 20:13 / 20:13 (+0) | Vaidhriti 12-27 00:23 / 12-27 00:22 (-1) | Vanija 09:43 / 09:43 (+0) | VERIFIED |
+| 2026-12-28 | Magha 16:33 / 16:33 (+0) | Priti 17:55 / 17:55 (+0) | Taitila 14:59 / 14:59 (+0) | VERIFIED |
+| 2026-12-29 | Purva Phalguni 15:43 / 15:43 (+0) | Ayushman 15:31 / 15:30 (-1) | Vanija 13:25 / 13:26 (+1) | VERIFIED |
+| 2026-12-30 | Uttara Phalguni 15:37 / 15:37 (+0) | Saubhagya 13:42 / 13:41 (-1) | Bava 12:37 / 12:38 (+1) | VERIFIED |
+| 2026-12-31 | Hasta 16:14 / 16:13 (-1) | Shobhana 12:27 / 12:26 (-1) | Kaulava 12:33 / 12:34 (+1) | VERIFIED |
+| 2027-01-01 | Chitra 17:30 / 17:29 (-1) | Atiganda 11:44 / 11:43 (-1) | Gara 13:11 / 13:11 (+0) | VERIFIED |
+| 2027-01-02 | Swati 19:20 / 19:19 (-1) | Sukarma 11:29 / 11:28 (-1) | Vishti 14:25 / 14:25 (+0) | VERIFIED |
+| 2027-01-03 | Vishakha 21:37 / 21:37 (+0) | Dhriti 11:37 / 11:36 (-1) | Balava 16:09 / 16:09 (+0) | VERIFIED |
+| 2027-01-05 | Jyeshtha 01-06 03:07 / 01-06 03:07 (+0) | Ganda 12:43 / 12:43 (+0) | Gara 07:26 / 07:27 (+1) | VERIFIED |
+| 2027-01-06 | Mula 01-07 06:08 / 01-07 06:08 (+0) | Vriddhi 13:32 / 13:31 (-1) | Vishti 09:56 / 09:57 (+1) | VERIFIED |
+| 2027-01-08 | Purva Ashadha 09:13 / 09:13 (+0) | Vyaghata 15:22 / 15:21 (-1) | Kimstughna 15:15 / 15:15 (+0) | VERIFIED |
+| 2027-01-09 | Uttara Ashadha 12:16 / 12:16 (+0) | Harshana 16:16 / 16:15 (-1) | Balava 17:52 / 17:53 (+1) | VERIFIED |
+| 2027-01-10 | Shravana 15:12 / 15:12 (+0) | Vajra 17:03 / 17:02 (-1) | Kaulava 07:08 / 07:08 (+0) | VERIFIED |
+| 2027-01-11 | Dhanishta 17:54 / 17:53 (-1) | Siddhi 17:39 / 17:38 (-1) | Gara 09:29 / 09:30 (+1) | VERIFIED |
+| 2027-01-12 | Shatabhisha 20:14 / 20:14 (+0) | Vyatipata 17:58 / 17:57 (-1) | Vishti 11:30 / 11:30 (+0) | VERIFIED |
+| 2027-01-13 | Purva Bhadrapada 22:05 / 22:04 (-1) | Variyan 17:54 / 17:53 (-1) | Balava 13:02 / 13:03 (+1) | VERIFIED |
+| 2027-01-14 | Uttara Bhadrapada 23:19 / 23:19 (+0) | Parigha 17:22 / 17:22 (+0) | Taitila 13:59 / 14:00 (+1) | VERIFIED |
+| 2027-01-15 | Revati 23:51 / 23:51 (+0) | Shiva 16:18 / 16:18 (+0) | Vanija 14:14 / 14:15 (+1) | VERIFIED |
+| 2027-01-16 | Ashwini 23:39 / 23:39 (+0) | Siddha 14:39 / 14:38 (-1) | Bava 13:43 / 13:44 (+1) | VERIFIED |
+| 2027-01-18 | Krittika 21:06 / 21:05 (-1) | Shubha 09:34 / 09:33 (-1) | Gara 10:28 / 10:28 (+0) | VERIFIED |
+| 2027-01-19 | Rohini 18:54 / 18:54 (+0) | Brahma 01-20 02:28 / 01-20 02:27 (-1) | Vishti 07:50 / 07:50 (+0) | VERIFIED |
+| 2027-01-21 | Ardra 13:24 / 13:24 (+0) | Vaidhriti 18:08 / 18:08 (+0) | Gara 11:22 / 11:23 (+1) | VERIFIED |
+| 2027-01-22 | Punarvasu 10:25 / 10:25 (+0) | Vishkambha 13:51 / 13:50 (-1) | Vishti 07:39 / 07:39 (+0) | VERIFIED |
+| 2027-01-23 | Pushya 07:32 / 07:31 (-1) | Priti 09:39 / 09:38 (-1) | Kaulava 14:13 / 14:14 (+1) | VERIFIED |
+| 2027-01-25 | Purva Phalguni 01-26 01:04 / 01-26 01:03 (-1) | Shobhana 22:54 / 22:54 (+0) | Vishti 08:11 / 08:11 (+0) | VERIFIED |
+| 2027-01-26 | Uttara Phalguni 01-27 00:07 / 01-27 00:07 (+0) | Atiganda 20:19 / 20:18 (-1) | Kaulava 17:12 / 17:12 (+0) | VERIFIED |
+| 2027-01-28 | Chitra 01-29 00:33 / 01-29 00:33 (+0) | Dhriti 16:58 / 16:57 (-1) | Vishti 15:53 / 15:53 (+0) | VERIFIED |
+| 2027-01-29 | Swati 01-30 01:55 / 01-30 01:54 (-1) | Shula 16:14 / 16:13 (-1) | Balava 16:26 / 16:26 (+0) | VERIFIED |
+| 2027-02-01 | Anuradha 06:28 / 06:28 (+0) | Dhruva 16:56 / 16:56 (+0) | Vishti 08:42 / 08:42 (+0) | VERIFIED |
+| 2027-02-03 | Mula 12:26 / 12:26 (+0) | Harshana 18:45 / 18:44 (-1) | Taitila 13:51 / 13:51 (+0) | VERIFIED |
+| 2027-02-04 | Purva Ashadha 15:33 / 15:32 (-1) | Vajra 19:42 / 19:41 (-1) | Vanija 16:32 / 16:32 (+0) | VERIFIED |
+| 2027-02-09 | Purva Bhadrapada 02-10 03:41 / 02-10 03:40 (-1) | Shiva 21:43 / 21:42 (-1) | Taitila 13:47 / 13:48 (+1) | VERIFIED |
+| 2027-02-11 | Revati 02-12 05:42 / 02-12 05:42 (+0) | Sadhya 20:21 / 20:20 (-1) | Bava 15:16 / 15:17 (+1) | VERIFIED |
+| 2027-02-13 | Bharani 02-14 05:38 / 02-14 05:37 (-1) | Shukla 17:19 / 17:18 (-1) | Gara 14:38 / 14:38 (+0) | VERIFIED |
+| 2027-02-14 | Krittika 02-15 04:47 / 02-15 04:46 (-1) | Brahma 15:09 / 15:08 (-1) | Vishti 13:28 / 13:29 (+1) | VERIFIED |
+| 2027-02-16 | Mrigashira 02-17 01:38 / 02-17 01:38 (+0) | Vaidhriti 09:34 / 09:33 (-1) | Taitila 09:35 / 09:36 (+1) | VERIFIED |
+| 2027-02-17 | Ardra 23:29 / 23:29 (+0) | Vishkambha 06:14 / 06:13 (-1) | Vanija 06:59 / 06:59 (+0) | VERIFIED |
+| 2027-02-20 | Ashlesha 16:08 / 16:08 (+0) | Shobhana 15:09 / 15:08 (-1) | Vanija 08:00 / 08:01 (+1) | VERIFIED |
+| 2027-02-22 | Purva Phalguni 11:55 / 11:55 (+0) | Sukarma 08:02 / 08:02 (+0) | Taitila 12:48 / 12:48 (+0) | VERIFIED |
+| 2027-02-24 | Hasta 09:39 / 09:39 (+0) | Ganda 02-25 00:27 / 02-25 00:26 (-1) | Bava 09:10 / 09:10 (+0) | VERIFIED |
+| 2027-02-26 | Swati 10:14 / 10:13 (-1) | Dhruva 22:19 / 22:18 (-1) | Gara 08:25 / 08:25 (+0) | VERIFIED |
+| 2027-02-27 | Vishakha 11:40 / 11:40 (+0) | Vyaghata 22:09 / 22:08 (-1) | Vishti 09:14 / 09:15 (+1) | VERIFIED |
+| 2027-02-28 | Anuradha 13:48 / 13:47 (-1) | Harshana 22:29 / 22:28 (-1) | Balava 10:47 / 10:47 (+0) | VERIFIED |
+| 2027-03-01 | Jyeshtha 16:27 / 16:27 (+0) | Vajra 23:11 / 23:10 (-1) | Taitila 12:54 / 12:55 (+1) | VERIFIED |
+| 2027-03-05 | Shravana 03-06 04:21 / 03-06 04:20 (-1) | Parigha 03-06 02:42 / 03-06 02:42 (+0) | Taitila 09:54 / 09:55 (+1) | VERIFIED |
+| 2027-03-06 | Dhanishta 03-07 06:42 / 03-07 06:42 (+0) | Shiva 03-07 03:05 / 03-07 03:04 (-1) | Vanija 12:04 / 12:05 (+1) | VERIFIED |
+| 2027-03-07 | Dhanishta 06:42 / 06:42 (+0) | Siddha 03-08 03:06 / 03-08 03:05 (-1) | Shakuni 13:47 / 13:47 (+0) | VERIFIED |
+| 2027-03-13 | Bharani 11:03 / 11:03 (+0) | Vaidhriti 19:31 / 19:30 (-1) | Balava 13:55 / 13:56 (+1) | VERIFIED |
+| 2027-03-15 | Rohini 09:27 / 09:26 (-1) | Priti 14:37 / 14:36 (-1) | Vanija 10:52 / 10:52 (+0) | VERIFIED |
+| 2027-03-16 | Mrigashira 08:13 / 08:13 (+0) | Ayushman 11:51 / 11:50 (-1) | Bava 08:55 / 08:55 (+0) | VERIFIED |
+| 2027-03-17 | Ardra 06:46 / 06:46 (+0) | Saubhagya 08:53 / 08:53 (+0) | Kaulava 06:44 / 06:45 (+1) | VERIFIED |
+| 2027-03-18 | Pushya 03-19 03:21 / 03-19 03:21 (+0) | Shobhana 05:47 / 05:46 (-1) | Vanija 15:08 / 15:08 (+0) | VERIFIED |
+| 2027-04-01 | Uttara Ashadha 09:26 / 09:25 (-1) | Shiva 08:52 / 08:52 (+0) | Vanija 11:33 / 11:34 (+1) | VERIFIED |
+| 2027-04-02 | Shravana 12:17 / 12:16 (-1) | Siddha 09:41 / 09:40 (-1) | Bava 13:53 / 13:53 (+0) | VERIFIED |
+| 2027-04-03 | Dhanishta 14:42 / 14:42 (+0) | Sadhya 10:11 / 10:10 (-1) | Kaulava 15:44 / 15:45 (+1) | VERIFIED |
+| 2027-04-04 | Shatabhisha 16:33 / 16:33 (+0) | Shubha 10:14 / 10:13 (-1) | Gara 17:00 / 17:01 (+1) | VERIFIED |
+| 2027-04-05 | Purva Bhadrapada 17:47 / 17:47 (+0) | Shukla 09:48 / 09:47 (-1) | Vishti 17:37 / 17:38 (+1) | VERIFIED |
+| 2027-04-13 | Ardra 12:13 / 12:13 (+0) | Atiganda 13:59 / 13:59 (+0) | Gara 06:32 / 06:33 (+1) | VERIFIED |
+| 2027-04-14 | Punarvasu 10:53 / 10:52 (-1) | Sukarma 11:10 / 11:10 (+0) | Bava 15:24 / 15:25 (+1) | VERIFIED |
+| 2027-04-15 | Pushya 09:34 / 09:33 (-1) | Dhriti 08:23 / 08:23 (+0) | Kaulava 13:21 / 13:22 (+1) | VERIFIED |
+| 2027-04-16 | Ashlesha 08:19 / 08:18 (-1) | Shula 05:39 / 05:38 (-1) | Gara 11:22 / 11:23 (+1) | VERIFIED |
+| 2027-04-20 | Chitra 04-21 04:29 / 04-21 04:28 (-1) | Harshana 17:47 / 17:47 (+0) | Vishti 16:21 / 16:22 (+1) | VERIFIED |
+
+### Ritual and festival gates
+
+- Marriage: a secondary 1433 transcription supplies candidate Kolkata lagna times and RKM documents some checks. A complete controlling rule and independent verification of the times were not established. [Transcription](https://myastrology.in/en/bengali-calendar/marriage-dates-1433) · [RKM reader](https://cs.rkmvu.ac.in/~tamal/jyotisha/panjika/)
+- Annaprashan: Beni Madhab Sil excerpts and independently computed tables surfaced. A complete applicable rule and the same tradition's independent Kolkata timings were not established. [Panjika excerpt](https://benimadhabsilpanjika.com/annaprashan-dates-in-1433/) · [Computed list](https://udyogjyotish.com/en/muhurat/annaprashan/2027/kolkata)
+- Griha Pravesh: computed Kolkata lists describe their own selection rules. An independent dated benchmark for the same Kolkata rule was not established. [Computed list](https://www.drikpanchang.com/shubh-dates/griha-pravesh-dates-with-muhurat.html?geoname-id=1275004&year=2027)
+- Upanayan: Kolkata predictions explicitly use North Indian rules. The Cultural Association of Bengal schedule does not establish a Kolkata timing benchmark and matching selection rule. [Predictions](https://udyogjyotish.com/hi/muhurat/upanayan/2027/kolkata) · [Association calendar](https://www.cabusa.org/bengali_panjika)
+
+No ritual windows qualify. The other 13 festival routes remain noindexed. The daily gate did not advance, and the ingress comparison alone supplies no Poush observance rule. Dolayatra still lacks an approved daily record.
+
+## v4 Step 5 — live review and local Pages QA, 2026-11-27 IST
+
+Lighthouse 13.6.0 ran in mobile simulation against the live Cloudflare Pages review deployment around 19:40 IST. HTTPS was verified separately with curl. The audit Chromium needed a temporary certificate-error override for the managed network's proxy trust chain. Each row is one lab run. These are not field metrics.
+
+| Live page | Performance | Accessibility | SEO | LCP | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Homepage | 100 | 100 | 63 | 0.877 s | 0 |
+| Poila Boishakh | 100 | 100 | 63 | 0.836 s | 0.0002 |
+| Date converter, before fix | 87 | 96 | 63 | 0.856 s | 0.252 |
+
+Live LCP was close to the 0.75 s built-file median. Noindex is intentional and was verified on the live homepage, converter and all three approved festival routes. Lighthouse attributed the converter's CLS to Bengali and Latin font loads. The converter now preloads both subsets and uses optional display so a late font does not replace a fallback after initial rendering. In a matched local Lighthouse run using DevTools mobile throttling and an extra 350 ms font-response delay, CLS went from 0.252 to 0, Performance from 87 to 99, and LCP from 1.56 s to 1.66 s. The updated live build needs a follow-up measurement.
+
+The in-repository Wrangler command reproduced the missing facade error while picking up Astro's generated Workers configuration. The new isolated `npm run preview:pages -- --port 8789` started correctly. An HTTP request returned the supported 20 April Kolkata record with its following-day nakshatra end, and the packaged Poila Boishakh route returned HTTP 200. All seven Playwright cases ran and passed.
+
+## v4 Step 6 — launch preparation, 2026-11-27 IST
+
+Added LAUNCH_CHECKLIST.md for the owner. The configured example-origin build passed the sitemap, robots, canonical, indexability and internal-link checks across 89 sitemap entries and 112 static HTML pages. It also passed the packaged Worker check. No Cloudflare or Search Console account change was made.

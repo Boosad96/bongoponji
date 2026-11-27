@@ -1,5 +1,7 @@
 # GitHub to Cloudflare Pages
 
+The owner has already connected the live, noindexed [Pages review deployment](https://bongoponji.pages.dev/). Use the [owner launch checklist](LAUNCH_CHECKLIST.md) when production publication is approved.
+
 ## Release prerequisites
 
 Obtain owner authorization for the GitHub repository, Cloudflare account and any DNS changes. Review VALIDATION_REPORT.md and KNOWN_LIMITATIONS.md before enabling public production indexing. The verified P0 release remains blocked by Panchang data coverage and approval. Leave SITE_URL unset for a review build.

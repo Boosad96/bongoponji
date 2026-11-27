@@ -96,8 +96,18 @@ Reviewed marriage, Annaprashan, Griha Pravesh and Upanayan in that order. All re
 
 Added a Bengali font preload to verified festival pages. Lighthouse mobile lab medians on the built Poila Boishakh page were 0.75 s before and after, and the earlier 4.1-second dev result did not reproduce. The suite passed 26 Vitest tests, seven Chromium cases, Astro diagnostics, build audits and packaged Worker checks.
 
+## v4 reference checkpoint
+
+Rechecked the PAC index and download listing, the printed 1434 listing and the Math schedule on 27 November 2026 IST. No applicable new references surfaced. Skipped Step 2 and continued with the offset diagnostics.
+
+## v4 diagnostics, approved expansion and launch preparation
+
+Compared 57 withheld and 88 approved horizon pairs across six variants and checked apparent noon separately. Retained v2 and all existing tolerances. PAC's variable monthly ayanamsa brought five sankranti instants within one minute, with verification recorded in VALIDATION_REPORT.md and no ritual or ingress UI output. Confirmed sunrise nakshatra, yoga and karana on all 88 approved Kolkata dates, up from five. Four rites and thirteen festivals remain withheld.
+
+Measured three live review pages via mobile Lighthouse. Live LCP was 0.836–0.877 s. Identified the converter's font-driven CLS regression and changed its font display policy. Fixed local Wrangler Pages preview by isolating the package from Astro's generated Workers configuration. Added LAUNCH_CHECKLIST.md for the owner. The suite passed after the reference, diagnostics, expansion, performance and launch checkpoints, including 26 Vitest tests, Astro diagnostics, the configured-origin audit (89 sitemap entries and 112 static pages), and the packaged Worker checks. The final seven Playwright cases passed.
+
 ## Resume here
 
-1. May 2027 daily coverage and eleven 1434 boundaries remain deferred. Resume those checks only when an applicable reference is available and the owner has reopened that work. Keep withheld dates closed.
-2. For Step E expansion, obtain a Kolkata tradition-specific published rule and dated timing reference for each rite. For sankranti, compare the PAC variable ayanamsa and geocentric longitude conventions against the five residuals before running further checks. For sunrise element expansion, run `node scripts/probe-pac-elements.mjs YYYY-MM-DD ...` and compare each label and ending time against the applicable folio. See VALIDATION_REPORT.md and KNOWN_LIMITATIONS.md for current coverage.
-3. Resolve the Wrangler preview facade error and rerun production Lighthouse after a review deployment is available. Keep SITE_URL unset in review and leave deployment to the owner. The example origin is restricted to local build tests.
+1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
+2. Continue ritual and festival coverage when date-specific approvals and independent evidence of the applicable observance rules are available. For more sankranti checks, use the edition-specific variable ayanamsa and apparent geocentric probe with independent dated PAC comparisons. The five checked ingresses have no associated ritual windows.
+3. Confirm the converter CLS on the owner-managed live Pages review after its Git build updates. See LAUNCH_CHECKLIST.md for the owner-only launch steps. Keep SITE_URL unset in the review environment.
