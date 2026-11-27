@@ -68,3 +68,47 @@ textarea { display: block; width: 100%; margin-top: .35rem; padding: .5rem; bord
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 :root.stable-font { font-family: "Noto Sans Bengali Stable", sans-serif; }
+
+.theme { width: auto; min-height: 2.75rem; height: auto; padding: .35rem .8rem; border-radius: .65rem; }
+footer nav a, .summary a, .source-link { text-decoration: underline; }
+.daily-hero { grid-template-columns: 1fr; }
+.daily-hero .summary { min-width: 0; }
+.daily-hero .summary dl { grid-template-columns: minmax(min-content, 13rem) minmax(0, 1fr); }
+.daily-hero .summary dd { overflow-wrap: break-word; }
+.daily-links { margin-top: 1rem; }
+.daily-links a, .year-links a { padding: .4rem .65rem; border: 1px solid currentColor; border-radius: .55rem; }
+.year-links { gap: .5rem; }
+
+.tool-result:has(output:not(:empty)) {
+  margin-top: 1rem;
+  padding: .8rem 1rem;
+  background: var(--soft);
+  border-inline-start: 3px solid var(--brand);
+  border-radius: .55rem;
+}
+.tool-result:has(output:empty) h3 { display: none; }
+.tool-result output { margin: 0; color: var(--ink); }
+input::placeholder { color: var(--muted); opacity: 1; }
+.festival-list { display: grid; gap: .65rem; margin-block: .8rem 1rem; }
+.festival-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .1rem .8rem; }
+.festival-list a, .calendar-observances a { text-decoration: underline; }
+.calendar caption small { margin-top: .2rem; }
+.calendar th { white-space: nowrap; }
+.calendar td[aria-current=date] { outline: 3px solid var(--brand); outline-offset: -3px; }
+.calendar-festival { display: block; font-size: .7rem; }
+.calendar-observances { margin-top: .65rem; }
+.annual-calendar {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+  align-items: start;
+}
+@media (max-width: 670px) {
+  .daily-hero .summary dl { grid-template-columns: 1fr; }
+}
+@media print {
+  .annual-calendar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.converter-grid { display: grid; gap: 1rem; }
+.birthday-tool { max-width: 48rem; }
+@media (min-width: 900px) {
+  .converter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}

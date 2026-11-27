@@ -1,16 +1,40 @@
 ---
 import { monthWeeks } from '../lib/calendar-view';
-import { type Region, months } from '../lib/bengali';
+import { type Region, methods, months } from '../lib/bengali';
 import { bn } from '../lib/dates';
 import { gregorianMonths } from '../lib/site';
+import { verifiedFestivals } from '../lib/verified-festivals';
 interface Props { year: number; month: number; region: Region; today?: string }
 const { year, month, region, today } = Astro.props;
-const weekdays = ['রবি','সোম','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
+const weekdays = ['রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র','শনি'];
+const weeks = monthWeeks(year, month, region);
+const monthNames = [...new Set(weeks.flatMap(week =>
+  week.flatMap(cell => cell?.bengali ? [months[cell.bengali.month - 1]] : []),
+))];
+const monthKey = `${year}-${String(month).padStart(2, '0')}`;
+const festivals = verifiedFestivals.filter(festival => festival.date.startsWith(monthKey));
 ---
-<table class="calendar">
-  <caption>{gregorianMonths[month-1]} {bn(year)}</caption>
-  <thead><tr>{weekdays.map(day => <th scope="col">{day}</th>)}</tr></thead>
-  <tbody>{monthWeeks(year, month, region).map(week => <tr>{week.map(cell => <td aria-current={cell && cell.iso === today ? 'date' : undefined}>
-    {cell && <time datetime={cell.iso}>{bn(cell.number)}{cell.bengali && <small>{bn(cell.bengali.day)} {months[cell.bengali.month-1]}</small>}</time>}
-  </td>)}</tr>)}</tbody>
+<table class="calendar" data-calendar-zone={today ? undefined : 'Asia/Dhaka'}>
+  <caption>
+    <strong>{gregorianMonths[month-1]} {bn(year)}</strong>
+    <small>{methods[region]}{monthNames.length > 0 && ` · ${monthNames.join(' / ')}`}</small>
+  </caption>
+  <thead><tr>{weekdays.map(day => <th scope="col" aria-label={day === 'বৃহ' ? 'বৃহস্পতিবার' : undefined}>{day}</th>)}</tr></thead>
+  <tbody>{weeks.map(week => <tr>{week.map(cell => {
+    const festival = festivals.find(entry => entry.date === cell?.iso);
+    return <td aria-current={cell && cell.iso === today ? 'date' : undefined}>
+      {cell && <time datetime={cell.iso}>{bn(cell.number)}{cell.bengali && <small>{bn(cell.bengali.day)}{cell.bengali.day === 1 && <span class="sr-only"> {months[cell.bengali.month - 1]}</span>}</small>}</time>}
+      {festival && <a class="calendar-festival" href={`/festivals/${festival.slug}/2027/`} aria-label={festival.title} title={festival.title}>●</a>}
+    </td>;
+  })}</tr>)}</tbody>
 </table>
+{festivals.length > 0 && <ul class="calendar-observances" aria-label="পশ্চিমবঙ্গের যাচাইকৃত উৎসব">
+  {festivals.map(festival => <li><a href={`/festivals/${festival.slug}/2027/`}>{bn(Number(festival.date.slice(-2)))} · {festival.title}</a> <small>পশ্চিমবঙ্গ</small></li>)}
+</ul>}
+<script>
+  import { localDate } from '../lib/dates';
+  const today = localDate(new Date(), 'Asia/Dhaka');
+  for (const table of document.querySelectorAll('.calendar[data-calendar-zone]')) {
+    table.querySelector(`time[datetime="${today}"]`)?.closest('td')?.setAttribute('aria-current', 'date');
+  }
+</script>

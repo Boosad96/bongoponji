@@ -1,31 +1,38 @@
----
-const { age = false } = Astro.props;
----
 <section class="section card">
-  <p>বাংলাদেশের সংশোধিত নাগরিক বর্ষপঞ্জি অনুযায়ী হিসাব করা হয়। জন্মদিন ৩০ ফাল্গুন হলে সাধারণ বছরে ২৯ ফাল্গুন ধরা হয়।</p>
-  <form id="birthday-calculator" class="form-row" data-age={age ? '1' : '0'}>
-    <label>গ্রেগরিয়ান জন্মতারিখ <input name="birth" type="date" required min="2019-10-16" max="2099-12-31" /></label>
+  <p id="birth-coverage">বাংলা জন্মদিনের জন্য জন্মতারিখের সীমা ১৬ অক্টোবর ২০১৯ থেকে আজ পর্যন্ত। এর আগের জন্মতারিখে গ্রেগরিয়ান বয়স দেখানো হয়। পশ্চিমবঙ্গের সৌর বর্ষপঞ্জিতে জন্মদিন রূপান্তর প্রকাশের অপেক্ষায় আছে।</p>
+  <p class="muted">বাংলাদেশের নাগরিক বর্ষপঞ্জিতে জন্মদিন ৩০ ফাল্গুন হলে সাধারণ বছরে ২৯ ফাল্গুন ধরা হয়।</p>
+  <form id="birthday-calculator" class="form-row">
+    <label>গ্রেগরিয়ান জন্মতারিখ <input name="birth" type="text" required placeholder="১৯৯০-০৪-১৪" aria-describedby="birth-format birth-coverage" /></label>
     <button class="button">হিসাব করুন</button>
   </form>
-  <output id="birthday-result" form="birthday-calculator" aria-live="polite"></output>
+  <p id="birth-format" class="muted">বছর-মাস-দিন লিখুন (যেমন ১৯৯০-০৪-১৪)। বাংলা ও ইংরেজি অঙ্ক গ্রহণযোগ্য।</p>
+  <div class="tool-result"><h3>ফলাফল:</h3><output id="birthday-result" form="birthday-calculator" aria-live="polite"></output></div>
 </section>
 <script>
   import { bengaliBirthday } from '../lib/birthday';
-  import { bengaliLabel } from '../lib/bengali';
-  import { bn, gregorianLabel, localDate } from '../lib/dates';
+  import { bengaliLabel, calendarEvidence, methods, toBengali } from '../lib/bengali';
+  import { ascii, bn, dayNumber, gregorianLabel, localDate } from '../lib/dates';
   const form = document.querySelector<HTMLFormElement>('#birthday-calculator');
   const out = document.querySelector('#birthday-result');
   form?.addEventListener('submit', event => {
     event.preventDefault();
     if (!out) return;
-    const birth = String(new FormData(form).get('birth') ?? '');
+    const birth = ascii(String(new FormData(form).get('birth') ?? '').trim());
     const today = localDate(new Date(), 'Asia/Dhaka');
     try {
+      dayNumber(birth);
+      if (birth >= '0001-01-01' && birth <= today && birth < calendarEvidence.bangladesh.from) {
+        const age = Number(today.slice(0, 4)) - Number(birth.slice(0, 4)) - Number(today.slice(5) < birth.slice(5));
+        out.textContent = `গ্রেগরিয়ান হিসাবে পূর্ণ বয়স ${bn(age)} বছর। এই জন্মতারিখ বাংলা জন্মদিনের সমর্থিত সীমার আগে।`;
+        return;
+      }
       const result = bengaliBirthday(birth, today);
       if (result) {
-        const age = form.dataset.age === '1' ? ` · পূর্ণ বয়স ${bn(result.age)} বছর` : '';
-        const next = result.next ? ` · পরের জন্মদিন ${gregorianLabel(result.next)}` : '';
-        out.textContent = `বাংলা জন্মতারিখ ${bengaliLabel(result.original)}${age}${next}`;
+        const nextBengali = result.next && toBengali(result.next);
+        const next = result.next && nextBengali
+          ? `পরের জন্মদিন ${bengaliLabel(nextBengali)} (${gregorianLabel(result.next)})`
+          : 'পরের জন্মদিন সমর্থিত সীমার বাইরে।';
+        out.textContent = `পূর্ণ বয়স ${bn(result.age)} বছর · বাংলা জন্মতারিখ ${bengaliLabel(result.original)} · ${next} · ${methods.bangladesh}`;
         return;
       }
     } catch { /* Invalid input receives the same message. */ }

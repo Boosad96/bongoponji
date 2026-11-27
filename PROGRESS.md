@@ -112,6 +112,10 @@ Added homepage and verified festival JSON-LD and extended civil year and month r
 
 The [2028 workflow dispatch](https://github.com/Boosad96/bongoponji/actions/runs/46015687227) passed and published zero records. The live Git-connected review now serves the homepage and all three verified festival JSON-LD blocks, plus the February 2030 civil calendar. The tested review routes retain noindex.
 
+## v5 design review
+
+Confirmed the live report against desktop and a 390 px Chromium viewport. Preserved the West Bengal and Bangladesh publication gate. Fixed converter first use, birthday results and explicit historical coverage, hero and calendar density, navigation affordances, labels, and the verified festival lists. See VALIDATION_REPORT.md for the findings that did not reproduce.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.

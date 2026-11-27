@@ -1,11 +1,12 @@
 ---
 import Layout from './Layout.astro';
 import Month from './Month.astro';
-import { dayNumber, localDate, isoDay, gregorianLabel, bn } from '../lib/dates';
+import { dayNumber, localDate, isoDay, gregorianLabel, bn, bengaliTimeLabel } from '../lib/dates';
 import { bengaliLabel, calendarEvidence, methods, toBengali } from '../lib/bengali';
 import { verifiedDaily } from '../lib/daily';
+import { verifiedFestivals } from '../lib/verified-festivals';
 import { verifiedElements } from '../lib/verified-elements';
-import { cityFor, cityNames, unavailable, years } from '../lib/site';
+import { cityFor, cityNames, years } from '../lib/site';
 interface Props { home?: boolean; tomorrow?: boolean; fixedCity?: string; civilOnly?: boolean }
 const { home, tomorrow, fixedCity, civilOnly } = Astro.props;
 const city = cityFor(fixedCity ?? Astro.url.searchParams.get('city'));
@@ -22,16 +23,12 @@ const result = region === 'bangladesh' ? toBengali(date) : null;
 const daily = verifiedDaily(date, city.id, region);
 const tithi = daily?.value.tithi;
 const elements = daily && verifiedElements(date, city.id, region);
-const elementTime = new Intl.DateTimeFormat('bn-BD', {
-  timeZone: city.timezone, day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric',
-});
+const upcoming = verifiedFestivals.filter(festival => festival.date >= localToday);
 const tithiNames = ['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী',
   'নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী'];
 const tithiName = tithi ? tithiNames[tithi.number - 1] ?? (tithi.paksha === 'shukla' ? 'পূর্ণিমা' : 'অমাবস্যা') : '';
 const tithiEnd = tithi && new Date(tithi.endsAt);
-const tithiEndLabel = tithiEnd && new Intl.DateTimeFormat('bn-BD',{
-  timeZone: city.timezone, day:'numeric', month:'long', hour:'numeric', minute:'numeric',
-}).format(tithiEnd);
+const tithiEndLabel = tithiEnd && bengaliTimeLabel(tithiEnd, city.timezone);
 const requestedMonth = Astro.url.searchParams.get('month') ?? '';
 const displayMonth = /^20(?:2[6-9]|[3-9][0-9])-(?:0[1-9]|1[0-2])$/.test(requestedMonth) ? requestedMonth : date.slice(0,7);
 const [year, month] = displayMonth.split('-').map(Number);
@@ -43,7 +40,7 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
   : `${title}। শহরের স্থানীয় সময়, গণনাপদ্ধতি ও তথ্যের যাচাইয়ের অবস্থা দেখুন।`;
 ---
 <Layout {title} {description} noindex={!home} home={home}>
-  <section class="hero">
+  <section class="hero daily-hero">
     <div>
       <p class="muted">{home ? 'বাংলার প্রতিদিন, বাংলার সময়।' : city.name}</p>
       <h1>{home && result ? bengaliLabel(result) : home ? 'আজকের বাংলা তারিখ' : title}</h1>
@@ -70,7 +67,7 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
           ['যোগ', elements.value.yoga],
           ['করণ', elements.value.karana],
         ] as const).map(([label, event]) => <>
-          <dt>সূর্যোদয়ের {label}</dt><dd>{event.label} · শেষ <time datetime={event.endsAt}>{elementTime.format(new Date(event.endsAt))}</time></dd>
+          <dt>সূর্যোদয়ের {label}</dt><dd>{event.label} · শেষ <time datetime={event.endsAt}>{bengaliTimeLabel(new Date(event.endsAt), city.timezone)}</time></dd>
         </>)}</dl>
         <p class="muted">লাহিড়ী অয়নাংশভিত্তিক দৃক্‌ গণনা · <a href={elements.evidence.source}>রাষ্ট্রীয় পঞ্চাঙ্গে যাচাইকৃত</a> · {gregorianLabel(elements.evidence.checked)}। শুভ সময় বাছাইয়ে এসবের ব্যবহার প্রথাগত বিশ্বাসের অংশ।</p>
       </section> : daily && <p>নক্ষত্র, যোগ ও করণের যাচাই চলছে।</p>}
@@ -82,8 +79,8 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
         <dt>যাচাইয়ের অবস্থা</dt><dd>{daily ? (tithi ? "সূর্যোদয়, সূর্যাস্ত ও সূর্যোদয়ের তিথি যাচাইকৃত" : "সূর্যোদয় ও সূর্যাস্ত যাচাইকৃত") : "প্রকাশ অপেক্ষমাণ"}</dd><dt>শেষ যাচাই</dt><dd>{daily?.evidence ? gregorianLabel(daily.evidence.checked) : "প্রযোজ্য নয়"}</dd>
         {result && <><dt>নাগরিক বর্ষপঞ্জির সূত্র</dt><dd><a href={calendarEvidence.bangladesh.source}>সংশোধনের নিয়ম</a></dd><dt>সূত্র পর্যালোচনা</dt><dd>{gregorianLabel(calendarEvidence.bangladesh.checked)}</dd></>}
       </dl>
-      <a href={`/panjika/${tomorrow ? 'today' : 'tomorrow'}/?${query}`}>{tomorrow ? 'আজকের পঞ্জিকা' : 'আগামীকালের পঞ্জিকা'}</a>
-      <span aria-hidden="true"> · </span><a href="/corrections/">সংশোধন জানান</a>
+      <nav class="daily-links" aria-label="পঞ্জিকার লিংক"><a href={`/panjika/${tomorrow ? 'today' : 'tomorrow'}/?${query}`}>{tomorrow ? 'আজকের পঞ্জিকা' : 'আগামীকালের পঞ্জিকা'}</a>
+      <a href="/corrections/">সংশোধন জানান</a></nav>
       {!home && !civilOnly && <nav class="actions" aria-label="পঞ্জিকার দিন বদলান">
         {date > '2019-10-16' && <a href={dateLink(-1)}>আগের দিন</a>}
         {date < '2099-12-31' && <a href={dateLink(1)}>পরের দিন</a>}
@@ -107,9 +104,13 @@ const description = home ? 'বাংলা তারিখ, মাসিক ক
       <Month {year} {month} {region} today={date} />
     </section>
     <section class="section grid">
-      <div class="card"><h2>আসন্ন উৎসব</h2><p>{unavailable}</p><a href="/festivals/2027/">২০২৭-এর উৎসব</a></div>
-      <div class="card"><h2>বিয়ের শুভ দিন</h2><p>শুভ সময় নির্ধারণ একটি প্রথাগত রীতি। {unavailable}</p><a href="/muhurat/marriage/2027/">যাচাইয়ের অবস্থা</a></div>
-      <div class="card"><h2>ক্যালেন্ডার বর্ষ</h2><nav>{years.map(year => <a href={`/calendar/${year}/`}>{bn(year)}</a>)}<a href="/calendar/bengali-year/1433/">১৪৩৩</a><a href="/calendar/bengali-year/1434/">১৪৩৪</a></nav></div>
+      <div class="card"><h2>পশ্চিমবঙ্গের আসন্ন উৎসব</h2>
+        {upcoming.length ? <ul class="festival-list">{upcoming.map(festival => <li><a href={`/festivals/${festival.slug}/2027/`}>{festival.title}</a><time datetime={festival.date}>{gregorianLabel(festival.date)}</time></li>)}</ul>
+          : <p>সামনের কোনো উৎসবের তারিখ এখনও যাচাই করা হয়নি।</p>}
+        <a href="/festivals/2027/">২০২৭-এর উৎসব</a>
+      </div>
+      <div class="card"><h2>বিয়ের শুভ দিন</h2><p>শুভ সময় নির্ধারণ একটি প্রথাগত বিশ্বাস। কলকাতার জন্য বিয়ের কোনো দিনক্ষণ এখনও যাচাই করা হয়নি।</p><a href="/muhurat/marriage/2027/">যাচাইয়ের অবস্থা</a></div>
+      <div class="card"><h2>ক্যালেন্ডার বর্ষ</h2><nav class="year-links">{years.map(year => <a href={`/calendar/${year}/`}>{bn(year)}</a>)}<a href="/calendar/bengali-year/1433/">১৪৩৩</a><a href="/calendar/bengali-year/1434/">১৪৩৪</a></nav></div>
     </section>
     <section class="section card"><h2>গণনাপদ্ধতি ও তথ্যসূত্র</h2><p>বাংলাদেশের নাগরিক বর্ষপঞ্জি ও পশ্চিমবঙ্গের সৌর বর্ষপঞ্জি ভিন্ন নিয়মে চলে। ধর্মীয় দিন নির্ধারণে স্থান ও পালনরীতিও গুরুত্বপূর্ণ।</p><nav><a href="/methodology/">গণনাপদ্ধতি</a><a href="/sources/">তথ্যসূত্র</a></nav></section>
   </>}

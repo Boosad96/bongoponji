@@ -13,7 +13,7 @@ test('converts Bengali numeral input in both directions', async ({ page }) => {
   await page.goto('/tools/date-converter/');
   await page.getByLabel('গ্রেগরিয়ান তারিখ').fill('২০২৭-০৪-১৪');
   await page.locator('#to-bengali button').click();
-  await expect(page.locator('#bengali-result')).toHaveText('১ বৈশাখ ১৪৩৪');
+  await expect(page.locator('#bengali-result')).toContainText('১ বৈশাখ ১৪৩৪');
   await page.getByLabel('বাংলা বছর').fill('১৪৩৪');
   await page.getByLabel('দিন', {exact:true}).fill('১');
   await page.locator('#to-gregorian button').click();
@@ -79,4 +79,40 @@ test('switches civil calendar years while preserving the selected month', async 
   await years.getByRole('link', { name: '২০৩০' }).click();
   await expect(page).toHaveURL(/\/calendar\/2030\/february\/$/);
   await expect(years.getByRole('link', { name: '২০৩০' })).toHaveAttribute('aria-current', 'page');
+});
+
+test('converts the prefilled date on the first click', async ({ page }) => {
+  await page.goto('/tools/date-converter/');
+  await page.locator('#to-bengali button').click();
+  await expect(page.locator('#bengali-result')).toContainText('১ বৈশাখ ১৪৩৪');
+  await expect(page.locator('#bengali-result')).toContainText('সংশোধিত নাগরিক বর্ষপঞ্জি');
+  await expect(page.getByRole('heading', { name: 'ফলাফল:' })).toBeVisible();
+});
+
+test('shows adult Gregorian age and explains Bengali birthday coverage', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2026-11-27T12:00:00Z'));
+  await page.goto('/tools/bengali-birthday/');
+  await page.getByLabel('গ্রেগরিয়ান জন্মতারিখ').fill('১৯৯০-০৪-১৪');
+  await page.getByRole('button', { name: 'হিসাব করুন' }).click();
+  const result = page.locator('#birthday-result');
+  await expect(result).toContainText('গ্রেগরিয়ান হিসাবে পূর্ণ বয়স ৩৬ বছর');
+  await expect(result).toContainText('সমর্থিত সীমার আগে');
+  await page.getByLabel('গ্রেগরিয়ান জন্মতারিখ').fill('২০২০-০৪-১৪');
+  await page.getByRole('button', { name: 'হিসাব করুন' }).click();
+  await expect(result).toContainText('পূর্ণ বয়স ৬ বছর');
+  await expect(result).toContainText('পরের জন্মদিন ১ বৈশাখ ১৪৩৪');
+  await expect(result).toContainText('১৪ এপ্রিল');
+});
+
+test('highlights today in a month table and fits key pages at 390px', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.clock.setFixedTime(new Date('2026-11-27T12:00:00Z'));
+  for (const path of ['/', '/tools/date-converter/', '/calendar/2026/november/', '/calendar/2026/', '/panjika/today/?date=2026-11-27']) {
+    await page.goto(path);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth), path).toBe(390);
+  }
+  await page.goto('/calendar/2026/november/');
+  await expect(page.locator('td[aria-current=date] time')).toHaveAttribute('datetime', '2026-11-27');
+  await page.goto('/calendar/2027/april/');
+  await expect(page.getByRole('link', { name: 'পয়লা বৈশাখ', exact: true })).toBeVisible();
 });

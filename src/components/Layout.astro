@@ -71,7 +71,7 @@ const links = [['/','প্রচ্ছদ'],['/panjika/today/','পঞ্জি
   <header class="top"><div class="wrap header-inner">
     <a class="brand" href="/"><span class="brand-icon" aria-hidden="true">◉</span><span>বঙ্গপঞ্জি</span></a>
     <nav aria-label="প্রধান মেনু">{links.map(([href,label]) => <a href={href} aria-current={Astro.url.pathname === href ? 'page' : undefined}>{label}</a>)}</nav>
-    <button class="theme" id="theme" type="button" aria-label="আলো বা অন্ধকার রং বদলান">◐</button>
+    <button class="theme" id="theme" type="button" aria-label="আলো বা অন্ধকার রং বদলান">রং বদলান</button>
   </div></header>
   <main id="main" class="wrap">
     {!home && <nav class="crumb" aria-label="আপনি এখানে"><a href="/">প্রচ্ছদ</a><span aria-hidden="true">/</span><span>{title}</span></nav>}

@@ -23,3 +23,11 @@ export const ascii = (value: string) => value.replace(/[০-৯]/g, digit => Str
 export const gregorianLabel = (iso: string) => new Intl.DateTimeFormat('bn-BD', {
   dateStyle: 'long', timeZone: 'UTC',
 }).format(new Date(dayNumber(iso) * DAY_MS));
+
+export function bengaliTimeLabel(date: Date, timeZone: string): string {
+  const day = new Intl.DateTimeFormat('bn-BD', { timeZone, day: 'numeric', month: 'long' }).format(date);
+  const clock = new Intl.DateTimeFormat('bn-BD', {
+    timeZone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).format(date);
+  return `${day}, ${clock}`;
+}
