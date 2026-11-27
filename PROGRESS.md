@@ -126,6 +126,16 @@ Astro now logs the validated public SITE_URL or that it is unset during builds. 
 
 Next for v5.1: in Cloudflare Pages → bongoponji → Settings → Variables and Secrets, select Production and check that SITE_URL is a Text variable with value `https://bongoponji.com`. Keep it unset in Preview. On the next fresh build, check the `[bongoponji] SITE_URL:` log line, then fetch the new deployment's sitemap and robots files directly. Acceptance requires exactly 115 apex URLs and the two production robots directives recorded above.
 
+## v5.2 Pages variable delivery
+
+The owner confirmed that Production has a plaintext SITE_URL with the correct apex value and Preview has no SITE_URL. The supplied build log for d341a5ca shows Astro received no SITE_URL and that Pages reported no build variables while reading wrangler.toml. The fallback log wording describes the resolved build settings. The deployment itself was marked Production.
+
+GitHub's Cloudflare Pages check for the main push at 7da6fdc points to the expected bongoponji project and deployment. That corroborates the reported branch and Git connection. The reported build command and output match package.json and the root Pages configuration. The dashboard build preset and effective Node version still need inspection. The repository runs Astro directly and packages its output afterward. Neither GitHub workflow deploys to Pages. The root Pages config has no vars, and the Workers config is used by the Astro adapter. Cloudflare documents that a Pages Wrangler file can take precedence over dashboard settings, making the active root config a plausible lead. Which source the builder used for this deployment remains unconfirmed. [Cloudflare Pages configuration](https://developers.cloudflare.com/pages/functions/wrangler-configuration/)
+
+The dashboard session is signed out and displayed a verification error. The Production re-save, retry of d341a5ca, and subsequent fresh Git build remain pending in that order. Record the deployment ID, resolved-origin log line and direct sitemap/robots responses after each attempt before moving on. Repo code and staging configuration were untouched. If these dashboard remedies fail, obtain owner approval before testing a build-configuration fallback. One candidate is to have the dashboard own the Pages configuration in a controlled trial, preserving the output directory and compatibility date and keeping the Workers configuration in place. Avoid a default SITE_URL.
+
+Local verification passed all 26 unit tests and Astro diagnostics. The configured build produced 115 apex URLs, `Allow: /` and the apex sitemap line. The unset preview build produced zero URLs and `Disallow: /`. Both static audits passed on 138 pages. Production deployment verification remains open.
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
