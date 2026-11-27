@@ -360,3 +360,43 @@ Recomputed both unrounded v2 horizon events for each of the 25 withheld December
 | [30, 60) | 0 | 0 |
 
 Nearest-minute rounding matches 14/25 sunrises and 10/25 sunsets. Flooring the same instants matches only 5/25 sunrises and 4/25 sunsets, and rescues zero misses. Every nearest-minute miss lies before the PAC minute, so flooring moves the displayed value in the wrong direction. Failed sunrise residuals range from −40.276 to −30.707 seconds, and failed sunsets range from −44.313 to −30.113 seconds. This shows a systematic early offset in the selected withheld sample. It does not establish a physical cause or a PAC-wide rounding convention. The sample is conditioned on failed days. No v3, tolerance change or promotion was made.
+
+## Step B March 2027 — checked 2026-11-27
+
+Kolkata v2 exact-minute horizon and sunrise-tithi checks apply, with at most one minute of difference for the same tithi end. For 1–21 March the references are the online Kolkata horizon table and Phalguna folio. For 22–31 March the reference is the 2027 Chaitra folio in the English PAC print edition, pages 98–104, and its 2027 Kolkata horizon table on page 117. The online Chaitra route displays the previous year's folio. [Horizon table](https://packolkata.imd.gov.in/panchang/en/tables) · [Phalguna](https://packolkata.imd.gov.in/panchang/en/phalguna) · [PAC English edition download](https://packolkata.imd.gov.in/rashtriya-panchang-english.php)
+
+| Date | Sunrise PAC / v2 | Sunset PAC / v2 | Tithi PAC / v2 | End PAC / v2, IST | End difference | Result |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 2027-03-01 | 05:58 / 05:58 | 17:40 / 17:40 | krishna 9 / krishna 9 | 02 Mar 02:08 / 02 Mar 02:08 | +0 min | VERIFIED |
+| 2027-03-02 | 05:58 / 05:57 | 17:41 / 17:41 | krishna 10 / krishna 10 | 03 Mar 04:45 / 03 Mar 04:45 | +0 min | WITHHELD |
+| 2027-03-03 | 05:57 / 05:56 | 17:41 / 17:41 | krishna 11 / krishna 11 | 04 Mar 07:25 / 04 Mar 07:25 | +0 min | WITHHELD |
+| 2027-03-04 | 05:56 / 05:56 | 17:42 / 17:41 | krishna 11 / krishna 11 | 04 Mar 07:25 / 04 Mar 07:25 | +0 min | WITHHELD |
+| 2027-03-05 | 05:55 / 05:55 | 17:42 / 17:42 | krishna 12 / krishna 12 | 05 Mar 09:54 / 05 Mar 09:55 | +1 min | VERIFIED |
+| 2027-03-06 | 05:54 / 05:54 | 17:42 / 17:42 | krishna 13 / krishna 13 | 06 Mar 12:04 / 06 Mar 12:05 | +1 min | VERIFIED |
+| 2027-03-07 | 05:53 / 05:53 | 17:43 / 17:43 | krishna 14 / krishna 14 | 07 Mar 13:47 / 07 Mar 13:47 | +0 min | VERIFIED |
+| 2027-03-08 | 05:53 / 05:52 | 17:43 / 17:43 | krishna 15 / krishna 15 | 08 Mar 14:59 / 08 Mar 15:00 | +1 min | WITHHELD |
+| 2027-03-09 | 05:52 / 05:51 | 17:44 / 17:43 | shukla 1 / shukla 1 | 09 Mar 15:41 / 09 Mar 15:42 | +1 min | WITHHELD |
+| 2027-03-10 | 05:51 / 05:50 | 17:44 / 17:44 | shukla 2 / shukla 2 | 10 Mar 15:53 / 10 Mar 15:54 | +1 min | WITHHELD |
+| 2027-03-11 | 05:50 / 05:49 | 17:44 / 17:44 | shukla 3 / shukla 3 | 11 Mar 15:38 / 11 Mar 15:39 | +1 min | WITHHELD |
+| 2027-03-12 | 05:49 / 05:48 | 17:45 / 17:45 | shukla 4 / shukla 4 | 12 Mar 14:58 / 12 Mar 14:58 | +0 min | WITHHELD |
+| 2027-03-13 | 05:48 / 05:48 | 17:45 / 17:45 | shukla 5 / shukla 5 | 13 Mar 13:55 / 13 Mar 13:56 | +1 min | VERIFIED |
+| 2027-03-14 | 05:47 / 05:47 | 17:46 / 17:45 | shukla 6 / shukla 6 | 14 Mar 12:32 / 14 Mar 12:33 | +1 min | WITHHELD |
+| 2027-03-15 | 05:46 / 05:46 | 17:46 / 17:46 | shukla 7 / shukla 7 | 15 Mar 10:52 / 15 Mar 10:52 | +0 min | VERIFIED |
+| 2027-03-16 | 05:45 / 05:45 | 17:46 / 17:46 | shukla 8 / shukla 8 | 16 Mar 08:55 / 16 Mar 08:55 | +0 min | VERIFIED |
+| 2027-03-17 | 05:44 / 05:44 | 17:47 / 17:47 | shukla 9 / shukla 9 | 17 Mar 06:44 / 17 Mar 06:45 | +1 min | VERIFIED |
+| 2027-03-18 | 05:43 / 05:43 | 17:47 / 17:47 | shukla 11 / shukla 11 | 19 Mar 01:52 / 19 Mar 01:52 | +0 min | VERIFIED |
+| 2027-03-19 | 05:43 / 05:42 | 17:47 / 17:47 | shukla 12 / shukla 12 | 19 Mar 23:18 / 19 Mar 23:18 | +0 min | WITHHELD |
+| 2027-03-20 | 05:42 / 05:41 | 17:48 / 17:48 | shukla 13 / shukla 13 | 20 Mar 20:46 / 20 Mar 20:46 | +0 min | WITHHELD |
+| 2027-03-21 | 05:41 / 05:40 | 17:48 / 17:48 | shukla 14 / shukla 14 | 21 Mar 18:22 / 21 Mar 18:23 | +1 min | WITHHELD |
+| 2027-03-22 | 05:40 / 05:39 | 17:49 / 17:48 | shukla 15 / shukla 15 | 22 Mar 16:14 / 22 Mar 16:14 | +0 min | WITHHELD |
+| 2027-03-23 | 05:39 / 05:38 | 17:49 / 17:49 | krishna 1 / krishna 1 | 23 Mar 14:29 / 23 Mar 14:29 | +0 min | WITHHELD |
+| 2027-03-24 | 05:38 / 05:37 | 17:49 / 17:49 | krishna 2 / krishna 2 | 24 Mar 13:15 / 24 Mar 13:15 | +0 min | WITHHELD |
+| 2027-03-25 | 05:37 / 05:36 | 17:50 / 17:49 | krishna 3 / krishna 3 | 25 Mar 12:38 / 25 Mar 12:39 | +1 min | WITHHELD |
+| 2027-03-26 | 05:36 / 05:35 | 17:50 / 17:50 | krishna 4 / krishna 4 | 26 Mar 12:44 / 26 Mar 12:45 | +1 min | WITHHELD |
+| 2027-03-27 | 05:35 / 05:34 | 17:50 / 17:50 | krishna 5 / krishna 5 | 27 Mar 13:34 / 27 Mar 13:34 | +0 min | WITHHELD |
+| 2027-03-28 | 05:34 / 05:33 | 17:51 / 17:50 | krishna 6 / krishna 6 | 28 Mar 15:05 / 28 Mar 15:06 | +1 min | WITHHELD |
+| 2027-03-29 | 05:33 / 05:32 | 17:51 / 17:51 | krishna 7 / krishna 7 | 29 Mar 17:12 / 29 Mar 17:12 | +0 min | WITHHELD |
+| 2027-03-30 | 05:32 / 05:31 | 17:51 / 17:51 | krishna 8 / krishna 8 | 30 Mar 19:40 / 30 Mar 19:41 | +1 min | WITHHELD |
+| 2027-03-31 | 05:31 / 05:30 | 17:52 / 17:52 | krishna 9 / krishna 9 | 31 Mar 22:17 / 31 Mar 22:18 | +1 min | WITHHELD |
+
+Nine of 31 March records passed. Only independently computed passing rows were added.

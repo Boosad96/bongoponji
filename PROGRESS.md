@@ -69,3 +69,7 @@ Local validation passed 24 Vitest tests, Astro diagnostics, the example-origin s
 ## Phase 4 v3 prompt, Step A
 
 Recorded unrounded v2 residuals for both horizon events on all 25 withheld dates with PAC rows. Flooring matches 9 of 50 compared events versus 24 for nearest-minute rounding, and rescues no misses. The evidence does not justify v3. Proceed with the March Step B batch using v2 and the existing gate.
+
+## Phase 4 v3 prompt, Step B March
+
+Checked all 31 March dates with v2 and approved nine. The print edition provides the 2027 Chaitra tithi and horizon rows from 22 March onward. The online Chaitra page contains 2026 data. Next check April against the printed 2027 folio and horizon table.
