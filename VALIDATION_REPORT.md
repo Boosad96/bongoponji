@@ -151,3 +151,46 @@ The only sunrise-tithi disagreement was 2027-08-05. Astronomy Engine labeled it 
 ### 1434 source availability
 
 The printed 1434 Bishuddha Siddhanta Panjika could not be confirmed as published on 27 November 2026. The retailer listing still said “Coming Soon” and was out of stock, and a secondary reference described the edition as forthcoming. The Vivekananda Math search still surfaced only its 2026–27 observance schedule. Its separate 2027–28 school notice is unrelated. The remaining eleven 1434 boundaries are gated on publication or access to an authoritative reference. Computed candidates already exist. Reuse clearance remains open and the site dataset was unchanged. [Edition listing](https://bongohridoy.com/product/bisuddha-siddhanta-panjika-1434/) · [Publication status note](https://myastrology.in/en/bengali-calendar/marriage-dates-1434) · [Vivekananda Math 2026–27 schedule](https://asvarkvm.org/sites/default/files/Yearly%20Events%202026-2027.pdf)
+
+## Step 2 anomaly investigation — 2026-11-27
+
+**September 2027 sunsets.** Both engines use the apparent upper limb crossing a refracted horizon and the same Kolkata latitude and longitude. Astronomy Engine uses 34 arcminutes of near-horizon refraction at the zero-height observer. Grahan Core 1.0.1 uses 0.6117° (36.702 arcminutes) and a distance-dependent solar semidiameter. Before rounding, Grahan's 30 sunsets were consistently 12.318–12.472 seconds later. Re-running the Astronomy Engine centre-altitude search with Grahan's refraction and semidiameter convention reduced the residual to 0.557–0.619 seconds and raised nearest-minute agreement from 6/30 to 30/30. The refraction difference causes the systematic offset. September's event times cross the nearest-minute rounding threshold on 24 dates. The observer coordinates and comparator rounding rule were held fixed. [Grahan](https://github.com/svarbhanu/grahan) · [Astronomy Engine](https://github.com/cosinekitty/astronomy)
+
+**5 August 2027, Kolkata.** The published Ved Prashnavali sunrise table labels the day **Shukla Chaturthi** at 05:09 IST, ending around 02:28 IST on 6 August. Tattva's Swiss Ephemeris calendar also assigns Shukla Chaturthi, using a displayed sunrise of 05:13. Drik Panchang's Kolkata festival list associates that day with Shukla Chaturthi observance. The festival listing provides secondary context for the sunrise question. Astronomy Engine's unrounded sunrise was 05:09:29.777 IST and its Tritiya end was 05:09:49.250. Grahan's sunrise was 05:09:16.707 and its Tritiya end was 05:09:16.426, less than one second before its sunrise. The published online label supports Chaturthi, but an applicable PAC or printed Bishuddha Siddhanta folio was unavailable and neither the unresolved engine record nor any August date was approved in this December-only batch. [Ved Prashnavali sunrise table](https://vedprashnavali.com/panchang/kolkata/2027-08) · [Tattva Kolkata table](https://mytattva.com/panchang/kolkata/2027-08) · [Drik Panchang Kolkata festival list](https://www.drikpanchang.com/festivals/month/festivals-august.html?geoname-id=1275004&year=2027)
+
+## Step 2 December batch — checked 2026-11-27
+
+This batch is limited to independently calculated Kolkata `drik-sunrise-tithi-v1` data from 4–31 December 2026. It does not certify Bengali month boundaries. PAC Kolkata horizon figures supply the exact minute comparison. The Agrahayana folio applies through 21 December and Pausha from 22 December. The ordered first tithi is checked against the local sunrise candidate. PAC's 24+ hour notation rolls into the following civil date. For 9 December the folio gives an all-day Pratipad and the next entry supplies its end time. Rows must match both solar minutes and the sunrise tithi, with tithi end within one minute. Comparison facts are recorded here and only independent computations were added to the release. [PAC Kolkata horizon](https://packolkata.imd.gov.in/panchang/en/tables) · [Agrahayana folio](https://packolkata.imd.gov.in/panchang/en/agrahayana) · [Pausha folio](https://packolkata.imd.gov.in/panchang/en/pausha)
+
+| Date | Sunrise PAC / computed | Sunset PAC / computed | Sunrise tithi PAC / computed | End PAC / computed (IST) | End difference | Result |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 2026-12-04 | 06:02 / 06:02 | 16:52 / 16:51 | krishna 11 / krishna 11 | 04 Dec 23:45 / 04 Dec 23:46 | +1 min | WITHHELD |
+| 2026-12-05 | 06:02 / 06:02 | 16:52 / 16:52 | krishna 12 / krishna 12 | 06 Dec 00:52 / 06 Dec 00:53 | +1 min | VERIFIED |
+| 2026-12-06 | 06:03 / 06:03 | 16:52 / 16:52 | krishna 13 / krishna 13 | 07 Dec 02:23 / 07 Dec 02:23 | +0 min | VERIFIED |
+| 2026-12-07 | 06:04 / 06:04 | 16:52 / 16:52 | krishna 14 / krishna 14 | 08 Dec 04:13 / 08 Dec 04:14 | +1 min | VERIFIED |
+| 2026-12-08 | 06:04 / 06:04 | 16:52 / 16:52 | krishna 15 / krishna 15 | 09 Dec 06:22 / 09 Dec 06:23 | +1 min | VERIFIED |
+| 2026-12-09 | 06:05 / 06:05 | 16:53 / 16:52 | shukla 1 / krishna 15 | 10 Dec 08:47 / 09 Dec 06:23 | Different tithis | WITHHELD |
+| 2026-12-10 | 06:06 / 06:06 | 16:53 / 16:53 | shukla 1 / shukla 1 | 10 Dec 08:47 / 10 Dec 08:47 | +0 min | VERIFIED |
+| 2026-12-11 | 06:06 / 06:06 | 16:53 / 16:53 | shukla 2 / shukla 2 | 11 Dec 11:24 / 11 Dec 11:24 | +0 min | VERIFIED |
+| 2026-12-12 | 06:07 / 06:07 | 16:54 / 16:53 | shukla 3 / shukla 3 | 12 Dec 14:07 / 12 Dec 14:07 | +0 min | WITHHELD |
+| 2026-12-13 | 06:07 / 06:07 | 16:54 / 16:54 | shukla 4 / shukla 4 | 13 Dec 16:48 / 13 Dec 16:49 | +1 min | VERIFIED |
+| 2026-12-14 | 06:08 / 06:08 | 16:54 / 16:54 | shukla 5 / shukla 5 | 14 Dec 19:17 / 14 Dec 19:17 | +0 min | VERIFIED |
+| 2026-12-15 | 06:09 / 06:09 | 16:55 / 16:54 | shukla 6 / shukla 6 | 15 Dec 21:20 / 15 Dec 21:21 | +1 min | WITHHELD |
+| 2026-12-16 | 06:09 / 06:09 | 16:55 / 16:55 | shukla 7 / shukla 7 | 16 Dec 22:46 / 16 Dec 22:47 | +1 min | VERIFIED |
+| 2026-12-17 | 06:10 / 06:10 | 16:55 / 16:55 | shukla 8 / shukla 8 | 17 Dec 23:26 / 17 Dec 23:27 | +1 min | VERIFIED |
+| 2026-12-18 | 06:10 / 06:10 | 16:56 / 16:56 | shukla 9 / shukla 9 | 18 Dec 23:15 / 18 Dec 23:15 | +0 min | VERIFIED |
+| 2026-12-19 | 06:11 / 06:11 | 16:56 / 16:56 | shukla 10 / shukla 10 | 19 Dec 22:10 / 19 Dec 22:10 | +0 min | VERIFIED |
+| 2026-12-20 | 06:11 / 06:11 | 16:57 / 16:57 | shukla 11 / shukla 11 | 20 Dec 20:15 / 20 Dec 20:16 | +1 min | VERIFIED |
+| 2026-12-21 | 06:12 / 06:12 | 16:57 / 16:57 | shukla 12 / shukla 12 | 21 Dec 17:37 / 21 Dec 17:37 | +0 min | VERIFIED |
+| 2026-12-22 | 06:12 / 06:12 | 16:58 / 16:58 | shukla 13 / shukla 13 | 22 Dec 14:24 / 22 Dec 14:25 | +1 min | VERIFIED |
+| 2026-12-23 | 06:13 / 06:13 | 16:58 / 16:58 | shukla 14 / shukla 14 | 23 Dec 10:48 / 23 Dec 10:48 | +0 min | VERIFIED |
+| 2026-12-24 | 06:13 / 06:13 | 16:59 / 16:59 | shukla 15 / shukla 15 | 24 Dec 06:58 / 24 Dec 06:59 | +1 min | VERIFIED |
+| 2026-12-25 | 06:14 / 06:14 | 16:59 / 16:59 | krishna 2 / krishna 2 | 25 Dec 23:27 / 25 Dec 23:27 | +0 min | VERIFIED |
+| 2026-12-26 | 06:14 / 06:14 | 17:00 / 17:00 | krishna 3 / krishna 3 | 26 Dec 20:06 / 26 Dec 20:06 | +0 min | VERIFIED |
+| 2026-12-27 | 06:15 / 06:15 | 17:01 / 17:00 | krishna 4 / krishna 4 | 27 Dec 17:14 / 27 Dec 17:14 | +0 min | WITHHELD |
+| 2026-12-28 | 06:15 / 06:15 | 17:01 / 17:01 | krishna 5 / krishna 5 | 28 Dec 14:59 / 28 Dec 14:59 | +0 min | VERIFIED |
+| 2026-12-29 | 06:15 / 06:15 | 17:02 / 17:01 | krishna 6 / krishna 6 | 29 Dec 13:25 / 29 Dec 13:26 | +1 min | WITHHELD |
+| 2026-12-30 | 06:16 / 06:16 | 17:02 / 17:02 | krishna 7 / krishna 7 | 30 Dec 12:37 / 30 Dec 12:38 | +1 min | VERIFIED |
+| 2026-12-31 | 06:16 / 06:16 | 17:03 / 17:03 | krishna 8 / krishna 8 | 31 Dec 12:33 / 31 Dec 12:34 | +1 min | VERIFIED |
+
+22 of 28 dates verified. 4, 9, 12, 15, 27 and 29 December remain withheld. All six missed the exact sunset check by one minute. On 9 December the local Astronomy Engine sunrise also precedes the calculated Amavasya end, while the PAC folio labels the day Pratipad. Limits and methods were kept fixed.

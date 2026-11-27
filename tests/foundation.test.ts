@@ -111,3 +111,18 @@ it.each([
   expect(sample?.value).toMatchObject({sunrise,sunset,tithi:{paksha:'krishna',number}});
   expect(Math.abs(Date.parse(sample?.value.tithi?.endsAt ?? '') - Date.parse(end))).toBeLessThanOrEqual(60000);
 });
+
+it('publishes only passing December dates in the PAC batch', () => {
+  const held = new Set([4, 9, 12, 15, 27, 29]);
+  for (let day = 4; day <= 31; day++) {
+    const date = `2026-12-${String(day).padStart(2, '0')}`;
+    const record = verifiedDaily(date, 'kolkata', 'west-bengal');
+    expect(Boolean(record), date).toBe(!held.has(day));
+    if (record) {
+      expect(record.evidence.source).toBe(
+        `https://packolkata.imd.gov.in/panchang/en/${day <= 21 ? 'agrahayana' : 'pausha'}`,
+      );
+    }
+  }
+  expect(verifiedDaily('2027-08-05', 'kolkata', 'west-bengal')).toBeNull();
+});

@@ -37,7 +37,13 @@ Pinned MIT-licensed Grahan Vedic 1.0.1 as a development dependency and ran the i
 ## Resume here
 
 1. Finish Step 1. Run `node scripts/check-kolkata-boundaries.mjs`. Compare the pending candidates against the applicable printed Kolkata Bishuddha Siddhanta editions, starting with 1433 Baishakh, Jyaishtha and Chaitra and 1434 Jyaishtha through Chaitra as listed in VALIDATION_REPORT.md. Confirm the applicable cutoffs and ayanamsha across both years. Record each dated result and source-use status. PAC may serve as a comparison reference. Obtain rights before importing protected source material.
-2. After the boundaries are verified, start Step 2 with 4–31 December 2026. Check each day against the Kolkata horizon rows and tithi folio under the existing one-minute tithi tolerance and exact minute-rounded solar comparison. Approve only passing records. Update the reports, run the suite and commit the batch before January–April 2027 or later months.
+2. The separately authorized December 2026 PAC comparison is complete. Before starting January–April 2027, resolve the boundary gate and confirm applicable date-specific references for the next batch. Preserve the six December exclusions unless later evidence and a verified calculation resolve them. Keep 5 August 2027 withheld until an applicable release-grade reference and the calculation agree. Apply the existing exact solar-minute and one-minute tithi end tolerances.
 3. Continue in order with festival observance rules, muhurat and other traditional fields, local browser and Lighthouse work, then growth features. Keep the review build noindexed with SITE_URL unset. Deployment remains owner-managed.
 
 Step 7 is gated on Steps 1–2. Once daily reference comparisons work against an accessible, authoritative source, implement the October and monthly GitHub Actions schedules plus manual dispatch. Keep generated candidates separate from releasable records, make the workflow reject dates without adequate reference evidence, and verify a real run before marking automation complete.
+
+## Step 2, December-only checkpoint
+
+Resolved the September Grahan sunset anomaly by isolating its higher refraction constant. Published online Kolkata tables assign Shukla Chaturthi on 5 August 2027. The two engines disagree close to sunrise, and the applicable PAC or printed folio is still unavailable, so the date is withheld. Compared all 28 December candidate dates with PAC and approved 22. The six failed dates are listed in VALIDATION_REPORT.md. The authorized December batch does not open the 1434 boundary gate or subsequent months.
+
+Local validation passed 22 Vitest tests, Astro diagnostics, the example-origin static audit and Worker test, and the noindexed review build with an empty sitemap. The dataset holds 29 records in total.
