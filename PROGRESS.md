@@ -177,6 +177,12 @@ Passed 26 unit tests, Astro diagnostics, both static audits and Worker smoke tes
 
 Cloudflare deployed `c151959` as `4cbb81fb-d9cf-4f99-9c8e-6c702fa4592b`. Direct apex checks confirmed 118 unique sitemap URLs, the expected robots directives, HTTP 200 with Bengali content and apex canonicals on all three policy pages, and their footer links. The homepage, 2027 calendar and all three policy pages contained the tag exactly once. The old privacy URL redirects with HTTP 301. Chromium confirmed Cloudflare's email obfuscation decodes to the expected mailto link. [Implementation CI passed](https://github.com/Boosad96/bongoponji/actions/runs/46055091672). GA4 reporting or ingestion was not inspected.
 
+## v6.1 apex redirect test
+
+Commit `472b7de` added the two requested host rules while preserving the legacy privacy rule. Cloudflare Pages deployment `5355ca39-1dde-4ea0-9838-fef620d20e04` succeeded. Direct checks after deployment found that both alias homepages and the www April calendar URL with `?x=1` still returned 200. The apex returned 200, the legacy privacy path still returned 301 to `/privacy/`, and the live sitemap still held 118 distinct apex URLs. All 26 unit tests, Astro diagnostics and [CI](https://github.com/Boosad96/bongoponji/actions/runs/46129081875) passed.
+
+Launch checklist step 4 remains open. Cloudflare Pages documents domain-level sources as unsupported in `_redirects`. The requested three lines were preserved. Completing host redirects would require an approved alternative such as the Cloudflare redirect rules already described in the launch checklist. [Cloudflare Pages redirect support](https://developers.cloudflare.com/pages/configuration/redirects/#advanced-redirects)
+
 ## Resume here
 
 1. Continue April 21 onward and the eleven 1434 boundaries when their published references become available. Use the unchanged exact-minute horizon and one-minute end-time gates. Keep the three sunrise-tithi conflicts held.
