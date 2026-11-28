@@ -1,1 +1,3 @@
 /privacy-policy/ /privacy/ 301
+https://www.bongoponji.com/* https://bongoponji.com/:splat 301
+https://bongoponji.pages.dev/* https://bongoponji.com/:splat 301
